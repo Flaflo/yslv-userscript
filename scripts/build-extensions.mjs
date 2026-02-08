@@ -56,6 +56,10 @@ for (const target of ["chromium", "firefox"]) {
   mustExist(srcTemplate, `Extension template (${target})`)
 
   copyDir(srcTemplate, outDir)
+  copyDir(
+    path.join(ROOT, "extension/icons"),
+    path.join(outDir, "icons")
+  )
 
   const manifestPath = path.join(outDir, "manifest.json")
   mustExist(manifestPath, `manifest.json (${target})`)

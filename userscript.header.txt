@@ -5,6 +5,8 @@
 // @author       Flaflo
 // @license      MIT
 // @homepageURL  https://flaflo.xyz/yslv
+// @icon         https://flaflo.xyz/yslv/icon-128.png
+// @icon64       https://flaflo.xyz/yslv/icon-64.png
 // @description  Restore YouTube Subscription List View
 // @match        https://www.youtube.com/*
 // @run-at       document-end
