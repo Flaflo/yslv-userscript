@@ -1,0 +1,12 @@
+// ==UserScript==
+// @name         YouTube Subscription List View
+// @namespace    xyz.flaflo.yslv
+// @version      1.4.6
+// @author       Flaflo
+// @license      MIT
+// @homepageURL  https://flaflo.xyz/yslv
+// @description  Restore YouTube Subscription List View
+// @match        https://www.youtube.com/*
+// @run-at       document-end
+// @grant        none
+// ==/UserScript==
