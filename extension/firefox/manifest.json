@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "YouTube Subscription List View",
-  "version": "__VERSION__",
+  "version": "2.0.0",
   "description": "Restore YouTube Subscription List View",
   "author": "Flaflo",
   "homepage_url": "https://flaflo.xyz/yslv",
@@ -23,7 +23,10 @@
   "browser_specific_settings": {
     "gecko": {
       "id": "yslv@flaflo.xyz",
-      "strict_min_version": "109.0"
+      "strict_min_version": "109.0",
+      "data_collection_permissions": {
+        "required": ["none"]
+      }
     }
   }
 }
