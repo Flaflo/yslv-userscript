@@ -1,6 +1,6 @@
 import type { Cfg, DescStoreState, State } from "./types"
 import { ensureDesc } from "./desc"
-import { ensureInlineMeta, ensureRowHeader } from "./meta"
+import { ensureInlineMeta, ensureRowHeader, restoreMovedAvatars, restoreMovedMetaAnchors } from "./meta"
 
 export function patchItem(cfg: Cfg, state: State, store: DescStoreState, item: Element): void {
   if (!state.active || state.view !== "list") return
@@ -31,6 +31,9 @@ export function patchItem(cfg: Cfg, state: State, store: DescStoreState, item: E
 }
 
 export function cleanupListArtifacts(cfg: Cfg, state: State): void {
+  restoreMovedAvatars(state)
+  restoreMovedMetaAnchors(state)
+
   document.querySelectorAll(`.${cfg.cls.rowHead}`).forEach(n => n.remove())
   document.querySelectorAll(`.${cfg.cls.metaRow}`).forEach(n => n.remove())
   document.querySelectorAll(`.${cfg.cls.desc}`).forEach(n => n.remove())

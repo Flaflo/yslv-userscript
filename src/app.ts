@@ -34,8 +34,6 @@ export function createApp(cfg: Cfg, state: State, shimmer: ShimmerState, store: 
 
     if (state.view === "list") {
       cleanupListArtifacts(cfg, state)
-      restoreMovedAvatars(state)
-      restoreMovedMetaAnchors(state)
     }
 
     state.mo?.disconnect()
