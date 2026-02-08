@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         YouTube Subscription List View
 // @namespace    xyz.flaflo.yslv
-// @version      1.4.6
+// @version      __VERSION__
 // @author       Flaflo
 // @license      MIT
 // @homepageURL  https://flaflo.xyz/yslv

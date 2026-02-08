@@ -1,0 +1,26 @@
+{
+  "manifest_version": 3,
+  "name": "YouTube Subscription List View",
+  "version": "__VERSION__",
+  "description": "Restore YouTube Subscription List View",
+  "author": "Flaflo",
+  "homepage_url": "https://flaflo.xyz/yslv",
+  "permissions": [],
+  "host_permissions": ["https://www.youtube.com/*"],
+  "content_scripts": [
+    {
+      "matches": ["https://www.youtube.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_end"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["injected.js"],
+      "matches": ["https://www.youtube.com/*"]
+    }
+  ],
+  "action": {
+    "default_title": "YSLV"
+  }
+}
