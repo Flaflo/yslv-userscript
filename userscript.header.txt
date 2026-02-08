@@ -4,7 +4,7 @@
 // @version      __VERSION__
 // @author       Flaflo
 // @license      MIT
-// @homepageURL  https://flaflo.xyz/yslv
+// @homepageURL  https://github.com/Flaflo/yslv-userscript
 // @icon         https://flaflo.xyz/yslv/icon-128.png
 // @icon64       https://flaflo.xyz/yslv/icon-64.png
 // @description  Restore YouTube Subscription List View
