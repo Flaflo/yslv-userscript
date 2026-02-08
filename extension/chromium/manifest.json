@@ -3,7 +3,7 @@
   "name": "YouTube Subscription List View",
   "version": "__VERSION__",
   "description": "Restore YouTube Subscription List View",
-  "author": "Flaflo",
+  "author": "Lukas Klinger",
   "homepage_url": "https://github.com/Flaflo/yslv-userscript",
   "permissions": [],
   "host_permissions": ["https://www.youtube.com/*"],
