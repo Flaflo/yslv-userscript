@@ -25,7 +25,8 @@ npm run build:ext
 
 1. Open `chrome://extensions`
 2. Enable **Developer mode**
-3. **Load unpacked** → select `dist-ext/chromium`
+3. **Load unpacked**
+4. Select `dist-ext/chromium`
 
 ### Firefox
 
