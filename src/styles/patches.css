@@ -93,9 +93,11 @@ html[__ATTR__="list"] .yt-lockup-view-model.yt-lockup-view-model--vertical{
 html[__ATTR__="list"] .yt-lockup-view-model__content-image{
   grid-column:1 !important;grid-row:1 / span 2 !important;
   width:__THUMB_W__ !important;min-width:__THUMB_W__ !important;max-width:__THUMB_W__ !important;
+  aspect-ratio:16/9 !important;overflow:hidden !important;border-radius:__RADIUS__ !important;
 }
-html[__ATTR__="list"] .yt-lockup-view-model__content-image img{
-  width:100% !important;height:auto !important;border-radius:__RADIUS__ !important;
+html[__ATTR__="list"] .yt-lockup-view-model__content-image img,
+html[__ATTR__="list"] .yt-lockup-view-model__content-image canvas{
+  width:100% !important;height:100% !important;border-radius:__RADIUS__ !important;
   object-fit:cover !important;display:block !important;
 }
 html[__ATTR__="list"] .yt-lockup-view-model__metadata{
