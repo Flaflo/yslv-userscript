@@ -103,6 +103,7 @@ export type Cfg = {
     btn: string
     btnIcon: string
     isShort: string
+    patched: string
   }
 
   attr: {

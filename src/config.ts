@@ -88,6 +88,7 @@ export const CFG: Cfg = {
     btn: "yslv-btn",
     btnIcon: "yslv-btn-ic",
     isShort: "yslv-is-short",
+    patched: "yslv-patched",
   },
 
   attr: {

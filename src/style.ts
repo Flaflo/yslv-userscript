@@ -56,6 +56,7 @@ export function buildStyleText(cfg: Cfg): string {
     "__DESC__": cfg.cls.desc,
     "__DESCSKEL__": cfg.cls.descSkel,
     "__ISSHORT__": cfg.cls.isShort,
+    "__PATCHED__": cfg.cls.patched,
 
     "__MAX_W__": cssMaxWidth(L.maxWidth),
     "__ROW_PAD_Y__": px(Math.max(8, Number(L.rowPadY) || 22)),

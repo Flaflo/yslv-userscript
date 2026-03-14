@@ -24,6 +24,7 @@ export function patchItem(cfg: Cfg, state: State, store: DescStoreState, item: E
   if (!textContainer) return
 
   state.processedItems.add(item)
+  item.classList.add(cfg.cls.patched)
 
   ensureRowHeader(cfg, state, item, lockup)
   ensureInlineMeta(cfg, state, textContainer, lockup)
@@ -34,6 +35,7 @@ export function cleanupListArtifacts(cfg: Cfg, state: State): void {
   restoreMovedAvatars(state)
   restoreMovedMetaAnchors(state)
 
+  document.querySelectorAll(`.${cfg.cls.patched}`).forEach(n => n.classList.remove(cfg.cls.patched))
   document.querySelectorAll(`.${cfg.cls.rowHead}`).forEach(n => n.remove())
   document.querySelectorAll(`.${cfg.cls.metaRow}`).forEach(n => n.remove())
   document.querySelectorAll(`.${cfg.cls.desc}`).forEach(n => n.remove())
