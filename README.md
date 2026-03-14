@@ -1,6 +1,8 @@
 # YouTube Subscription List View (YSLV)
 [![Greasy Fork Downloads](https://img.shields.io/greasyfork/dt/565188)](https://greasyfork.org/en/scripts/565188-youtube-subscription-list-view)
 [![Greasy Fork Daily Downloads](https://img.shields.io/greasyfork/dd/565188)](https://greasyfork.org/en/scripts/565188-youtube-subscription-list-view)
+![Chrome Web Store Version](https://img.shields.io/chrome-web-store/v/ehfpipcmnkpnekkkamdigmflojhmpnbg)
+![Mozilla Add-on Version](https://img.shields.io/amo/v/youtube-subscription-list-view)
 
 Restore the **list view** for the YouTube **Subscriptions** page faithful to the original layout, inline metadata, video descriptions, and a grid/list toggle placed exactly where it used to be.
 
