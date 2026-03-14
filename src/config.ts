@@ -28,6 +28,8 @@ export const CFG: Cfg = {
       cardW: 170,
     },
 
+    hideMostRelevant: true,
+
     titleClamp: 2,
     descClamp: 2,
 

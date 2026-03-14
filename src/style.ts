@@ -72,6 +72,7 @@ export function buildStyleText(cfg: Cfg): string {
     "__META_GAP__": px(Math.max(6, Number(L.metaRow.gap) || 8)),
     "__SHORT_W__": px(Math.max(110, Number(L.shorts.cardW) || 170)),
 
+    "__HIDE_MOST_RELEVANT__": cfg.list.hideMostRelevant ? "none" : "block",
     "__SHIMMER_VAR__": cfg.cssVars.shimmerX,
     "__SHORTW_VAR__": cfg.cssVars.shortW,
     ...skeletonTokens(S),

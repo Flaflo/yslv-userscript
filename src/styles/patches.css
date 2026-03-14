@@ -275,3 +275,9 @@ html[__ATTR__="list"]
 ytd-app[mini-guide-visible] ytd-page-manager.ytd-app{
   margin-left: unset !important;
 }
+
+/* Patch: hide "Most Relevant" / algorithmic sections */
+ytd-browse[page-subtype="subscriptions"] ytd-rich-section-renderer,
+ytd-two-column-browse-results-renderer[page-subtype="subscriptions"] ytd-rich-section-renderer{
+  display:__HIDE_MOST_RELEVANT__ !important;
+}

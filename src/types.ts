@@ -43,6 +43,8 @@ export type Cfg = {
       cardW: number
     }
 
+    hideMostRelevant: boolean
+
     titleClamp: number
     descClamp: number
 
