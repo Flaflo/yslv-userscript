@@ -73,6 +73,9 @@ html[__ATTR__="list"] .__ROWHEAD__ yt-avatar-shape,
 html[__ATTR__="list"] .__ROWHEAD__ .yt-spec-avatar-shape{
   width:__HEAD_AV__ !important;height:__HEAD_AV__ !important;
 }
+html[__ATTR__="list"] .__ROWHEAD__ .yt-lockup-metadata-view-model__avatar img{
+  width:__HEAD_AV__ !important;height:__HEAD_AV__ !important;border-radius:50% !important;object-fit:cover !important;
+}
 html[__ATTR__="list"] .__ROWHEAD_NAME__{
   color:var(--yt-spec-text-primary) !important;
   text-decoration:none !important;
