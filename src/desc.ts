@@ -98,6 +98,51 @@ export function summarizeDesc(raw: string, sentenceCount: number, maxChars: numb
   return s
 }
 
+function getInnertubeContext(): Record<string, any> | null {
+  try {
+    const ytcfg = (window as any).ytcfg
+    if (ytcfg?.data_?.INNERTUBE_CONTEXT) return ytcfg.data_.INNERTUBE_CONTEXT
+    if (typeof ytcfg?.get === "function") {
+      const ctx = ytcfg.get("INNERTUBE_CONTEXT")
+      if (ctx) return ctx
+    }
+  } catch {}
+  return null
+}
+
+function getInnertubeApiKey(): string {
+  try {
+    const ytcfg = (window as any).ytcfg
+    if (ytcfg?.data_?.INNERTUBE_API_KEY) return ytcfg.data_.INNERTUBE_API_KEY
+    if (typeof ytcfg?.get === "function") return ytcfg.get("INNERTUBE_API_KEY") || ""
+  } catch {}
+  return ""
+}
+
+async function fetchDescViaInnertube(vid: string): Promise<string> {
+  const context = getInnertubeContext()
+  const apiKey = getInnertubeApiKey()
+
+  if (context && apiKey) {
+    const res = await fetch(`https://www.youtube.com/youtubei/v1/player?key=${encodeURIComponent(apiKey)}&prettyPrint=false`, {
+      method: "POST",
+      credentials: "same-origin",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ videoId: vid, context }),
+    })
+    const json = await res.json()
+    return String(json?.videoDetails?.shortDescription || "").trim()
+  }
+
+  // Fallback
+  const res = await fetch(`https://www.youtube.com/watch?v=${encodeURIComponent(vid)}`, { credentials: "same-origin" })
+  const html = await res.text()
+  const m = html.match(/ytInitialPlayerResponse\s*=\s*(\{.*?});/s)
+  if (!m) return ""
+  const json = JSON.parse(m[1]!) as any
+  return String(json?.videoDetails?.shortDescription || "").trim()
+}
+
 export async function fetchDescriptionForVideoId(cfg: Cfg, state: State, store: DescStoreState, vid: string): Promise<string> {
   const F = cfg.list.descFetch
   if (!F.enabled) return ""
@@ -122,12 +167,7 @@ export async function fetchDescriptionForVideoId(cfg: Cfg, state: State, store: 
     state.descActive++
     state.descFetches++
     try {
-      const res = await fetch(`https://www.youtube.com/watch?v=${encodeURIComponent(vid)}`, { credentials: "same-origin" })
-      const html = await res.text()
-      const m = html.match(/ytInitialPlayerResponse\s*=\s*(\{.*?});/s)
-      if (!m) return ""
-      const json = JSON.parse(m[1]!) as any
-      const raw = String(json?.videoDetails?.shortDescription || "").trim()
+      const raw = await fetchDescViaInnertube(vid)
       if (!raw) return ""
       return summarizeDesc(raw, F.sentenceCount, F.maxChars)
     } catch {
