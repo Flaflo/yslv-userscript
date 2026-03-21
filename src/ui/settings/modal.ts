@@ -69,16 +69,15 @@ function buildModal(refs: Refs) {
 
   scroll.appendChild(h("div", { class: "yslv-m-divider" }))
 
-  // Text section
+  // Content section
   refs.titleClamp = selectEl("ym-titleClamp", numOpts(1, 4))
   refs.descClamp = selectEl("ym-descClamp", numOpts(1, 4))
   refs.hideMostRelevant = createToggle()
   refs.hideShorts = createToggle()
 
-  scroll.appendChild(h("div", { class: "yslv-m-section" }, "Text"))
+  scroll.appendChild(h("div", { class: "yslv-m-section" }, "Content"))
   scroll.appendChild(menuItem("Title lines", refs.titleClamp, "Maximum lines for video titles"))
-  scroll.appendChild(menuItem("Description lines", refs.descClamp, "Maximum lines for descriptions"))
-  scroll.appendChild(menuItem('Hide "Most Relevant"', refs.hideMostRelevant.el, "Remove the sort label from channels"))
+  scroll.appendChild(menuItem('Hide "Most Relevant"', refs.hideMostRelevant.el, "Remove the Most Relevant section"))
   scroll.appendChild(menuItem("Hide Shorts", refs.hideShorts.el, "Hide the Shorts shelf and all Shorts items"))
 
   scroll.appendChild(h("div", { class: "yslv-m-divider" }))
@@ -92,6 +91,7 @@ function buildModal(refs: Refs) {
 
   scroll.appendChild(h("div", { class: "yslv-m-section" }, "Descriptions"))
   scroll.appendChild(menuItem("Fetch descriptions", refs.fetchDesc.el, "Load video descriptions via API"))
+  scroll.appendChild(menuItem("Description lines", refs.descClamp, "Maximum lines for descriptions"))
   scroll.appendChild(menuItem("Sentence count", refs.sentenceCount, "Number of sentences to show"))
   scroll.appendChild(mc.item)
   scroll.appendChild(menuItem("Skeleton loading", refs.showSkeleton.el, "Show shimmer placeholder while loading"))
