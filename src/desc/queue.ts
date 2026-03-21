@@ -1,7 +1,7 @@
 import type { Cfg } from "../types/config"
 import type { State } from "../types/state"
 import type { DescCache } from "../storage/desc-cache"
-import { buildDescQueueFromDom, fetchDescriptionForVideoId, updateDescDomForVid } from "./desc"
+import { buildDescQueueFromDom, fetchDescriptionForVideoId, updateDescDomForVid } from "."
 
 export async function pumpDescQueue(cfg: Cfg, state: State, cache: DescCache): Promise<void> {
   if (state.descPumpRunning) return

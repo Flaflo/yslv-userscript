@@ -4,7 +4,7 @@ import { createState } from "./core/state"
 import { createDescCache } from "./storage/desc-cache"
 import { loadSettings, applySettingsToCfg } from "./storage/settings"
 import { openSettingsModal } from "./ui/settings/modal"
-import { rebuildStyle, invalidateSkNormCache } from "./ui/style/style"
+import { rebuildStyle, invalidateSkNormCache } from "./ui/style"
 
 export async function initYSLV() {
   const settings = await loadSettings()

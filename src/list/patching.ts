@@ -1,7 +1,7 @@
 import type { Cfg } from "../types/config"
 import type { State } from "../types/state"
 import type { DescCache } from "../storage/desc-cache"
-import { ensureDesc } from "../desc/desc"
+import { ensureDesc } from "../desc"
 import { ensureInlineMeta, ensureRowHeader, restoreMovedAvatars, restoreMovedMetaAnchors } from "./meta"
 import {
   SEL_LOCKUP,

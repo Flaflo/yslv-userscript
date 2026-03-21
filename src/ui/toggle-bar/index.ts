@@ -1,6 +1,6 @@
 import type { State } from "../../types/state"
 import type { ViewMode } from "../../types/state"
-import { iconButton, YT_ICON_BTN_ACTIVE } from "../components/button/button"
+import { iconButton, YT_ICON_BTN_ACTIVE } from "../components/button"
 import { icons } from "../assets/icons"
 import { getActiveSubsDoc } from "../dom/page"
 
