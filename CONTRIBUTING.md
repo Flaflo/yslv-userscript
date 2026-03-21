@@ -8,7 +8,7 @@ This repo produces three distribution artifacts:
 
 ## Prerequisites
 
-- Node.js 22+
+- Node.js 24+
 - npm
 
 ## Build
