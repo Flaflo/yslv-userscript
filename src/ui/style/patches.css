@@ -35,7 +35,7 @@ html[data-yslv-subs-view="list"] .ytLockupAttachmentsViewModelHost {
   width: fit-content !important;
 }
 
-/* Patch: rich-section spacing */
+/* Patch: Fix rich-section spacing */
 html[data-yslv-subs-view="list"] ytd-counterfactual-renderer.ytd-rich-section-renderer,
 html[data-yslv-subs-view="list"]
   #content.ytd-rich-section-renderer
@@ -48,7 +48,7 @@ html[data-yslv-subs-view="list"]
   margin-bottom: 1rem !important;
 }
 
-/* Patch: mini guide visible — hide sidebar and remove margin in list view */
+/* Patch: if mini guide visible then hide sidebar and remove margin in list view */
 html[data-yslv-subs-view="list"] ytd-app[mini-guide-visible] ytd-page-manager.ytd-app {
   margin-left: 0 !important;
 }
@@ -56,7 +56,7 @@ html[data-yslv-subs-view="list"] ytd-app[mini-guide-visible] ytd-mini-guide-rend
   display: none !important;
 }
 
-/* Patch: hide Shorts shelf + individual Shorts items */
+/* Patch: hide Shorts shelf and individual Shorts items */
 ytd-browse[page-subtype="subscriptions"] ytd-rich-section-renderer:has(ytd-rich-shelf-renderer[is-shorts]),
 ytd-two-column-browse-results-renderer[page-subtype="subscriptions"]
   ytd-rich-section-renderer:has(ytd-rich-shelf-renderer[is-shorts]),
