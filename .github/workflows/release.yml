@@ -77,7 +77,8 @@ jobs:
             dist/yslv.user.js \
             dist-ext/yslv-chromium.zip \
             dist-ext/yslv-firefox.zip \
-            README.md
+            README.md \
+            PRIVACY.md
 
       - name: Publish to Chrome Web Store
         if: inputs.publish_chrome
