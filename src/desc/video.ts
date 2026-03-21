@@ -1,4 +1,4 @@
-import {SEL_VIDEO_ANCHORS} from "../core/selectors"
+import { SEL_VIDEO_ANCHORS } from "../core/selectors"
 
 export function isShortsHref(href: string): boolean {
   const h = String(href || "")
