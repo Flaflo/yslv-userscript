@@ -11,6 +11,10 @@
 [![GitHub Last Commit](https://img.shields.io/github/last-commit/Flaflo/yslv-userscript?label=Last%20Commit)](https://github.com/Flaflo/yslv-userscript/commits/main)
 [![License](https://img.shields.io/github/license/Flaflo/yslv-userscript)](https://github.com/Flaflo/yslv-userscript/blob/main/LICENSE)
 
+---
+
+## Description
+
 Restore the **list view** for the YouTube **Subscriptions** page faithful to the original layout, inline metadata, video descriptions, and a grid/list toggle placed exactly where it used to be.
 
 ---
