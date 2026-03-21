@@ -44,7 +44,7 @@ Install from [Mozilla Add-ons](https://addons.mozilla.org/en-US/firefox/addon/yo
 
 ## Configuration
 
-Click the **gear icon** in the toggle bar on the Subscriptions page to open the settings dialog. All changes are previewed live and persisted automatically.
+Click the **gear icon** in the toggle bar on the Subscriptions page to open the settings dialog. All changes are persisted automatically.
 
 | Setting | Description |
 |---|---|
