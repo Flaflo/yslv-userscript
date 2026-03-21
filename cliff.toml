@@ -12,6 +12,7 @@ body = """
 """
 trim = true
 postprocessors = [
+  { pattern = ":[a-z_]+: ", replace = "" },
   { pattern = "\\(#(\\d+)\\)", replace = "[#$1](https://github.com/Flaflo/yslv-userscript/issues/$1)" },
 ]
 
@@ -22,7 +23,7 @@ repo = "yslv-userscript"
 [git]
 conventional_commits = false
 filter_unconventional = false
-tag_pattern = "[0-9]*"
+tag_pattern = '[0-9]+\.[0-9]+\.[0-9]+'
 commit_parsers = [
   { message = "^:sparkles:", group = "<!-- 0 -->New Features" },
   { message = "^:bug:", group = "<!-- 1 -->Bug Fixes" },
@@ -40,6 +41,4 @@ commit_parsers = [
   { message = "^:art:", skip = true },
   { message = "^Merge", skip = true },
 ]
-commit_preprocessors = [
-  { pattern = "^:(\\w+): ", replace = "" },
-]
+commit_preprocessors = []
