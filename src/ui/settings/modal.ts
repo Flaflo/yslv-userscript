@@ -3,12 +3,12 @@ import type { ViewMode } from "../../types/state"
 import { loadSettings, saveSettings, defaultSettings } from "../../storage/settings"
 import { h } from "../dom/helpers"
 import { icons } from "../assets/icons"
-import { createToggle, type Toggle } from "../components/toggle"
-import { iconButtonStandalone, textButton } from "../components/button"
-import { createPaperDialog, openPaperDialog, closePaperDialog } from "../components/dialog"
-import { menuItem, numberItem } from "../components/item"
-import { selectEl, numOpts } from "../components/select"
-import modalCss from "./modal.css?raw"
+import { createToggle, type Toggle } from "../components/toggle/toggle"
+import { iconButtonStandalone, textButton } from "../components/button/button"
+import { createPaperDialog, openPaperDialog, closePaperDialog } from "../components/dialog/dialog"
+import { menuItem, numberItem } from "../components/item/item"
+import { selectEl, numOpts } from "../components/select/select"
+import allCss from "./modal.bundle.css?inline"
 
 const MODAL_ID = "yslv-settings-modal"
 const STYLE_ID = "yslv-settings-modal-style"
@@ -157,7 +157,7 @@ export async function openSettingsModal(onChanged?: () => void): Promise<void> {
 
   const styleEl = document.createElement("style")
   styleEl.id = STYLE_ID
-  styleEl.textContent = modalCss
+  styleEl.textContent = allCss
   document.head.appendChild(styleEl)
 
   const refs = {} as Refs

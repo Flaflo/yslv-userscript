@@ -1,0 +1,22 @@
+.yslv-m-select {
+  padding: 6px 10px;
+  border: 1px solid var(--yt-spec-outline, rgba(255, 255, 255, 0.1));
+  border-radius: 4px;
+  background: transparent;
+  color: var(--yt-spec-text-primary, #f1f1f1);
+  font-size: 14px;
+  font-family: inherit;
+  cursor: pointer;
+  outline: none;
+  min-width: 60px;
+  margin: 0;
+}
+
+.yslv-m-select:focus {
+  border-color: var(--yt-spec-call-to-action, #3ea6ff);
+}
+
+.yslv-m-select option {
+  background: var(--yt-spec-menu-background, #282828);
+  color: var(--yt-spec-text-primary, #f1f1f1);
+}

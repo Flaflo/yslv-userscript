@@ -1,10 +1,7 @@
 import type { Cfg } from "../../types/config"
 import type { State } from "../../types/state"
 import { skNorm, invalidateSkNormCache } from "../../desc/skeleton"
-import patchesCss from "./patches.css?raw"
-import listViewCss from "./list-view.css?raw"
-import skeletonCss from "./skeleton.css?raw"
-import toggleBarCss from "../toggle-bar/toggle-bar.css?raw"
+import allCss from "./style.bundle.css?inline"
 
 export { invalidateSkNormCache }
 
@@ -46,7 +43,7 @@ export function ensureStyle(cfg: Cfg, state: State): void {
   if (state.styleEl) return
   const el = document.createElement("style")
   el.id = STYLE_ID
-  el.textContent = patchesCss + listViewCss + skeletonCss + toggleBarCss
+  el.textContent = allCss
   document.head.appendChild(el)
   state.styleEl = el
   setCssVars(cfg)

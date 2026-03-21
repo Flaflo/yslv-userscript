@@ -19,6 +19,11 @@ declare module "*.css?raw" {
   export default content
 }
 
+declare module "*.css?inline" {
+  const content: string
+  export default content
+}
+
 declare module "*.svg?icondef" {
   const def: { viewBox: string; paths: string[] }
   export default def

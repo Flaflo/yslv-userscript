@@ -1,0 +1,43 @@
+.yslv-m-pill {
+  position: relative;
+  width: 36px;
+  height: 14px;
+  flex-shrink: 0;
+  cursor: pointer;
+  border-radius: 8px;
+  background: rgb(113, 113, 113);
+  transition: background 0.2s cubic-bezier(0.05, 0, 0, 1);
+  display: inline-block;
+}
+
+.yslv-m-pill input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+.yslv-m-pill::after {
+  content: "";
+  position: absolute;
+  top: -3px;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: rgb(170, 170, 170);
+  box-shadow: rgba(0, 0, 0, 0.6) 0px 1px 5px 0px;
+  transition:
+    transform 0.2s cubic-bezier(0.05, 0, 0, 1),
+    background 0.2s;
+}
+
+.yslv-m-pill.checked {
+  background: rgba(62, 166, 255, 0.5);
+}
+
+.yslv-m-pill.checked::after {
+  background: rgb(62, 166, 255);
+  transform: translateX(16px);
+}

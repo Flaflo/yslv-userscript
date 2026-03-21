@@ -1,0 +1,54 @@
+tp-yt-paper-item.yslv-m-item,
+.yslv-m-item {
+  display: flex;
+  align-items: center;
+  min-height: 48px;
+  padding: 4px 24px;
+  cursor: default;
+  gap: 16px;
+  margin: 0;
+}
+
+tp-yt-paper-item.yslv-m-item:hover {
+  background: var(--yt-spec-outline, rgba(255, 255, 255, 0.1));
+}
+
+.yslv-m-item-text {
+  flex: 1;
+  min-width: 0;
+  padding: 8px 0;
+}
+
+.yslv-m-item-label {
+  font-size: 14px;
+  line-height: 20px;
+  margin: 0;
+}
+
+.yslv-m-item-sub {
+  font-size: 12px;
+  line-height: 18px;
+  color: var(--yt-spec-text-secondary, #aaa);
+  margin: 2px 0 0;
+}
+
+.yslv-m-item tp-yt-paper-toggle-button {
+  flex-shrink: 0;
+}
+
+.yslv-m-number {
+  width: 90px;
+  padding: 6px 10px;
+  border: 1px solid var(--yt-spec-outline, rgba(255, 255, 255, 0.1));
+  border-radius: 4px;
+  background: transparent;
+  color: var(--yt-spec-text-primary, #f1f1f1);
+  font-size: 14px;
+  font-family: inherit;
+  outline: none;
+  margin: 0;
+}
+
+.yslv-m-number:focus {
+  border-color: var(--yt-spec-call-to-action, #3ea6ff);
+}

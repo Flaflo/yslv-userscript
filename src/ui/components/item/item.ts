@@ -1,4 +1,4 @@
-import { h } from "../dom/helpers"
+import { h } from "../../dom/helpers"
 
 export function paperItem(children: Node[]): HTMLElement {
   const item = document.createElement("tp-yt-paper-item") as HTMLElement

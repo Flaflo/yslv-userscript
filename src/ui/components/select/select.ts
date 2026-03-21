@@ -1,4 +1,4 @@
-import { h } from "../dom/helpers"
+import { h } from "../../dom/helpers"
 
 export function selectEl(id: string, options: { value: string; label: string }[]): HTMLSelectElement {
   const s = h("select", { id, class: "yslv-m-select" })
