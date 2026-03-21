@@ -76,7 +76,8 @@ jobs:
             --notes-file CHANGELOG.md \
             dist/yslv.user.js \
             dist-ext/yslv-chromium.zip \
-            dist-ext/yslv-firefox.zip
+            dist-ext/yslv-firefox.zip \
+            README.md
 
       - name: Publish to Chrome Web Store
         if: inputs.publish_chrome
