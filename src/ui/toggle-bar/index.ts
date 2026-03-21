@@ -10,7 +10,6 @@ const TOGGLE_MOUNT_SELECTOR =
   'ytd-browse[page-subtype="subscriptions"] ytd-shelf-renderer .grid-subheader #title-container #subscribe-button,' +
   'ytd-two-column-browse-results-renderer[page-subtype="subscriptions"] ytd-shelf-renderer .grid-subheader #title-container #subscribe-button'
 
-
 export function paintToggleBar(state: State): void {
   const root = document.getElementById(TOGGLE_ID)
   if (!root) return
