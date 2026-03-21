@@ -72,7 +72,9 @@ export function createApp(cfg: Cfg, state: State, cache: DescCache, onSettings?:
 
         paintToggleBar(state)
       },
-      onSettings() { onSettings?.() },
+      onSettings() {
+        onSettings?.()
+      },
     })
 
     if (state.active && !document.getElementById(TOGGLE_ID)) setTimeout(ensureToggleMountLoop, 250)

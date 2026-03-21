@@ -29,7 +29,9 @@ export function cloneInto(dest: Element | null, src: Element | null): void {
   const frag = document.createDocumentFragment()
   for (const n of Array.from(src.childNodes || [])) frag.appendChild(n.cloneNode(true))
 
-  const hosts = Array.from((frag as unknown as ParentNode).querySelectorAll?.(".ytIconWrapperHost, .yt-icon-shape") || [])
+  const hosts = Array.from(
+    (frag as unknown as ParentNode).querySelectorAll?.(".ytIconWrapperHost, .yt-icon-shape") || [],
+  )
   for (const host of hosts) {
     const el = host as Element
     if (!el.querySelector("svg")) el.remove()

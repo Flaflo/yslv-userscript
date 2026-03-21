@@ -81,7 +81,7 @@ export function attachObserver(cfg: Cfg, state: State, cache: DescCache): void {
   state.mo?.disconnect()
   state.observedTarget = target
 
-  state.mo = new MutationObserver(muts => {
+  state.mo = new MutationObserver((muts) => {
     if (patching || !state.active || state.view !== "list") return
     for (const m of muts) {
       for (const node of Array.from(m.addedNodes)) {

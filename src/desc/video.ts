@@ -1,4 +1,4 @@
-import { SEL_VIDEO_ANCHORS } from "../core/selectors"
+import {SEL_VIDEO_ANCHORS} from "../core/selectors"
 
 export function isShortsHref(href: string): boolean {
   const h = String(href || "")
@@ -14,11 +14,10 @@ export function extractVideoIdFromHref(href: string): string {
       const u = new URL(h, location.origin)
       const parts = u.pathname.split("/").filter(Boolean)
       const idx = parts.indexOf("shorts")
-      const id = idx >= 0 ? String(parts[idx + 1] || "") : ""
-      return id
+      return idx >= 0 ? String(parts[idx + 1] || "") : ""
     } catch {
       const m = h.match(/\/shorts\/([^?&#/]+)/)
-      return m ? m[1] ?? "" : ""
+      return m ? (m[1] ?? "") : ""
     }
   }
 
@@ -27,7 +26,7 @@ export function extractVideoIdFromHref(href: string): string {
     return u.searchParams.get("v") || ""
   } catch {
     const m = h.match(/[?&]v=([^&]+)/)
-    return m ? m[1] ?? "" : ""
+    return m ? (m[1] ?? "") : ""
   }
 }
 

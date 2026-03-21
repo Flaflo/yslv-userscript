@@ -66,7 +66,11 @@ export function summarizeDesc(raw: string, sentenceCount: number, maxChars: numb
   let s = String(raw || "").trim()
   if (!s) return ""
 
-  s = s.replace(/\r/g, "").replace(/\n{2,}/g, "\n").replace(/[ \t]{2,}/g, " ").trim()
+  s = s
+    .replace(/\r/g, "")
+    .replace(/\n{2,}/g, "\n")
+    .replace(/[ \t]{2,}/g, " ")
+    .trim()
 
   const seg =
     typeof Intl !== "undefined" && (Intl as any).Segmenter
@@ -84,13 +88,16 @@ export function summarizeDesc(raw: string, sentenceCount: number, maxChars: numb
     s = out.join(" ").trim()
   } else {
     const urls: string[] = []
-    s = s.replace(/\bhttps?:\/\/[^\s]+|\bwww\.[^\s]+/gi, m => {
+    s = s.replace(/\bhttps?:\/\/[^\s]+|\bwww\.[^\s]+/gi, (m) => {
       const k = `__YSU${urls.length}__`
       urls.push(m)
       return k
     })
 
-    const parts = s.split(/(?<=[.!?])\s+/).map(x => x.trim()).filter(Boolean)
+    const parts = s
+      .split(/(?<=[.!?])\s+/)
+      .map((x) => x.trim())
+      .filter(Boolean)
     s = parts.slice(0, sentenceCount).join(" ").trim()
     s = s.replace(/__YSU(\d+)__/g, (_, i) => urls[Number(i)] || "")
   }
@@ -140,7 +147,12 @@ async function fetchDescViaInnertube(vid: string): Promise<string> {
   return String(json?.videoDetails?.shortDescription || "").trim()
 }
 
-export async function fetchDescriptionForVideoId(cfg: Cfg, state: State, cache: DescCache, vid: string): Promise<string> {
+export async function fetchDescriptionForVideoId(
+  cfg: Cfg,
+  state: State,
+  cache: DescCache,
+  vid: string,
+): Promise<string> {
   const F = cfg.list.descFetch
   if (!F.enabled) return ""
   if (!vid) return ""
@@ -159,7 +171,7 @@ export async function fetchDescriptionForVideoId(cfg: Cfg, state: State, cache: 
 
   const p = (async () => {
     while (state.descActive >= F.maxConcurrent) {
-      await new Promise<void>(r => setTimeout(r, 35))
+      await new Promise<void>((r) => setTimeout(r, 35))
     }
     state.descActive++
     state.descFetches++

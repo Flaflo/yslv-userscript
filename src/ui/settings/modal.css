@@ -167,7 +167,6 @@ tp-yt-paper-item.yslv-m-item:hover {
   border-color: var(--yt-spec-call-to-action, #3ea6ff);
 }
 
-
 .yslv-m-footer {
   display: flex;
   justify-content: flex-end;
@@ -249,7 +248,9 @@ tp-yt-paper-item.yslv-m-item:hover {
   border-radius: 50%;
   background: rgb(170, 170, 170);
   box-shadow: rgba(0, 0, 0, 0.6) 0px 1px 5px 0px;
-  transition: transform 0.2s cubic-bezier(0.05, 0, 0, 1), background 0.2s;
+  transition:
+    transform 0.2s cubic-bezier(0.05, 0, 0, 1),
+    background 0.2s;
 }
 
 .yslv-m-pill.checked {

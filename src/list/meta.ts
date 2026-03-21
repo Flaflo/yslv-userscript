@@ -33,13 +33,11 @@ function pickChannelDisplaySource(lockup: Element): Element | null {
 }
 
 function pickChannelAnchor(lockup: Element): HTMLAnchorElement | null {
-  return (
-    lockup.querySelector(SEL_CH_ANCHOR_META_HANDLE) ||
+  return (lockup.querySelector(SEL_CH_ANCHOR_META_HANDLE) ||
     lockup.querySelector(SEL_CH_ANCHOR_META_ID) ||
     lockup.querySelector(SEL_CH_ANCHOR_HANDLE) ||
     lockup.querySelector(SEL_CH_ANCHOR_ID) ||
-    null
-  ) as HTMLAnchorElement | null
+    null) as HTMLAnchorElement | null
 }
 
 function getChannelHref(lockup: Element): string {
@@ -77,7 +75,7 @@ function collectBadgeNodesFromAnchor(a: HTMLAnchorElement | null): Element[] {
   const seen = new Set<string>()
   for (const el of Array.from(candidates)) {
     const node = el as Element
-    let root =
+    const root =
       node.closest(SEL_BADGE_ROOT_IMAGE_EL) ||
       node.closest(SEL_BADGE_ROOT_ICON_HOST) ||
       node.closest(SEL_BADGE_ROOT_VERTICAL) ||
@@ -147,7 +145,7 @@ function detachMetaAnchorOnce(state: State, lockup: Element): HTMLAnchorElement 
 
 export function restoreMovedMetaAnchors(state: State): void {
   const entries: Array<{ a: HTMLAnchorElement; parent: Node; nextSibling: ChildNode | null }> = []
-  document.querySelectorAll(SEL_LOCKUP).forEach(lockup => {
+  document.querySelectorAll(SEL_LOCKUP).forEach((lockup) => {
     const info = state.movedMetaAnchors.get(lockup)
     if (!info) return
     entries.push(info)
@@ -179,9 +177,9 @@ function setHeaderNameTextOnly(destLink: HTMLAnchorElement | null, lockup: Eleme
 function getRightMetaRowsText(lockup: Element): string {
   const chName = getChannelName(lockup)
   const rows = Array.from(lockup.querySelectorAll(SEL_METADATA_ROW))
-    .map(r => normalizeText((r as Element).textContent || ""))
+    .map((r) => normalizeText((r as Element).textContent || ""))
     .filter(Boolean)
-    .filter(t => (chName ? t !== chName : true))
+    .filter((t) => (chName ? t !== chName : true))
 
   if (!rows.length) return ""
 
@@ -209,8 +207,7 @@ export function ensureInlineMeta(cfg: Cfg, state: State, textContainer: Element,
     row = document.createElement("div")
     row.className = cfg.cls.metaRow
 
-    const heading =
-      textContainer.querySelector(SEL_HEADING_RESET) || textContainer.querySelector("h3")
+    const heading = textContainer.querySelector(SEL_HEADING_RESET) || textContainer.querySelector("h3")
     if (heading && heading.parentNode) heading.parentNode.insertBefore(row, heading.nextSibling)
     else textContainer.appendChild(row)
   }
@@ -301,7 +298,7 @@ export function ensureRowHeader(cfg: Cfg, state: State, item: Element, lockup: E
 }
 
 export function restoreMovedAvatars(state: State): void {
-  document.querySelectorAll(SEL_RICH_ITEM).forEach(item => {
+  document.querySelectorAll(SEL_RICH_ITEM).forEach((item) => {
     const info = state.movedAvatars.get(item)
     if (!info) return
     const { avatarEl, parent, nextSibling } = info

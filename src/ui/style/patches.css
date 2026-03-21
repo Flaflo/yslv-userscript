@@ -1,57 +1,75 @@
-html[data-yslv-subs-view="list"] #content.ytd-rich-section-renderer{ margin:0 !important; }
+html[data-yslv-subs-view="list"] #content.ytd-rich-section-renderer {
+  margin: 0 !important;
+}
 
-ytd-masthead{ position:sticky !important; top:0 !important; z-index:3000 !important; }
-#title-text{ position:relative !important; z-index:1 !important; }
+ytd-masthead {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 3000 !important;
+}
+#title-text {
+  position: relative !important;
+  z-index: 1 !important;
+}
 
 ytd-browse[page-subtype="subscriptions"] ytd-shelf-renderer .grid-subheader #title-container,
-ytd-two-column-browse-results-renderer[page-subtype="subscriptions"] ytd-shelf-renderer .grid-subheader #title-container{
-  display:flex !important;align-items:center !important;
-  position:relative !important;
+ytd-two-column-browse-results-renderer[page-subtype="subscriptions"]
+  ytd-shelf-renderer
+  .grid-subheader
+  #title-container {
+  display: flex !important;
+  align-items: center !important;
+  position: relative !important;
 }
 ytd-browse[page-subtype="subscriptions"] ytd-shelf-renderer .grid-subheader #title-container #spacer,
-ytd-two-column-browse-results-renderer[page-subtype="subscriptions"] ytd-shelf-renderer .grid-subheader #title-container #spacer{
-  flex:1 1 auto !important;
+ytd-two-column-browse-results-renderer[page-subtype="subscriptions"]
+  ytd-shelf-renderer
+  .grid-subheader
+  #title-container
+  #spacer {
+  flex: 1 1 auto !important;
 }
 
 /* "Notify Me" buttons for upcoming videos are full width fix by: https://greasyfork.org/en/users/1568138-boxfriend */
-html[data-yslv-subs-view="list"] .ytLockupAttachmentsViewModelHost{
+html[data-yslv-subs-view="list"] .ytLockupAttachmentsViewModelHost {
   width: fit-content !important;
 }
 
 /* Patch: rich-section spacing */
+html[data-yslv-subs-view="list"] ytd-counterfactual-renderer.ytd-rich-section-renderer,
 html[data-yslv-subs-view="list"]
-ytd-counterfactual-renderer.ytd-rich-section-renderer,
+  #content.ytd-rich-section-renderer
+  > ytd-rich-list-header-renderer.ytd-rich-section-renderer,
+html[data-yslv-subs-view="list"] #content.ytd-rich-section-renderer > ytd-shelf-renderer.ytd-rich-section-renderer,
+html[data-yslv-subs-view="list"] #content.ytd-rich-section-renderer > ytd-rich-shelf-renderer.ytd-rich-section-renderer,
 html[data-yslv-subs-view="list"]
-#content.ytd-rich-section-renderer > ytd-rich-list-header-renderer.ytd-rich-section-renderer,
-html[data-yslv-subs-view="list"]
-#content.ytd-rich-section-renderer > ytd-shelf-renderer.ytd-rich-section-renderer,
-html[data-yslv-subs-view="list"]
-#content.ytd-rich-section-renderer > ytd-rich-shelf-renderer.ytd-rich-section-renderer,
-html[data-yslv-subs-view="list"]
-#content.ytd-rich-section-renderer > ytd-inline-survey-renderer.ytd-rich-section-renderer[is-dismissed]{
-  margin-bottom:1rem !important;
+  #content.ytd-rich-section-renderer
+  > ytd-inline-survey-renderer.ytd-rich-section-renderer[is-dismissed] {
+  margin-bottom: 1rem !important;
 }
 
 /* Patch: mini guide visible — hide sidebar and remove margin in list view */
-html[data-yslv-subs-view="list"]
-ytd-app[mini-guide-visible] ytd-page-manager.ytd-app{
+html[data-yslv-subs-view="list"] ytd-app[mini-guide-visible] ytd-page-manager.ytd-app {
   margin-left: 0 !important;
 }
-html[data-yslv-subs-view="list"]
-ytd-app[mini-guide-visible] ytd-mini-guide-renderer.ytd-app{
+html[data-yslv-subs-view="list"] ytd-app[mini-guide-visible] ytd-mini-guide-renderer.ytd-app {
   display: none !important;
 }
 
 /* Patch: hide Shorts shelf + individual Shorts items */
 ytd-browse[page-subtype="subscriptions"] ytd-rich-section-renderer:has(ytd-rich-shelf-renderer[is-shorts]),
-ytd-two-column-browse-results-renderer[page-subtype="subscriptions"] ytd-rich-section-renderer:has(ytd-rich-shelf-renderer[is-shorts]),
+ytd-two-column-browse-results-renderer[page-subtype="subscriptions"]
+  ytd-rich-section-renderer:has(ytd-rich-shelf-renderer[is-shorts]),
 ytd-browse[page-subtype="subscriptions"] ytd-rich-item-renderer:has(ytm-shorts-lockup-view-model-v2),
-ytd-two-column-browse-results-renderer[page-subtype="subscriptions"] ytd-rich-item-renderer:has(ytm-shorts-lockup-view-model-v2){
-  display:var(--yslv-hide-shorts) !important;
+ytd-two-column-browse-results-renderer[page-subtype="subscriptions"]
+  ytd-rich-item-renderer:has(ytm-shorts-lockup-view-model-v2) {
+  display: var(--yslv-hide-shorts) !important;
 }
 
 /* Patch: hide "Most Relevant" / algorithmic sections fix by https://github.com/xXMrJackXx */
-ytd-browse[page-subtype="subscriptions"] ytd-rich-section-renderer:not(:has(ytd-shelf-renderer, ytd-rich-shelf-renderer)),
-ytd-two-column-browse-results-renderer[page-subtype="subscriptions"] ytd-rich-section-renderer:not(:has(ytd-shelf-renderer, ytd-rich-shelf-renderer)){
-  display:var(--yslv-hide-most-relevant) !important;
+ytd-browse[page-subtype="subscriptions"]
+  ytd-rich-section-renderer:not(:has(ytd-shelf-renderer, ytd-rich-shelf-renderer)),
+ytd-two-column-browse-results-renderer[page-subtype="subscriptions"]
+  ytd-rich-section-renderer:not(:has(ytd-shelf-renderer, ytd-rich-shelf-renderer)) {
+  display: var(--yslv-hide-most-relevant) !important;
 }

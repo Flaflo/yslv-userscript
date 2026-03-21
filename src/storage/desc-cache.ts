@@ -63,7 +63,10 @@ export function createDescCache(opts: {
         remaining
           .sort((a, b) => data[a]!.t - data[b]!.t)
           .slice(0, remaining.length - opts.maxEntries)
-          .forEach(k => { delete data[k]; dirty = true })
+          .forEach((k) => {
+            delete data[k]
+            dirty = true
+          })
       }
 
       if (dirty) scheduleSave()

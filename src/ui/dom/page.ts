@@ -11,11 +11,7 @@ export function isSubsPage(): boolean {
 }
 
 export function getActiveSubsBrowse(): Element | null {
-  return (
-    document.querySelector(SEL_SUBS_BROWSE_PM) ||
-    document.querySelector(SEL_SUBS_BROWSE) ||
-    null
-  )
+  return document.querySelector(SEL_SUBS_BROWSE_PM) || document.querySelector(SEL_SUBS_BROWSE) || null
 }
 
 export function getActiveSubsRoot(): Element | null {

@@ -28,8 +28,7 @@ export function patchItem(cfg: Cfg, state: State, cache: DescCache, item: Elemen
   const lockup = item.querySelector(SEL_LOCKUP)
   if (!lockup) return
 
-  const textContainer =
-    lockup.querySelector(SEL_TEXT_CONTAINER) || lockup.querySelector(SEL_TEXT_CONTAINER_FALLBACK)
+  const textContainer = lockup.querySelector(SEL_TEXT_CONTAINER) || lockup.querySelector(SEL_TEXT_CONTAINER_FALLBACK)
   if (!textContainer) return
 
   state.processedItems.add(item)
@@ -44,10 +43,10 @@ export function cleanupListArtifacts(cfg: Cfg, state: State): void {
   restoreMovedAvatars(state)
   restoreMovedMetaAnchors(state)
 
-  document.querySelectorAll(`.${cfg.cls.patched}`).forEach(n => n.classList.remove(cfg.cls.patched))
-  document.querySelectorAll(`.${cfg.cls.rowHead}`).forEach(n => n.remove())
-  document.querySelectorAll(`.${cfg.cls.metaRow}`).forEach(n => n.remove())
-  document.querySelectorAll(`.${cfg.cls.desc}`).forEach(n => n.remove())
+  document.querySelectorAll(`.${cfg.cls.patched}`).forEach((n) => n.classList.remove(cfg.cls.patched))
+  document.querySelectorAll(`.${cfg.cls.rowHead}`).forEach((n) => n.remove())
+  document.querySelectorAll(`.${cfg.cls.metaRow}`).forEach((n) => n.remove())
+  document.querySelectorAll(`.${cfg.cls.desc}`).forEach((n) => n.remove())
 
   state.descQueue.length = 0
   state.descQueued.clear()

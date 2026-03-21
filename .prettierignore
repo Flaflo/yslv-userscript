@@ -1,0 +1,4 @@
+dist/
+dist-ext/
+node_modules/
+*.md

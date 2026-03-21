@@ -4,17 +4,19 @@ export interface Toggle {
   onChange(fn: () => void): void
 }
 
-const HAS_YT_TOGGLE =
-  typeof customElements !== "undefined" &&
-  !!customElements.get("tp-yt-paper-toggle-button")
+const HAS_YT_TOGGLE = typeof customElements !== "undefined" && !!customElements.get("tp-yt-paper-toggle-button")
 
 export function createToggle(): Toggle {
   if (HAS_YT_TOGGLE) {
     const toggle = document.createElement("tp-yt-paper-toggle-button") as any
     return {
       el: toggle,
-      get checked(): boolean { return !!toggle.checked },
-      set checked(v: boolean) { toggle.checked = v },
+      get checked(): boolean {
+        return !!toggle.checked
+      },
+      set checked(v: boolean) {
+        toggle.checked = v
+      },
       onChange(fn: () => void): void {
         toggle.addEventListener("change", fn)
         toggle.addEventListener("checked-changed", fn)
@@ -34,7 +36,9 @@ export function createToggle(): Toggle {
 
   return {
     el: wrap,
-    get checked(): boolean { return input.checked },
+    get checked(): boolean {
+      return input.checked
+    },
     set checked(v: boolean) {
       input.checked = v
       wrap.classList.toggle("checked", v)

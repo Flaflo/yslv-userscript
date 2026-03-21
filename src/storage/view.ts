@@ -17,7 +17,9 @@ export function loadView(defaultView: ViewMode = "grid"): ViewMode {
 }
 
 export function saveView(mode: ViewMode): void {
-  try { localStorage.setItem(STORAGE_KEY, mode) } catch {}
+  try {
+    localStorage.setItem(STORAGE_KEY, mode)
+  } catch {}
 }
 
 export function applyViewAttr(mode: ViewMode): void {

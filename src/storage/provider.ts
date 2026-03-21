@@ -43,9 +43,7 @@ class LocalStorageProvider implements StorageProvider {
   }
 }
 
-const chromeSyncApi = (globalThis as any).chrome?.storage?.sync
-  ?? (globalThis as any).browser?.storage?.sync
-  ?? null
+const chromeSyncApi = (globalThis as any).chrome?.storage?.sync ?? (globalThis as any).browser?.storage?.sync ?? null
 
 export const syncProvider: StorageProvider = chromeSyncApi
   ? new SyncStorageProvider(chromeSyncApi)

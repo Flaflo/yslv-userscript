@@ -21,7 +21,7 @@ const YT_ICON_BTN_BASE = [
 export function paintToggleBar(state: State): void {
   const root = document.getElementById(TOGGLE_ID)
   if (!root) return
-  root.querySelectorAll<HTMLButtonElement>("button[data-mode]").forEach(b => {
+  root.querySelectorAll<HTMLButtonElement>("button[data-mode]").forEach((b) => {
     const m = b.getAttribute("data-mode")
     b.className = m === state.view ? YT_ICON_BTN_ACTIVE : YT_ICON_BTN_BASE
   })
@@ -48,7 +48,7 @@ export function ensureToggleBar(state: State, deps: ToggleBarDeps): void {
   const titleContainer = (subscribeBtn as any)?.closest?.("#title-container") || null
   if (!subscribeBtn || !titleContainer) return
 
-  document.querySelectorAll(`#${TOGGLE_ID}`).forEach(n => n.remove())
+  document.querySelectorAll(`#${TOGGLE_ID}`).forEach((n) => n.remove())
 
   const root = document.createElement("div")
   root.id = TOGGLE_ID
@@ -68,7 +68,7 @@ export function ensureToggleBar(state: State, deps: ToggleBarDeps): void {
   settingsBtn.addEventListener("click", () => deps.onSettings())
   root.appendChild(settingsWrap)
 
-  root.addEventListener("click", e => {
+  root.addEventListener("click", (e) => {
     const target = e.target as Element | null
     const btn = target?.closest?.("button[data-mode]") as HTMLButtonElement | null
     if (!btn) return
