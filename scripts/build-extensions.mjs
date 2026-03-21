@@ -66,6 +66,7 @@ for (const target of ["chromium", "firefox"]) {
   replaceVersion(manifestPath)
 
   fs.copyFileSync(injected, path.join(outDir, "injected.js"))
+  fs.copyFileSync(path.join(ROOT, "LICENSE"), path.join(outDir, "LICENSE"))
 }
 
 await zipDir(path.join(DIST, "chromium"), path.join(DIST, "yslv-chromium.zip"))
