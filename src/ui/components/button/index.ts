@@ -1,51 +1,51 @@
-const YT_ICON_BTN = [
-  "yt-spec-button-shape-next",
-  "yt-spec-button-shape-next--text",
-  "yt-spec-button-shape-next--mono",
-  "yt-spec-button-shape-next--size-m",
-  "yt-spec-button-shape-next--icon-button",
-].join(" ")
+const YT_BTN = "yt-spec-button-shape-next"
+const YT_BTN_TEXT = `${YT_BTN}--text`
+const YT_BTN_TONAL = `${YT_BTN}--tonal`
+const YT_BTN_MONO = `${YT_BTN}--mono`
+const YT_BTN_SIZE_M = `${YT_BTN}--size-m`
+const YT_BTN_ICON = `${YT_BTN}--icon-button`
+const YT_BTN_ICON_WRAP = `${YT_BTN}__icon`
+const YT_BTN_TEXT_CONTENT = `${YT_BTN}__button-text-content`
+const YT_ATTR_STRING = "yt-core-attributed-string"
+const YT_TOUCH_FB = "yt-spec-touch-feedback-shape"
+const YT_TOUCH_FB_RESPONSE = `${YT_TOUCH_FB}--touch-response`
+const YT_TOUCH_FB_DOWN = `${YT_TOUCH_FB}--down`
+const YT_TOUCH_FB_STROKE = `${YT_TOUCH_FB}__stroke`
+const YT_TOUCH_FB_FILL = `${YT_TOUCH_FB}__fill`
+const YT_BTN_VM_HOST = "ytSpecButtonViewModelHost"
+
+export const YT_ICON_BTN = [YT_BTN, YT_BTN_TEXT, YT_BTN_MONO, YT_BTN_SIZE_M, YT_BTN_ICON].join(" ")
+export const YT_ICON_BTN_ACTIVE = [YT_BTN, YT_BTN_TONAL, YT_BTN_MONO, YT_BTN_SIZE_M, YT_BTN_ICON].join(" ")
 
 function appendTouchFeedback(btn: HTMLButtonElement): void {
   const fb = document.createElement("div")
   fb.setAttribute("aria-hidden", "true")
-  fb.className = "yt-spec-touch-feedback-shape yt-spec-touch-feedback-shape--touch-response"
+  fb.className = `${YT_TOUCH_FB} ${YT_TOUCH_FB_RESPONSE}`
 
   const stroke = document.createElement("div")
-  stroke.className = "yt-spec-touch-feedback-shape__stroke"
+  stroke.className = YT_TOUCH_FB_STROKE
 
   const fill = document.createElement("div")
-  fill.className = "yt-spec-touch-feedback-shape__fill"
+  fill.className = YT_TOUCH_FB_FILL
 
   fb.appendChild(stroke)
   fb.appendChild(fill)
   btn.appendChild(fb)
 
-  const DOWN = "yt-spec-touch-feedback-shape--down"
-  btn.addEventListener("mousedown", () => fb.classList.add(DOWN))
-  btn.addEventListener("mouseup", () => fb.classList.remove(DOWN))
-  btn.addEventListener("mouseleave", () => fb.classList.remove(DOWN))
+  btn.addEventListener("mousedown", () => fb.classList.add(YT_TOUCH_FB_DOWN))
+  btn.addEventListener("mouseup", () => fb.classList.remove(YT_TOUCH_FB_DOWN))
+  btn.addEventListener("mouseleave", () => fb.classList.remove(YT_TOUCH_FB_DOWN))
 }
-
-export const YT_ICON_BTN_ACTIVE = YT_ICON_BTN.replace("--text", "--tonal")
 
 function wrapInButtonViewModel(btn: HTMLButtonElement): Element {
   const vm = document.createElement("button-view-model")
-  vm.className = "ytSpecButtonViewModelHost"
+  vm.className = YT_BTN_VM_HOST
   vm.appendChild(btn)
   return vm
 }
 
-export function iconButton(
-  label: string,
-  icon: () => SVGSVGElement,
-  opts: { wrap: false },
-): HTMLButtonElement
-export function iconButton(
-  label: string,
-  icon: () => SVGSVGElement,
-  opts?: { wrap?: true },
-): Element
+export function iconButton(label: string, icon: () => SVGSVGElement, opts: { wrap: false }): HTMLButtonElement
+export function iconButton(label: string, icon: () => SVGSVGElement, opts?: { wrap?: true }): Element
 export function iconButton(
   label: string,
   icon: () => SVGSVGElement,
@@ -57,7 +57,7 @@ export function iconButton(
   b.setAttribute("aria-label", label)
 
   const ic = document.createElement("div")
-  ic.className = "yt-spec-button-shape-next__icon"
+  ic.className = YT_BTN_ICON_WRAP
   ic.appendChild(icon())
   b.appendChild(ic)
   appendTouchFeedback(b)
@@ -74,19 +74,14 @@ export function textButton(
   color: TextButtonColor = "mono",
 ): HTMLButtonElement {
   const b = document.createElement("button")
-  b.className = [
-    "yt-spec-button-shape-next",
-    `yt-spec-button-shape-next--${style}`,
-    `yt-spec-button-shape-next--${color}`,
-    "yt-spec-button-shape-next--size-m",
-  ].join(" ")
+  b.className = [YT_BTN, `${YT_BTN}--${style}`, `${YT_BTN}--${color}`, YT_BTN_SIZE_M].join(" ")
   b.type = "button"
 
   const content = document.createElement("div")
-  content.className = "yt-spec-button-shape-next__button-text-content"
+  content.className = YT_BTN_TEXT_CONTENT
 
   const span = document.createElement("span")
-  span.className = "yt-core-attributed-string"
+  span.className = YT_ATTR_STRING
   span.textContent = text
   content.appendChild(span)
 
