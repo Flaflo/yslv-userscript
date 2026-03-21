@@ -1,0 +1,35 @@
+[changelog]
+header = ""
+body = """
+{% for group, commits in commits | group_by(attribute="group") %}
+### {{ group | striptags | trim }}
+{% for commit in commits %}
+- {{ commit.message | split(pat="\n") | first | trim }}\
+    {% if commit.github.username %} by @{{ commit.github.username }}{%- endif %}\
+    {% if commit.github.pr_number %} in #{{ commit.github.pr_number }}{%- endif %}
+{%- endfor %}
+{% endfor %}
+"""
+trim = true
+
+[git]
+conventional_commits = false
+commit_parsers = [
+  { message = "^:sparkles:", group = "<!-- 0 -->New Features" },
+  { message = "^:bug:", group = "<!-- 1 -->Bug Fixes" },
+  { message = "^:recycle:", group = "<!-- 2 -->Refactoring" },
+  { message = "^:lipstick:", group = "<!-- 2 -->UI Changes" },
+  { message = "^:zap:", group = "<!-- 3 -->Performance" },
+  { message = "^:fire:", group = "<!-- 3 -->Removals" },
+  { message = "^:adhesive_bandage:", group = "<!-- 1 -->Bug Fixes" },
+  { message = "^:memo:", group = "<!-- 4 -->Documentation" },
+  { message = "^:wrench:", group = "<!-- 5 -->Configuration" },
+  { message = "^:arrow_up:", group = "<!-- 6 -->Dependencies" },
+  { message = "^:construction_worker:", group = "<!-- 7 -->CI/CD" },
+  { message = "^:white_check_mark:", group = "<!-- 7 -->Testing" },
+  { message = "^:bookmark:", group = "<!-- 8 -->Releases" },
+  { message = "^Merge", skip = true },
+]
+commit_preprocessors = [
+  { pattern = "^:(\\w+): ", replace = "" },
+]

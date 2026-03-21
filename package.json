@@ -1,11 +1,11 @@
 {
   "name": "yslv-userscript",
   "private": true,
-  "version": "2.0.2",
+  "version": "2.1.0",
   "type": "module",
   "scripts": {
     "dev": "vite build --watch",
-    "build:userscript": "vite build && node scripts/prepend-header.mjs",
+    "build:userscript": "vite build",
     "build:ext": "node scripts/build-extensions.mjs",
     "build": "npm run build:userscript && npm run build:ext",
     "typecheck": "tsc -p tsconfig.json --noEmit"

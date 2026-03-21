@@ -1,6 +1,7 @@
 import { defineConfig } from "vite"
 import { readFileSync, writeFileSync } from "node:fs"
 import { resolve } from "node:path"
+import svgIconDef from "./plugins/vite-svg-icondef"
 
 function prependUserscriptHeader() {
   return {
@@ -9,6 +10,7 @@ function prependUserscriptHeader() {
     closeBundle() {
       const outFile = resolve("dist/yslv.user.js")
       const headerFile = resolve("userscript.header.txt")
+      const pkgFile = resolve("package.json")
 
       let header = ""
       try {
@@ -17,11 +19,13 @@ function prependUserscriptHeader() {
         header = ""
       }
 
+      const pkg = JSON.parse(readFileSync(pkgFile, "utf-8"))
+      const version = String(pkg.version || "0.0.0")
+      header = header.replaceAll("__VERSION__", version)
+
       const body = readFileSync(outFile, "utf-8")
-      const trimmedHeader = header.trimEnd() + "\n\n"
-      const already = body.startsWith("// ==UserScript==")
-      const next = already ? body : trimmedHeader + body
-      writeFileSync(outFile, next, "utf-8")
+      const cleaned = body.replace(/^\/\/ ==UserScript==[\s\S]*?\/\/ ==\/UserScript==\s*/m, "")
+      writeFileSync(outFile, header.trimEnd() + "\n\n" + cleaned, "utf-8")
     },
   } as const
 }
@@ -45,5 +49,5 @@ export default defineConfig({
       },
     },
   },
-  plugins: [prependUserscriptHeader()],
+  plugins: [svgIconDef(), prependUserscriptHeader()],
 })

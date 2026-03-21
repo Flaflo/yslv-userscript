@@ -9,45 +9,57 @@ Restore the **list view** for the YouTube **Subscriptions** page faithful to the
 
 ## Features
 
-
-- List-style Subscriptions layout
+- List-style Subscriptions layout matching the original YouTube design
 - Grid / List toggle on the Subscriptions page
-- Lazy-loaded video descriptions
+- Lazy-loaded video descriptions via InnerTube API
+- In-page settings dialog (gear icon) with live preview
+- Configurable thumbnail size, title/description line clamps, layout width
+- Option to hide "Most Relevant" section
+- Option to hide Shorts shelf
 - Dark and light mode compatible
 - No external dependencies
+- Available as userscript, Chrome extension, and Firefox add-on
+
+---
+
+## Installation
+
+### Userscript
+
+1. Install [Tampermonkey](https://www.tampermonkey.net/) or [Violentmonkey](https://violentmonkey.github.io/)
+2. Install from [Greasy Fork](https://greasyfork.org/en/scripts/565188-youtube-subscription-list-view)
+3. Open the YouTube Subscriptions page
+4. Use the toggle to switch between **Grid** and **List**
+
+### Chrome
+
+Install from the [Chrome Web Store](https://chromewebstore.google.com/detail/ehfpipcmnkpnekkkamdigmflojhmpnbg).
+
+### Firefox
+
+Install from [Mozilla Add-ons](https://addons.mozilla.org/en-US/firefox/addon/youtube-subscription-list-view/).
 
 ---
 
 ## Configuration
 
-All settings are configurable via the `CFG` object at the top of the script.
+Click the **gear icon** in the toggle bar on the Subscriptions page to open the settings dialog. All changes are previewed live and persisted automatically.
 
-### Default view
-
-```js
-defaultView: "grid" // or "list"
-```
-
-### Positioning
-If you dont like the centering you can change the maxWidth of the list in the config:
-
-```js
-list: {
-  maxWidth: "90%",
-}
-```
-
-### Description loading
-
-```js
-descFetch: {
-  enabled: true,
-  maxTotalFetchesPerNav: 60,
-  maxConcurrent: 1,
-  sentenceCount: 2,
-  maxChars: 260,
-},
-```
+| Setting | Description |
+|---|---|
+| Default view | Grid or List on page load |
+| Thumbnail width | Thumbnail size in pixels |
+| Thumbnail radius | Border radius in pixels |
+| Max layout width | Maximum width of the list container |
+| Title line clamp | Max lines for video titles |
+| Description line clamp | Max lines for descriptions |
+| Hide Most Relevant | Remove the "Most Relevant" section |
+| Hide Shorts | Remove the Shorts shelf |
+| Fetch descriptions | Load video descriptions via API |
+| Sentence count | Number of sentences to show |
+| Max description chars | Character limit for descriptions |
+| Show skeleton | Show loading placeholders |
+| Separator lines | Show dividers between videos |
 
 ---
 
@@ -62,20 +74,7 @@ descFetch: {
 
 ## Scope
 
-This script **only runs on**:
-
-https://www.youtube.com/feed/subscriptions
-
-Other YouTube pages remain untouched.
-
----
-
-## Installation
-
-1. Install **Tampermonkey** or **Violentmonkey**
-2. Install the script from Greasy Fork
-3. Open the YouTube Subscriptions page
-4. Use the toggle to switch between **Grid** and **List**
+This script **only runs on** `https://www.youtube.com/feed/subscriptions`. Other YouTube pages remain untouched.
 
 ---
 

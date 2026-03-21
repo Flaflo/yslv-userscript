@@ -1,4 +1,4 @@
-import { initYSLV } from "../init"
+import { initYSLV } from "../main"
 
 ;(() => {
   "use strict"

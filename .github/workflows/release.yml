@@ -1,0 +1,89 @@
+name: Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      publish_chrome:
+        description: "Publish to Chrome Web Store"
+        type: boolean
+        default: false
+      publish_firefox:
+        description: "Publish to Firefox AMO"
+        type: boolean
+        default: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Read version from package.json
+        id: version
+        run: echo "value=$(node -p 'require(\"./package.json\").version')" >> "$GITHUB_OUTPUT"
+
+      - name: Build all artifacts
+        run: npm run build
+
+      - name: Create source archive for AMO review
+        run: |
+          git archive HEAD \
+            --prefix=yslv-source/ \
+            --output=dist-ext/yslv-source.zip
+
+      - name: Generate changelog
+        uses: orhun/git-cliff-action@v4
+        id: changelog
+        with:
+          config: cliff.toml
+          args: --latest --strip header --tag v${{ steps.version.outputs.value }}
+        env:
+          GITHUB_REPO: ${{ github.repository }}
+
+      - name: Create tag
+        run: |
+          git tag "v${{ steps.version.outputs.value }}"
+          git push origin "v${{ steps.version.outputs.value }}"
+
+      - name: Create GitHub Release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release create "v${{ steps.version.outputs.value }}" \
+            --title "v${{ steps.version.outputs.value }}" \
+            --notes "${{ steps.changelog.outputs.content }}" \
+            dist/yslv.user.js \
+            dist-ext/yslv-chromium.zip \
+            dist-ext/yslv-firefox.zip
+
+      - name: Publish to Chrome Web Store
+        if: inputs.publish_chrome
+        uses: browser-actions/release-chrome-extension@latest
+        with:
+          extension-id: ${{ secrets.CHROME_EXTENSION_ID }}
+          extension-path: dist-ext/yslv-chromium.zip
+          oauth-client-id: ${{ secrets.CHROME_CLIENT_ID }}
+          oauth-client-secret: ${{ secrets.CHROME_CLIENT_SECRET }}
+          oauth-refresh-token: ${{ secrets.CHROME_REFRESH_TOKEN }}
+
+      - name: Publish to Firefox AMO
+        if: inputs.publish_firefox
+        uses: browser-actions/release-firefox-addon@latest
+        with:
+          addon-id: yslv@flaflo.xyz
+          addon-path: dist-ext/yslv-firefox.zip
+          source-path: dist-ext/yslv-source.zip
+          approval-note: "Build: npm ci && npm run build:ext"
+          auth-api-issuer: ${{ secrets.AMO_ISSUER }}
+          auth-api-secret: ${{ secrets.AMO_SECRET }}

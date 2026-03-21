@@ -1,0 +1,262 @@
+#yslv-settings-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 2202;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#yslv-settings-modal * {
+  box-sizing: border-box;
+}
+
+.yslv-m-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.yslv-m-dialog {
+  position: relative;
+  background: var(--paper-dialog-background-color, var(--yt-spec-raised-background, #212121));
+  color: var(--yt-spec-text-primary, #f1f1f1);
+  border-radius: 12px;
+  width: 420px;
+  max-height: 82vh;
+  overflow: hidden;
+  box-shadow: 0 0 24px 12px rgba(0, 0, 0, 0.15);
+  font-family: "Roboto", "Arial", sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.yslv-m-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 8px 12px 24px;
+  min-height: 56px;
+  flex-shrink: 0;
+  border-bottom: 1px solid var(--yt-spec-10-percent-layer, rgba(255, 255, 255, 0.1));
+}
+
+.yslv-m-header-title {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 22px;
+  margin: 0;
+}
+
+.yslv-m-header > .yt-spec-button-shape-next--icon-button {
+  flex-shrink: 0;
+}
+
+.yslv-m-scroll {
+  overflow-y: auto;
+  flex: 1;
+  padding: 8px 0 16px;
+}
+
+.yslv-m-section {
+  padding: 20px 24px 8px;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 18px;
+  color: var(--yt-spec-text-secondary, #aaa);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin: 0;
+}
+
+.yslv-m-section:first-child {
+  padding-top: 20px;
+}
+
+tp-yt-paper-item.yslv-m-item,
+.yslv-m-item {
+  display: flex;
+  align-items: center;
+  min-height: 48px;
+  padding: 4px 24px;
+  cursor: default;
+  gap: 16px;
+  margin: 0;
+}
+
+tp-yt-paper-item.yslv-m-item:hover {
+  background: var(--yt-spec-10-percent-layer, rgba(255, 255, 255, 0.1));
+}
+
+.yslv-m-dialog > :first-child {
+  margin-top: 0;
+}
+
+.yslv-m-dialog > :last-child {
+  margin-bottom: 0;
+}
+
+.yslv-m-item-text {
+  flex: 1;
+  min-width: 0;
+  padding: 8px 0;
+}
+
+.yslv-m-item-label {
+  font-size: 14px;
+  line-height: 20px;
+  margin: 0;
+}
+
+.yslv-m-item-sub {
+  font-size: 12px;
+  line-height: 18px;
+  color: var(--yt-spec-text-secondary, #aaa);
+  margin: 2px 0 0;
+}
+
+.yslv-m-item tp-yt-paper-toggle-button {
+  flex-shrink: 0;
+}
+
+.yslv-m-divider {
+  height: 1px;
+  margin: 8px 0;
+  background: var(--yt-spec-10-percent-layer, rgba(255, 255, 255, 0.1));
+}
+
+.yslv-m-select {
+  padding: 6px 10px;
+  border: 1px solid var(--yt-spec-10-percent-layer, rgba(255, 255, 255, 0.1));
+  border-radius: 4px;
+  background: transparent;
+  color: var(--yt-spec-text-primary, #f1f1f1);
+  font-size: 14px;
+  font-family: inherit;
+  cursor: pointer;
+  outline: none;
+  min-width: 60px;
+  margin: 0;
+}
+
+.yslv-m-select:focus {
+  border-color: var(--yt-spec-call-to-action, #3ea6ff);
+}
+
+.yslv-m-select option {
+  background: var(--yt-spec-menu-background, #282828);
+  color: var(--yt-spec-text-primary, #f1f1f1);
+}
+
+.yslv-m-number {
+  width: 90px;
+  padding: 6px 10px;
+  border: 1px solid var(--yt-spec-10-percent-layer, rgba(255, 255, 255, 0.1));
+  border-radius: 4px;
+  background: transparent;
+  color: var(--yt-spec-text-primary, #f1f1f1);
+  font-size: 14px;
+  font-family: inherit;
+  outline: none;
+  margin: 0;
+}
+
+.yslv-m-number:focus {
+  border-color: var(--yt-spec-call-to-action, #3ea6ff);
+}
+
+
+.yslv-m-footer {
+  display: flex;
+  justify-content: flex-end;
+  padding: 8px 16px 12px;
+  gap: 8px;
+  border-top: 1px solid var(--yt-spec-10-percent-layer, rgba(255, 255, 255, 0.1));
+  flex-shrink: 0;
+}
+
+.yslv-m-footer > .yt-spec-button-shape-next {
+  flex: 1;
+}
+
+#yslv-settings-modal .yt-spec-button-shape-next {
+  position: relative;
+  overflow: hidden;
+}
+
+#yslv-settings-modal .yt-spec-touch-feedback-shape {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+#yslv-settings-modal .yt-spec-touch-feedback-shape__stroke,
+#yslv-settings-modal .yt-spec-touch-feedback-shape__fill {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.15s ease-out;
+}
+
+#yslv-settings-modal .yt-spec-touch-feedback-shape__stroke {
+  background: var(--yt-spec-text-primary, #fff);
+}
+
+#yslv-settings-modal .yt-spec-touch-feedback-shape__fill {
+  background: var(--yt-spec-text-primary, #fff);
+}
+
+#yslv-settings-modal .yt-spec-button-shape-next:hover .yt-spec-touch-feedback-shape__stroke {
+  opacity: 0.08;
+}
+
+#yslv-settings-modal .yt-spec-button-shape-next:active .yt-spec-touch-feedback-shape__fill {
+  opacity: 0.12;
+  transition-duration: 0s;
+}
+
+.yslv-m-pill {
+  position: relative;
+  width: 36px;
+  height: 14px;
+  flex-shrink: 0;
+  cursor: pointer;
+  border-radius: 8px;
+  background: rgb(113, 113, 113);
+  transition: background 0.2s cubic-bezier(0.05, 0, 0, 1);
+  display: inline-block;
+}
+
+.yslv-m-pill input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+.yslv-m-pill::after {
+  content: "";
+  position: absolute;
+  top: -3px;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: rgb(170, 170, 170);
+  box-shadow: rgba(0, 0, 0, 0.6) 0px 1px 5px 0px;
+  transition: transform 0.2s cubic-bezier(0.05, 0, 0, 1), background 0.2s;
+}
+
+.yslv-m-pill.checked {
+  background: rgba(62, 166, 255, 0.5);
+}
+
+.yslv-m-pill.checked::after {
+  background: rgb(62, 166, 255);
+  transform: translateX(16px);
+}

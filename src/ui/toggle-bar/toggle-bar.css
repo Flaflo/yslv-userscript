@@ -1,0 +1,45 @@
+#yslv-subs-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: 12px;
+  position: relative;
+}
+
+#yslv-subs-toggle .yt-spec-button-shape-next {
+  position: relative;
+  overflow: hidden;
+}
+
+#yslv-subs-toggle .yt-spec-touch-feedback-shape {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+#yslv-subs-toggle .yt-spec-touch-feedback-shape__stroke,
+#yslv-subs-toggle .yt-spec-touch-feedback-shape__fill {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.15s ease-out;
+}
+
+#yslv-subs-toggle .yt-spec-touch-feedback-shape__stroke {
+  background: var(--yt-spec-text-primary, #fff);
+}
+
+#yslv-subs-toggle .yt-spec-touch-feedback-shape__fill {
+  background: var(--yt-spec-text-primary, #fff);
+}
+
+#yslv-subs-toggle .yt-spec-button-shape-next:hover .yt-spec-touch-feedback-shape__stroke {
+  opacity: 0.08;
+}
+
+#yslv-subs-toggle .yt-spec-button-shape-next:active .yt-spec-touch-feedback-shape__fill {
+  opacity: 0.12;
+  transition-duration: 0s;
+}
