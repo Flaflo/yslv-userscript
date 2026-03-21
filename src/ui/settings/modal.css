@@ -45,7 +45,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 12px 8px 12px 24px;
+  padding: 12px 12px 12px 24px;
   min-height: 56px;
   flex-shrink: 0;
   border-bottom: 1px solid var(--yt-spec-outline, rgba(255, 255, 255, 0.1));
@@ -92,7 +92,7 @@
 .yslv-m-footer {
   display: flex;
   justify-content: flex-end;
-  padding: 8px 16px 12px;
+  padding: 12px 12px 12px;
   gap: 8px;
   border-top: 1px solid var(--yt-spec-outline, rgba(255, 255, 255, 0.1));
   flex-shrink: 0;
