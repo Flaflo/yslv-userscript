@@ -84,6 +84,7 @@ jobs:
           addon-id: yslv@flaflo.xyz
           addon-path: dist-ext/yslv-firefox.zip
           source-path: dist-ext/yslv-source.zip
+          release-notes: ${{ steps.changelog.outputs.content || format('Release {0}', steps.version.outputs.value) }}
           approval-note: "Build: npm ci && npm run build:ext"
           auth-api-issuer: ${{ secrets.AMO_ISSUER }}
           auth-api-secret: ${{ secrets.AMO_SECRET }}
