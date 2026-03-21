@@ -50,6 +50,7 @@ jobs:
           args: --latest --strip header --tag ${{ steps.version.outputs.value }}
         env:
           GITHUB_REPO: ${{ github.repository }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Create tag
         run: |
@@ -84,6 +85,7 @@ jobs:
           addon-id: yslv@flaflo.xyz
           addon-path: dist-ext/yslv-firefox.zip
           source-path: dist-ext/yslv-source.zip
+          license: MIT
           release-note: ${{ steps.changelog.outputs.content || format('Release {0}', steps.version.outputs.value) }}
           approval-note: "Build: npm ci && npm run build:ext"
           auth-api-issuer: ${{ secrets.AMO_ISSUER }}

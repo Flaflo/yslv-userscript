@@ -5,12 +5,18 @@ body = """
 ### {{ group | striptags | trim }}
 {% for commit in commits %}
 - {{ commit.message | split(pat="\n") | first | trim }}\
-    {% if commit.github.username %} by @{{ commit.github.username }}{%- endif %}\
-    {% if commit.github.pr_number %} in #{{ commit.github.pr_number }}{%- endif %}
+    {% if commit.remote.username %} by @{{ commit.remote.username }}{%- endif %}\
+    {% if commit.remote.pr_number %} in #{{ commit.remote.pr_number }}{%- endif %}
 {%- endfor %}
 {% endfor %}
+
+**Full Changelog**: https://github.com/{{ remote.github.owner }}/{{ remote.github.repo }}/compare/{{ previous.version }}...{{ version }}
 """
 trim = true
+
+[remote.github]
+owner = "Flaflo"
+repo = "yslv-userscript"
 
 [git]
 conventional_commits = false
@@ -25,9 +31,7 @@ commit_parsers = [
   { message = "^:memo:", group = "<!-- 4 -->Documentation" },
   { message = "^:wrench:", group = "<!-- 5 -->Configuration" },
   { message = "^:arrow_up:", group = "<!-- 6 -->Dependencies" },
-  { message = "^:construction_worker:", group = "<!-- 7 -->CI/CD" },
   { message = "^:white_check_mark:", group = "<!-- 7 -->Testing" },
-  { message = "^:bookmark:", group = "<!-- 8 -->Releases" },
   { message = "^Merge", skip = true },
 ]
 commit_preprocessors = [
