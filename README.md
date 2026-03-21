@@ -84,7 +84,11 @@ Click the **gear icon** in the toggle bar on the Subscriptions page to open the 
 
 ---
 
-## Scope
+## Privacy
+
+See [PRIVACY.md](PRIVACY.md) for the full privacy policy applying to the version it was shipped with. For the latest version, see the [current privacy policy](https://github.com/Flaflo/yslv-userscript/blob/main/PRIVACY.md).
+
+### Scope
 
 This script **only runs on** `https://www.youtube.com/feed/subscriptions`. Other YouTube pages remain untouched.
 
