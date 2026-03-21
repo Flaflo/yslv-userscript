@@ -31,7 +31,7 @@ jobs:
 
       - name: Read version from package.json
         id: version
-        run: echo "value=$(node -p 'require(\"./package.json\").version')" >> "$GITHUB_OUTPUT"
+        run: echo "value=$(grep -oP '\"version\":\s*\"\K[^\"]+' package.json)" >> "$GITHUB_OUTPUT"
 
       - name: Build all artifacts
         run: npm run build
