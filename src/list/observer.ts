@@ -87,6 +87,17 @@ export function attachObserver(cfg: Cfg, state: State, cache: DescCache): void {
       for (const node of Array.from(m.addedNodes)) {
         if (node && (node as any).nodeType === 1) enqueue(cfg, state, cache, node as Element)
       }
+
+      // Polymer restamping detection
+      if (m.type === "childList" && m.removedNodes.length) {
+        const mutTarget = m.target as Element
+        if (!mutTarget?.closest) continue
+        const item = mutTarget.closest(SEL_RICH_ITEM) as Element | null
+        if (item && state.processedItems.has(item) && !item.querySelector(`.${cfg.cls.desc}`)) {
+          state.processedItems.delete(item)
+          enqueue(cfg, state, cache, item)
+        }
+      }
     }
   })
 
