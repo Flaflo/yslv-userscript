@@ -47,21 +47,21 @@ jobs:
         id: changelog
         with:
           config: cliff.toml
-          args: --latest --strip header --tag v${{ steps.version.outputs.value }}
+          args: --latest --strip header --tag ${{ steps.version.outputs.value }}
         env:
           GITHUB_REPO: ${{ github.repository }}
 
       - name: Create tag
         run: |
-          git tag "v${{ steps.version.outputs.value }}"
-          git push origin "v${{ steps.version.outputs.value }}"
+          git tag "${{ steps.version.outputs.value }}"
+          git push origin "${{ steps.version.outputs.value }}"
 
       - name: Create GitHub Release
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh release create "v${{ steps.version.outputs.value }}" \
-            --title "v${{ steps.version.outputs.value }}" \
+          gh release create "${{ steps.version.outputs.value }}" \
+            --title "${{ steps.version.outputs.value }}" \
             --notes "${{ steps.changelog.outputs.content }}" \
             dist/yslv.user.js \
             dist-ext/yslv-chromium.zip \
