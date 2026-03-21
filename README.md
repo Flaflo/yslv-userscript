@@ -1,6 +1,6 @@
 # YouTube Subscription List View (YSLV) [![GitHub Stars](https://img.shields.io/github/stars/Flaflo/yslv-userscript)](https://github.com/Flaflo/yslv-userscript)
 
-[![GitHub Release](https://img.shields.io/github/v/release/Flaflo/yslv-userscript?label=Release)](https://github.com/Flaflo/yslv-userscript/releases/latest)
+[![GitHub Release](https://img.shields.io/github/v/release/Flaflo/yslv-userscript?label=Github)](https://github.com/Flaflo/yslv-userscript/releases/latest)
 [![Greasy Fork Version](https://img.shields.io/greasyfork/v/565188?label=Greasy%20Fork)](https://greasyfork.org/en/scripts/565188-youtube-subscription-list-view)
 [![Chrome Web Store Version](https://img.shields.io/chrome-web-store/v/ehfpipcmnkpnekkkamdigmflojhmpnbg?label=Chrome%20Web%20Store)](https://chromewebstore.google.com/detail/ehfpipcmnkpnekkkamdigmflojhmpnbg)
 [![Mozilla Add-on Version](https://img.shields.io/amo/v/youtube-subscription-list-view?label=Mozilla%20Add-ons)](https://addons.mozilla.org/en-US/firefox/addon/youtube-subscription-list-view/)
