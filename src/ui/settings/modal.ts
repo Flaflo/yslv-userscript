@@ -4,7 +4,7 @@ import { loadSettings, saveSettings, defaultSettings } from "../../storage/setti
 import { h } from "../dom/helpers"
 import { icons } from "../assets/icons"
 import { createToggle, type Toggle } from "../components/toggle"
-import { iconButtonStandalone, textButton } from "../components/button"
+import { iconButton, textButton } from "../components/button"
 import { createPaperDialog, openPaperDialog, closePaperDialog } from "../components/dialog"
 import { menuItem, numberItem } from "../components/item"
 import { selectEl, numOpts } from "../components/select"
@@ -30,7 +30,7 @@ type Refs = {
 }
 
 function buildModal(refs: Refs) {
-  const closeBtn = iconButtonStandalone("Close", icons.close)
+  const closeBtn = iconButton("Close", icons.close, { wrap: false })
 
   const header = h(
     "div",

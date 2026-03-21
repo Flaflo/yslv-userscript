@@ -36,7 +36,21 @@ function wrapInButtonViewModel(btn: HTMLButtonElement): Element {
   return vm
 }
 
-export function iconButton(label: string, icon: () => SVGSVGElement): Element {
+export function iconButton(
+  label: string,
+  icon: () => SVGSVGElement,
+  opts: { wrap: false },
+): HTMLButtonElement
+export function iconButton(
+  label: string,
+  icon: () => SVGSVGElement,
+  opts?: { wrap?: true },
+): Element
+export function iconButton(
+  label: string,
+  icon: () => SVGSVGElement,
+  opts?: { wrap?: boolean },
+): HTMLButtonElement | Element {
   const b = document.createElement("button")
   b.className = YT_ICON_BTN
   b.type = "button"
@@ -48,22 +62,7 @@ export function iconButton(label: string, icon: () => SVGSVGElement): Element {
   b.appendChild(ic)
   appendTouchFeedback(b)
 
-  return wrapInButtonViewModel(b)
-}
-
-export function iconButtonStandalone(label: string, icon: () => SVGSVGElement): HTMLButtonElement {
-  const b = document.createElement("button")
-  b.className = YT_ICON_BTN
-  b.type = "button"
-  b.setAttribute("aria-label", label)
-
-  const ic = document.createElement("div")
-  ic.className = "yt-spec-button-shape-next__icon"
-  ic.appendChild(icon())
-  b.appendChild(ic)
-  appendTouchFeedback(b)
-
-  return b
+  return opts?.wrap === false ? b : wrapInButtonViewModel(b)
 }
 
 type TextButtonStyle = "text" | "outline"
