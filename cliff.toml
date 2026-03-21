@@ -9,10 +9,11 @@ body = """
     {% if commit.remote.pr_number %} in #{{ commit.remote.pr_number }}{%- endif %}
 {%- endfor %}
 {% endfor %}
-
-**Full Changelog**: https://github.com/{{ remote.github.owner }}/{{ remote.github.repo }}/compare/{{ previous.version }}...{{ version }}
 """
 trim = true
+postprocessors = [
+  { pattern = "\\(#(\\d+)\\)", replace = "[#$1](https://github.com/Flaflo/yslv-userscript/issues/$1)" },
+]
 
 [remote.github]
 owner = "Flaflo"
@@ -20,6 +21,8 @@ repo = "yslv-userscript"
 
 [git]
 conventional_commits = false
+filter_unconventional = false
+tag_pattern = "[0-9]*"
 commit_parsers = [
   { message = "^:sparkles:", group = "<!-- 0 -->New Features" },
   { message = "^:bug:", group = "<!-- 1 -->Bug Fixes" },
@@ -31,7 +34,10 @@ commit_parsers = [
   { message = "^:memo:", group = "<!-- 4 -->Documentation" },
   { message = "^:wrench:", group = "<!-- 5 -->Configuration" },
   { message = "^:arrow_up:", group = "<!-- 6 -->Dependencies" },
-  { message = "^:white_check_mark:", group = "<!-- 7 -->Testing" },
+  { message = "^:green_heart:", skip = true },
+  { message = "^:construction_worker:", skip = true },
+  { message = "^:bookmark:", skip = true },
+  { message = "^:art:", skip = true },
   { message = "^Merge", skip = true },
 ]
 commit_preprocessors = [

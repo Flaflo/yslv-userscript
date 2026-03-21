@@ -49,8 +49,18 @@ jobs:
           config: cliff.toml
           args: --latest --strip header --tag ${{ steps.version.outputs.value }}
         env:
+          OUTPUT: CHANGELOG.md
           GITHUB_REPO: ${{ github.repository }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Append compare link to changelog
+        run: |
+          PREV=$(git describe --tags --abbrev=0 HEAD^ 2>/dev/null || echo "")
+          VER="${{ steps.version.outputs.value }}"
+          if [ -n "$PREV" ]; then
+            echo "" >> CHANGELOG.md
+            echo "**Full Changelog**: https://github.com/${{ github.repository }}/compare/${PREV}...${VER}" >> CHANGELOG.md
+          fi
 
       - name: Create tag
         run: |
@@ -63,7 +73,7 @@ jobs:
         run: |
           gh release create "${{ steps.version.outputs.value }}" \
             --title "${{ steps.version.outputs.value }}" \
-            --notes "${{ steps.changelog.outputs.content }}" \
+            --notes-file CHANGELOG.md \
             dist/yslv.user.js \
             dist-ext/yslv-chromium.zip \
             dist-ext/yslv-firefox.zip
@@ -86,7 +96,7 @@ jobs:
           addon-path: dist-ext/yslv-firefox.zip
           source-path: dist-ext/yslv-source.zip
           license: MIT
-          release-note: ${{ steps.changelog.outputs.content || format('Release {0}', steps.version.outputs.value) }}
+          release-note: Release ${{ steps.version.outputs.value }}
           approval-note: "Build: npm ci && npm run build:ext"
           auth-api-issuer: ${{ secrets.AMO_ISSUER }}
           auth-api-secret: ${{ secrets.AMO_SECRET }}
