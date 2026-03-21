@@ -5,6 +5,9 @@ import { h } from "../dom/helpers"
 import { icons } from "../assets/icons"
 import { createToggle, type Toggle } from "../components/toggle"
 import { iconButtonStandalone, textButton } from "../components/button"
+import { createPaperDialog, openPaperDialog, closePaperDialog } from "../components/dialog"
+import { menuItem, numberItem } from "../components/item"
+import { selectEl, numOpts } from "../components/select"
 import modalCss from "./modal.css?raw"
 
 const MODAL_ID = "yslv-settings-modal"
@@ -24,87 +27,6 @@ type Refs = {
   sentenceCount: HTMLSelectElement
   maxDescChars: HTMLInputElement
   showSkeleton: Toggle
-}
-
-function selectEl(id: string, options: { value: string; label: string }[]): HTMLSelectElement {
-  const s = h("select", { id, class: "yslv-m-select" })
-  for (const o of options) s.appendChild(h("option", { value: o.value }, o.label))
-  return s
-}
-
-function numOpts(min: number, max: number): { value: string; label: string }[] {
-  const out: { value: string; label: string }[] = []
-  for (let i = min; i <= max; i++) out.push({ value: String(i), label: String(i) })
-  return out
-}
-
-function paperItem(children: Node[]): HTMLElement {
-  const item = document.createElement("tp-yt-paper-item") as HTMLElement
-  item.setAttribute("role", "option")
-  item.classList.add("yslv-m-item")
-  for (const child of children) item.appendChild(child)
-  return item
-}
-
-function itemText(label: string, sub?: string): HTMLElement {
-  const wrap = h("div", { class: "yslv-m-item-text" })
-  wrap.appendChild(h("div", { class: "yslv-m-item-label" }, label))
-  if (sub) wrap.appendChild(h("div", { class: "yslv-m-item-sub" }, sub))
-  return wrap
-}
-
-function menuItem(label: string, control: Element | Node, sub?: string): HTMLElement {
-  return paperItem([itemText(label, sub), control as Node])
-}
-
-function numberItem(
-  label: string,
-  id: string,
-  min: number,
-  max: number,
-  step: number,
-  sub?: string,
-): { item: HTMLElement; input: HTMLInputElement } {
-  const input = h("input", {
-    id,
-    type: "number",
-    class: "yslv-m-number",
-    min: String(min),
-    max: String(max),
-    step: String(step),
-  })
-  const item = menuItem(label, input, sub)
-  return { item, input }
-}
-
-function createPaperDialog(): HTMLElement {
-  const dlg = document.createElement("tp-yt-paper-dialog") as HTMLElement
-  dlg.className = "yslv-m-dialog"
-  return dlg
-}
-
-function openPaperDialog(dlg: HTMLElement): void {
-  const applyLayout = () => {
-    dlg.style.display = "flex"
-    dlg.style.flexDirection = "column"
-    dlg.style.position = "relative"
-    dlg.style.margin = "0"
-  }
-  const d = dlg as any
-  if (typeof d.open === "function") {
-    d.open()
-    applyLayout()
-  } else {
-    customElements.whenDefined("tp-yt-paper-dialog").then(() => {
-      if (typeof (dlg as any).open === "function") (dlg as any).open()
-      applyLayout()
-    })
-  }
-}
-
-function closePaperDialog(dlg: HTMLElement): void {
-  const d = dlg as any
-  if (typeof d.close === "function") d.close()
 }
 
 function buildModal(refs: Refs) {
@@ -178,7 +100,7 @@ function buildModal(refs: Refs) {
   const saveBtn = textButton("Save", "outline", "call-to-action")
   const footer = h("div", { class: "yslv-m-footer" }, resetBtn, saveBtn)
 
-  const dialog = createPaperDialog()
+  const dialog = createPaperDialog("yslv-m-dialog")
   dialog.append(header, scroll, footer)
 
   const backdrop = h("div", { class: "yslv-m-backdrop" })
