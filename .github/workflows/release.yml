@@ -18,11 +18,11 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
           node-version-file: .node-version
 
@@ -47,7 +47,7 @@ jobs:
         id: changelog
         with:
           config: cliff.toml
-          args: --latest --strip header --tag ${{ steps.version.outputs.value }}
+          args: --unreleased --strip header --tag ${{ steps.version.outputs.value }}
         env:
           OUTPUT: CHANGELOG.md
           GITHUB_REPO: ${{ github.repository }}
