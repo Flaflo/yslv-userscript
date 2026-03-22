@@ -24,6 +24,7 @@ export type Cfg = {
     hideMostRelevant: boolean
     hideShorts: boolean
     hideMiniGuide: boolean
+    hideLiveStreams: boolean
 
     titleClamp: number
     descClamp: number

@@ -26,6 +26,7 @@ export const CFG: Cfg = {
     hideMostRelevant: true,
     hideShorts: false,
     hideMiniGuide: false,
+    hideLiveStreams: false,
 
     titleClamp: 2,
     descClamp: 2,

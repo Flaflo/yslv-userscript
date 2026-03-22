@@ -66,6 +66,13 @@ ytd-two-column-browse-results-renderer[page-subtype="subscriptions"]
   display: var(--yslv-hide-shorts) !important;
 }
 
+/* Patch: hide active live streams */
+ytd-browse[page-subtype="subscriptions"] ytd-rich-item-renderer:has(.yt-spec-avatar-shape__live-badge),
+ytd-two-column-browse-results-renderer[page-subtype="subscriptions"]
+  ytd-rich-item-renderer:has(.yt-spec-avatar-shape__live-badge) {
+  display: var(--yslv-hide-live-streams) !important;
+}
+
 /* Patch: hide "Most Relevant" / algorithmic sections */
 ytd-browse[page-subtype="subscriptions"] ytd-rich-section-renderer:has(ytd-rich-shelf-renderer:not([is-shorts])),
 ytd-browse[page-subtype="subscriptions"]

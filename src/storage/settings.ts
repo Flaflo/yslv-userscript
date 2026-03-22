@@ -22,6 +22,7 @@ export function defaultSettings(): UserSettings {
     maxDescChars: 260,
     showSkeleton: true,
     avatarSize: 36,
+    hideLiveStreams: false,
   }
 }
 
@@ -49,6 +50,7 @@ export async function loadSettings(): Promise<UserSettings> {
   if (typeof raw.maxDescChars === "number") s.maxDescChars = raw.maxDescChars
   if (typeof raw.showSkeleton === "boolean") s.showSkeleton = raw.showSkeleton
   if (typeof raw.avatarSize === "number") s.avatarSize = raw.avatarSize
+  if (typeof raw.hideLiveStreams === "boolean") s.hideLiveStreams = raw.hideLiveStreams
   return s
 }
 
@@ -71,4 +73,5 @@ export function applySettingsToCfg(cfg: Cfg, s: UserSettings): void {
   cfg.list.descFetch.maxChars = s.maxDescChars
   cfg.list.desc.skeleton.enabled = s.showSkeleton
   cfg.list.rowHead.avatarSize = s.avatarSize
+  cfg.list.hideLiveStreams = s.hideLiveStreams
 }

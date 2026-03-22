@@ -13,4 +13,5 @@ export type UserSettings = {
   showSkeleton: boolean
   separator: boolean
   avatarSize: number
+  hideLiveStreams: boolean
 }

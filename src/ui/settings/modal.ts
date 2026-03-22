@@ -27,6 +27,7 @@ type Refs = {
   maxDescChars: HTMLInputElement
   showSkeleton: Toggle
   avatarSize: HTMLInputElement
+  hideLiveStreams: Toggle
 }
 
 function buildModal(refs: Refs) {
@@ -73,12 +74,14 @@ function buildModal(refs: Refs) {
   refs.hideMostRelevant = createToggle()
   refs.hideShorts = createToggle()
   refs.hideMiniGuide = createToggle()
+  refs.hideLiveStreams = createToggle()
 
   scroll.appendChild(h("div", { class: "yslv-m-section" }, "Content"))
   scroll.appendChild(menuItem("Title lines", refs.titleClamp, "Maximum lines for video titles"))
   scroll.appendChild(menuItem('Hide "Most Relevant"', refs.hideMostRelevant.el, "Remove the Most Relevant section"))
   scroll.appendChild(menuItem("Hide Shorts", refs.hideShorts.el, "Hide the Shorts shelf and all Shorts items"))
-  scroll.appendChild(menuItem("Hide mini guide", refs.hideMiniGuide.el, "Hide the sidebar icon bar in list view"))
+  scroll.appendChild(menuItem("Hide live streams", refs.hideLiveStreams.el, "Hide active live streams"))
+  scroll.appendChild(menuItem("Hide mini guide", refs.hideMiniGuide.el, "Hide the sidebar icon bar"))
 
   scroll.appendChild(h("div", { class: "yslv-m-divider" }))
 
@@ -120,6 +123,7 @@ function populateForm(refs: Refs, s: UserSettings): void {
   refs.hideMostRelevant.checked = s.hideMostRelevant
   refs.hideShorts.checked = s.hideShorts
   refs.hideMiniGuide.checked = s.hideMiniGuide
+  refs.hideLiveStreams.checked = s.hideLiveStreams
   refs.fetchDesc.checked = s.fetchDesc
   refs.sentenceCount.value = String(s.sentenceCount)
   refs.maxDescChars.value = String(s.maxDescChars)
@@ -138,6 +142,7 @@ function readForm(refs: Refs): UserSettings {
     hideMostRelevant: refs.hideMostRelevant.checked,
     hideShorts: refs.hideShorts.checked,
     hideMiniGuide: refs.hideMiniGuide.checked,
+    hideLiveStreams: refs.hideLiveStreams.checked,
     fetchDesc: refs.fetchDesc.checked,
     sentenceCount: Number(refs.sentenceCount.value) || 2,
     maxDescChars: Number(refs.maxDescChars.value) || 260,
