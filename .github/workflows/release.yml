@@ -58,7 +58,7 @@ jobs:
           echo "value=$NEXT" >> "$GITHUB_OUTPUT"
 
       - name: Bump package.json version
-        run: npm version ${{ steps.version.outputs.value }} --no-git-tag-version
+        run: npm version ${{ steps.version.outputs.value }} --no-git-tag-version --allow-same-version
 
       - name: Build all artifacts
         run: npm run build
