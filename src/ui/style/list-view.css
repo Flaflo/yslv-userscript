@@ -10,7 +10,7 @@ html[data-yslv-subs-view="list"] ytd-rich-grid-renderer #contents {
   box-sizing: border-box !important;
 }
 
-html[data-yslv-subs-view="list"] ytd-rich-item-renderer:not([is-shelf-item]) {
+html[data-yslv-subs-view="list"] ytd-rich-item-renderer:not(.yslv-is-short) {
   display: block !important;
   width: 100% !important;
   padding: var(--yslv-row-pad-y) 0 !important;
