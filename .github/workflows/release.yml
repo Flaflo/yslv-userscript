@@ -80,10 +80,10 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add package.json package-lock.json
-          git commit -m ":bookmark: Release ${{ steps.version.outputs.value }}"
-          git tag "${{ steps.version.outputs.value }}"
+          git diff --cached --quiet || git commit -m ":bookmark: Release ${{ steps.version.outputs.value }}"
+          git tag -f "${{ steps.version.outputs.value }}"
           git push origin main
-          git push origin "${{ steps.version.outputs.value }}"
+          git push origin "${{ steps.version.outputs.value }}" --force
 
       - name: Create draft GitHub Release
         env:
