@@ -34,11 +34,10 @@ jobs:
           node-version-file: .node-version
 
       - name: Install git-cliff
-        uses: orhun/git-cliff-action@v4
-        with:
-          args: --version
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          curl -sL https://github.com/orhun/git-cliff/releases/latest/download/git-cliff-x86_64-unknown-linux-gnu.tar.gz | tar xz
+          sudo mv git-cliff-*/git-cliff /usr/local/bin/
+          git-cliff --version
 
       - name: Install dependencies
         run: npm ci
@@ -61,15 +60,7 @@ jobs:
         run: npm run build
 
       - name: Generate changelog
-        id: changelog
-        uses: orhun/git-cliff-action@v4
-        with:
-          config: cliff.toml
-          args: --unreleased --strip header --tag ${{ steps.version.outputs.value }}
-        env:
-          OUTPUT: CHANGELOG.md
-          GITHUB_REPO: ${{ github.repository }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: git-cliff --unreleased --strip header --tag ${{ steps.version.outputs.value }} --config cliff.toml -o CHANGELOG.md
 
       - name: Append compare link to changelog
         run: |
