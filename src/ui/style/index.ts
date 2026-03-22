@@ -24,13 +24,12 @@ function setCssVars(cfg: Cfg): void {
   s.setProperty("--yslv-head-mb", `${L.rowHead.marginBottom}px`)
   s.setProperty("--yslv-head-av-scale", String(L.rowHead.avatarSize / YT_NATIVE_AVATAR_PX))
   s.setProperty("--yslv-meta-gap", `${L.metaRow.gap}px`)
-  s.setProperty("--yslv-short-w", `${L.shorts.cardW}px`)
   s.setProperty("--yslv-desc-mt", `${L.desc.marginTop}px`)
-  s.setProperty("--yslv-hide-most-relevant", L.hideMostRelevant ? "none" : "block")
-  s.setProperty("--yslv-hide-shorts", L.hideShorts ? "none" : "")
-  s.setProperty("--yslv-hide-mini-guide", L.hideMiniGuide ? "none" : "")
-  s.setProperty("--yslv-hide-mini-guide-margin", L.hideMiniGuide ? "0px" : "var(--ytd-mini-guide-width)")
-  s.setProperty("--yslv-hide-live-streams", L.hideLiveStreams ? "none" : "")
+  const el = document.documentElement
+  el.toggleAttribute("data-yslv-hide-relevant", L.hideMostRelevant)
+  el.toggleAttribute("data-yslv-hide-shorts", L.hideShorts)
+  el.toggleAttribute("data-yslv-hide-live", L.hideLiveStreams)
+  el.toggleAttribute("data-yslv-hide-miniguide", L.hideMiniGuide)
 
   const sk = skNorm(cfg)
   s.setProperty("--yslv-skl-enabled", sk.enabled ? "block" : "none")
