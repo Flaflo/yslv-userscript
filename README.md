@@ -47,7 +47,6 @@ Click the **gear icon** in the toggle bar on the Subscriptions page to open the 
 
 | Setting | Description |
 |---|---|
-| Default view | Grid or List on page load |
 | Thumbnail width | Thumbnail size in pixels |
 | Thumbnail radius | Border radius in pixels |
 | Max layout width | Maximum width of the list container |
@@ -55,10 +54,12 @@ Click the **gear icon** in the toggle bar on the Subscriptions page to open the 
 | Description line clamp | Max lines for descriptions |
 | Hide Most Relevant | Remove the "Most Relevant" section |
 | Hide Shorts | Remove the Shorts shelf |
+| Hide mini guide | Hide the sidebar icon bar in list view |
 | Fetch descriptions | Load video descriptions via API |
 | Sentence count | Number of sentences to show |
 | Max description chars | Character limit for descriptions |
 | Show skeleton | Show loading placeholders |
+| Avatar size | Channel avatar size in pixels |
 | Separator lines | Show dividers between videos |
 
 ## Performance
