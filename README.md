@@ -54,7 +54,8 @@ Click the **gear icon** in the toggle bar on the Subscriptions page to open the 
 | Description line clamp | Max lines for descriptions |
 | Hide Most Relevant | Remove the "Most Relevant" section |
 | Hide Shorts | Remove the Shorts shelf |
-| Hide mini guide | Hide the sidebar icon bar in list view |
+| Hide live streams | Hide active live streams |
+| Hide mini guide | Hide the sidebar icon bar |
 | Fetch descriptions | Load video descriptions via API |
 | Sentence count | Number of sentences to show |
 | Max description chars | Character limit for descriptions |
