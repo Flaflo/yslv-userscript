@@ -82,7 +82,8 @@ jobs:
           git add package.json package-lock.json
           git commit -m ":bookmark: Release ${{ steps.version.outputs.value }}"
           git tag "${{ steps.version.outputs.value }}"
-          git push origin main --follow-tags
+          git push origin main
+          git push origin "${{ steps.version.outputs.value }}"
 
       - name: Create draft GitHub Release
         env:
