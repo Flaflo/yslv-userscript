@@ -50,11 +50,18 @@ html[data-yslv-subs-view="list"]
 }
 
 /* Patch: Fix "Latest" header shelf to match grid view height */
-html[data-yslv-subs-view="list"] ytd-rich-section-renderer:first-child > #content.ytd-rich-section-renderer > ytd-shelf-renderer.ytd-rich-section-renderer {
+html[data-yslv-subs-view="list"]
+  ytd-rich-section-renderer:first-child
+  > #content.ytd-rich-section-renderer
+  > ytd-shelf-renderer.ytd-rich-section-renderer {
   margin-bottom: 0 !important;
 }
 
-html[data-yslv-subs-view="list"] ytd-rich-section-renderer:first-child > #content.ytd-rich-section-renderer > ytd-shelf-renderer > #dismissible {
+html[data-yslv-subs-view="list"]
+  ytd-rich-section-renderer:first-child
+  > #content.ytd-rich-section-renderer
+  > ytd-shelf-renderer
+  > #dismissible {
   display: flow-root !important;
 }
 
