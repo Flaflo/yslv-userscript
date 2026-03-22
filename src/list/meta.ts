@@ -1,7 +1,7 @@
 import type { Cfg } from "../types/config"
 import type { State } from "../types/state"
 import { clearChildren, cloneInto, normalizeText, setTextOnly } from "../ui/dom/helpers"
-import { SEL_YSLV, SEL_BADGE, SEL_CHANNEL, SEL_LOCKUP, SEL_PAGE } from "../core/selectors"
+import { SEL_YSLV, SEL_CHANNEL, SEL_LOCKUP, SEL_PAGE } from "../core/selectors"
 
 function pickChannelDisplaySource(lockup: Element): Element | null {
   const a =
@@ -40,80 +40,6 @@ function getChannelName(lockup: Element): string {
   return normalizeText(src?.textContent || "")
 }
 
-function isIconish(node: Element | null): boolean {
-  if (!node) return false
-  if (node.matches(SEL_BADGE.iconShape)) return true
-  if (node.querySelector(SEL_BADGE.iconShape)) return true
-  if (node.querySelector("svg, img")) return true
-  if (node.getAttribute("role") === "img") return true
-  if (node.querySelector('[role="img"]')) return true
-  return false
-}
-
-function collectBadgeNodesFromAnchor(a: HTMLAnchorElement | null): Element[] {
-  const out: Element[] = []
-  if (!a) return out
-
-  const candidates = a.querySelectorAll(SEL_BADGE.candidates)
-
-  const seen = new Set<string>()
-  for (const el of Array.from(candidates)) {
-    const node = el as Element
-    const root =
-      node.closest(SEL_BADGE.rootImageEl) ||
-      node.closest(SEL_BADGE.rootIconHost) ||
-      node.closest(SEL_BADGE.rootVertical) ||
-      node
-
-    if (!root || root === a) continue
-    if (!isIconish(root)) continue
-
-    const key = `${root.tagName}|${root.getAttribute("class") || ""}|${root.getAttribute("aria-label") || ""}`
-    if (seen.has(key)) continue
-    seen.add(key)
-    out.push(root)
-  }
-
-  return out
-}
-
-function normalizeMetaAnchorInPlace(a: HTMLAnchorElement | null, nameText: string): void {
-  if (!a) return
-  const name = normalizeText(nameText)
-  if (!name) return
-
-  const badgeRoots = collectBadgeNodesFromAnchor(a)
-  const badges: Element[] = []
-
-  for (const r of badgeRoots) {
-    if (!r.isConnected) continue
-    badges.push(r)
-  }
-
-  for (const b of badges) {
-    try {
-      b.parentNode?.removeChild(b)
-    } catch {}
-  }
-
-  clearChildren(a)
-  a.appendChild(document.createTextNode(name))
-
-  for (const b of badges) {
-    if (!isIconish(b)) continue
-    const wrap = document.createElement("span")
-    wrap.style.display = "inline-flex"
-    wrap.style.alignItems = "center"
-    wrap.style.marginLeft = "4px"
-    wrap.appendChild(b)
-    a.appendChild(wrap)
-  }
-
-  for (const s of Array.from(a.querySelectorAll(":scope > span"))) {
-    const el = s as Element
-    if (!el.querySelector || !isIconish(el)) el.remove()
-  }
-}
 
 function detachMetaAnchorOnce(state: State, lockup: Element): HTMLAnchorElement | null {
   if (state.movedMetaAnchors.has(lockup)) return state.movedMetaAnchors.get(lockup)?.a || null
@@ -141,6 +67,7 @@ export function restoreMovedMetaAnchors(state: State): void {
     if (!a.isConnected) continue
     if (a.parentNode === parent) continue
     try {
+      a.style.margin = ""
       if (nextSibling && nextSibling.parentNode === parent) parent.insertBefore(a, nextSibling)
       else parent.appendChild(a)
     } catch {}
@@ -212,7 +139,6 @@ export function ensureInlineMeta(cfg: Cfg, state: State, textContainer: Element,
     try {
       srcA.style.margin = "0"
     } catch {}
-    normalizeMetaAnchorInPlace(srcA, chName)
     clearChildren(left)
     left.appendChild(srcA)
   } else {

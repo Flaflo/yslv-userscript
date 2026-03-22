@@ -32,15 +32,6 @@ export const SEL_CHANNEL = {
 } as const
 
 /** YouTube badge / verification icon selectors */
-export const SEL_BADGE = {
-  candidates:
-    ".yt-core-attributed-string__image-element, .ytIconWrapperHost, .yt-core-attributed-string__image-element--image-alignment-vertical-center, yt-icon-shape, .yt-icon-shape",
-  rootImageEl: ".yt-core-attributed-string__image-element",
-  rootIconHost: ".ytIconWrapperHost",
-  rootVertical: ".yt-core-attributed-string__image-element--image-alignment-vertical-center",
-  iconShape: "yt-icon-shape, .yt-icon-shape",
-} as const
-
 /** YouTube video thumbnail link selectors (ordered by specificity) */
 export const SEL_VIDEO_ANCHORS: readonly string[] = [
   'a.yt-lockup-view-model__content-image[href^="/watch"]',
