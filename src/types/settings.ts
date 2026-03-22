@@ -1,7 +1,4 @@
-import type { ViewMode } from "./state"
-
 export type UserSettings = {
-  defaultView: ViewMode
   thumbW: number
   thumbRadius: number
   maxWidth: number | string

@@ -1,6 +1,5 @@
 import type { Cfg } from "../types/config"
 import type { UserSettings } from "../types/settings"
-import type { ViewMode } from "../types/state"
 import { syncProvider } from "./provider"
 
 export type { UserSettings }
@@ -9,7 +8,6 @@ const SETTINGS_KEY = "yslv_settings"
 
 export function defaultSettings(): UserSettings {
   return {
-    defaultView: "grid" as ViewMode,
     maxWidth: 1320,
     thumbW: 240,
     thumbRadius: 14,
@@ -37,7 +35,6 @@ export async function loadSettings(): Promise<UserSettings> {
   if (!raw || !isValidSettings(raw)) return defaults
 
   const s = { ...defaults }
-  if (raw.defaultView === "grid" || raw.defaultView === "list") s.defaultView = raw.defaultView
   if (typeof raw.maxWidth === "number" && raw.maxWidth >= 600) s.maxWidth = raw.maxWidth
   if (typeof raw.thumbW === "number") s.thumbW = raw.thumbW
   if (typeof raw.thumbRadius === "number") s.thumbRadius = raw.thumbRadius
@@ -60,7 +57,6 @@ export async function saveSettings(s: UserSettings): Promise<void> {
 }
 
 export function applySettingsToCfg(cfg: Cfg, s: UserSettings): void {
-  cfg.defaultView = s.defaultView
   cfg.list.maxWidth = s.maxWidth
   cfg.list.thumbW = s.thumbW
   cfg.list.thumbRadius = s.thumbRadius

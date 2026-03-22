@@ -1,5 +1,4 @@
 import type { UserSettings } from "../../types/settings"
-import type { ViewMode } from "../../types/state"
 import { loadSettings, saveSettings, defaultSettings } from "../../storage/settings"
 import { h } from "../dom/helpers"
 import { icons } from "../assets/icons"
@@ -14,7 +13,6 @@ const MODAL_ID = "yslv-settings-modal"
 const STYLE_ID = "yslv-settings-modal-style"
 
 type Refs = {
-  defaultView: HTMLSelectElement
   maxWidth: HTMLInputElement
   thumbW: HTMLInputElement
   thumbRadius: HTMLInputElement
@@ -44,10 +42,6 @@ function buildModal(refs: Refs) {
   const scroll = h("div", { class: "yslv-m-scroll" })
 
   // Layout section
-  refs.defaultView = selectEl("ym-defaultView", [
-    { value: "grid", label: "Grid" },
-    { value: "list", label: "List" },
-  ])
   refs.maxWidth = h("input", {
     id: "ym-maxWidth",
     type: "number",
@@ -65,7 +59,6 @@ function buildModal(refs: Refs) {
   refs.avatarSize = av.input
 
   scroll.appendChild(h("div", { class: "yslv-m-section" }, "Layout"))
-  scroll.appendChild(menuItem("Default view", refs.defaultView, "View mode when page loads"))
   scroll.appendChild(menuItem("Max list width", refs.maxWidth, "Maximum width of the list in pixels"))
   scroll.appendChild(tw.item)
   scroll.appendChild(tr.item)
@@ -118,7 +111,6 @@ function buildModal(refs: Refs) {
 }
 
 function populateForm(refs: Refs, s: UserSettings): void {
-  refs.defaultView.value = s.defaultView
   refs.maxWidth.value = String(s.maxWidth)
   refs.thumbW.value = String(s.thumbW)
   refs.thumbRadius.value = String(s.thumbRadius)
@@ -137,7 +129,6 @@ function populateForm(refs: Refs, s: UserSettings): void {
 
 function readForm(refs: Refs): UserSettings {
   return {
-    defaultView: refs.defaultView.value as ViewMode,
     maxWidth: Number(refs.maxWidth.value) || 1320,
     thumbW: Number(refs.thumbW.value) || 240,
     thumbRadius: Number(refs.thumbRadius.value),
