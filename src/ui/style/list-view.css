@@ -5,7 +5,7 @@ html[data-yslv-subs-view="list"] ytd-rich-grid-renderer #contents {
   display: block !important;
   max-width: var(--yslv-max-w) !important;
   margin: 0 auto !important;
-  padding: 24px 16px 0 !important;
+  padding: 24px 24px 0 !important;
   width: 100% !important;
   box-sizing: border-box !important;
 }
