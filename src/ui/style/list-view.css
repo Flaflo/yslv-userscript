@@ -45,12 +45,12 @@ html[data-yslv-subs-view="list"] .yslv-subs-rowhead .yt-lockup-metadata-view-mod
   min-width: var(--yslv-head-av) !important;
   margin: 0 !important;
 }
-html[data-yslv-subs-view="list"] .yslv-subs-rowhead yt-avatar-shape,
-html[data-yslv-subs-view="list"] .yslv-subs-rowhead .yt-spec-avatar-shape {
+html[data-yslv-subs-view="list"] .yslv-subs-rowhead yt-decorated-avatar-view-model yt-avatar-shape,
+html[data-yslv-subs-view="list"] .yslv-subs-rowhead yt-decorated-avatar-view-model .yt-spec-avatar-shape {
   width: var(--yslv-head-av) !important;
   height: var(--yslv-head-av) !important;
 }
-html[data-yslv-subs-view="list"] .yslv-subs-rowhead .yt-lockup-metadata-view-model__avatar img {
+html[data-yslv-subs-view="list"] .yslv-subs-rowhead yt-decorated-avatar-view-model img {
   width: var(--yslv-head-av) !important;
   height: var(--yslv-head-av) !important;
   border-radius: 50% !important;
