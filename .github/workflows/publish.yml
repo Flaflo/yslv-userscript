@@ -84,9 +84,14 @@ jobs:
           fetch-depth: 0
 
       - name: Install git-cliff
-        run: |
-          curl -sL https://github.com/orhun/git-cliff/releases/latest/download/git-cliff-x86_64-unknown-linux-gnu.tar.gz | tar xz
-          sudo mv git-cliff-*/git-cliff /usr/local/bin/
+        uses: orhun/git-cliff-action@v4
+        with:
+          args: --version
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Add git-cliff to PATH
+        run: echo "$RUNNER_TEMP/git-cliff/bin" >> "$GITHUB_PATH"
 
       - name: Download Firefox extension from release
         env:
