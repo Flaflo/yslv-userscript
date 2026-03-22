@@ -40,7 +40,6 @@ function getChannelName(lockup: Element): string {
   return normalizeText(src?.textContent || "")
 }
 
-
 function detachMetaAnchorOnce(state: State, lockup: Element): HTMLAnchorElement | null {
   if (state.movedMetaAnchors.has(lockup)) return state.movedMetaAnchors.get(lockup)?.a || null
 
