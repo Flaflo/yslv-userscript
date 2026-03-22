@@ -8,7 +8,6 @@ import { ensureToggleBar, paintToggleBar, removeToggleBar, TOGGLE_ID } from "../
 import { attachObserver, attachPageManagerObserver, enqueueAllOnce } from "../list/observer"
 import { cleanupListArtifacts } from "../list/patching"
 import { cancelDescPump, scheduleDescPump } from "../desc/queue"
-import { restoreMovedAvatars, restoreMovedMetaAnchors } from "../list/meta"
 
 export function createApp(cfg: Cfg, state: State, cache: DescCache, onSettings?: () => void) {
   function resetNavState(): void {
@@ -54,8 +53,6 @@ export function createApp(cfg: Cfg, state: State, cache: DescCache, onSettings?:
 
         if (state.view === "list") {
           cleanupListArtifacts(cfg, state)
-          restoreMovedAvatars(state)
-          restoreMovedMetaAnchors(state)
         }
 
         resetNavState()
