@@ -73,29 +73,43 @@ html[data-yslv-hide-miniguide] ytd-app[mini-guide-visible] ytd-page-manager.ytd-
 }
 
 /* Patch: hide Shorts shelf and individual Shorts items */
-html[data-yslv-hide-shorts] ytd-browse[page-subtype="subscriptions"] ytd-rich-section-renderer:has(ytd-rich-shelf-renderer[is-shorts]),
-html[data-yslv-hide-shorts] ytd-two-column-browse-results-renderer[page-subtype="subscriptions"]
+html[data-yslv-hide-shorts]
+  ytd-browse[page-subtype="subscriptions"]
   ytd-rich-section-renderer:has(ytd-rich-shelf-renderer[is-shorts]),
-html[data-yslv-hide-shorts] ytd-browse[page-subtype="subscriptions"] ytd-rich-item-renderer:has(ytm-shorts-lockup-view-model-v2),
-html[data-yslv-hide-shorts] ytd-two-column-browse-results-renderer[page-subtype="subscriptions"]
+html[data-yslv-hide-shorts]
+  ytd-two-column-browse-results-renderer[page-subtype="subscriptions"]
+  ytd-rich-section-renderer:has(ytd-rich-shelf-renderer[is-shorts]),
+html[data-yslv-hide-shorts]
+  ytd-browse[page-subtype="subscriptions"]
+  ytd-rich-item-renderer:has(ytm-shorts-lockup-view-model-v2),
+html[data-yslv-hide-shorts]
+  ytd-two-column-browse-results-renderer[page-subtype="subscriptions"]
   ytd-rich-item-renderer:has(ytm-shorts-lockup-view-model-v2) {
   display: none !important;
 }
 
 /* Patch: hide active live streams */
-html[data-yslv-hide-live] ytd-browse[page-subtype="subscriptions"] ytd-rich-item-renderer:has(.yt-spec-avatar-shape__live-badge),
-html[data-yslv-hide-live] ytd-two-column-browse-results-renderer[page-subtype="subscriptions"]
+html[data-yslv-hide-live]
+  ytd-browse[page-subtype="subscriptions"]
+  ytd-rich-item-renderer:has(.yt-spec-avatar-shape__live-badge),
+html[data-yslv-hide-live]
+  ytd-two-column-browse-results-renderer[page-subtype="subscriptions"]
   ytd-rich-item-renderer:has(.yt-spec-avatar-shape__live-badge) {
   display: none !important;
 }
 
 /* Patch: hide "Most Relevant" / algorithmic sections */
-html[data-yslv-hide-relevant] ytd-browse[page-subtype="subscriptions"] ytd-rich-section-renderer:has(ytd-rich-shelf-renderer:not([is-shorts])),
-html[data-yslv-hide-relevant] ytd-browse[page-subtype="subscriptions"]
-  ytd-rich-section-renderer:not(:has(ytd-shelf-renderer, ytd-rich-shelf-renderer)),
-html[data-yslv-hide-relevant] ytd-two-column-browse-results-renderer[page-subtype="subscriptions"]
+html[data-yslv-hide-relevant]
+  ytd-browse[page-subtype="subscriptions"]
   ytd-rich-section-renderer:has(ytd-rich-shelf-renderer:not([is-shorts])),
-html[data-yslv-hide-relevant] ytd-two-column-browse-results-renderer[page-subtype="subscriptions"]
+html[data-yslv-hide-relevant]
+  ytd-browse[page-subtype="subscriptions"]
+  ytd-rich-section-renderer:not(:has(ytd-shelf-renderer, ytd-rich-shelf-renderer)),
+html[data-yslv-hide-relevant]
+  ytd-two-column-browse-results-renderer[page-subtype="subscriptions"]
+  ytd-rich-section-renderer:has(ytd-rich-shelf-renderer:not([is-shorts])),
+html[data-yslv-hide-relevant]
+  ytd-two-column-browse-results-renderer[page-subtype="subscriptions"]
   ytd-rich-section-renderer:not(:has(ytd-shelf-renderer, ytd-rich-shelf-renderer)) {
   display: none !important;
 }
