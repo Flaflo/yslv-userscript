@@ -1,6 +1,5 @@
 html[data-yslv-subs-view="list"] #content.ytd-rich-section-renderer {
-  margin-top: 0 !important;
-  margin-bottom: 0 !important;
+  margin: 0 !important;
 }
 
 ytd-masthead {
@@ -51,14 +50,14 @@ html[data-yslv-subs-view="list"]
 
 /* Patch: Fix "Latest" header shelf to match grid view height */
 html[data-yslv-subs-view="list"]
-  ytd-rich-section-renderer:first-child
+  ytd-rich-section-renderer:has(> #content > ytd-shelf-renderer)
   > #content.ytd-rich-section-renderer
   > ytd-shelf-renderer.ytd-rich-section-renderer {
   margin-bottom: 0 !important;
 }
 
 html[data-yslv-subs-view="list"]
-  ytd-rich-section-renderer:first-child
+  ytd-rich-section-renderer:has(> #content > ytd-shelf-renderer)
   > #content.ytd-rich-section-renderer
   > ytd-shelf-renderer
   > #dismissible {
