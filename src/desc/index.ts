@@ -170,14 +170,11 @@ export async function fetchDescriptionForVideoId(
   }
 
   if (state.descInFlight.has(vid)) return state.descInFlight.get(vid) as Promise<string>
-  if (state.descFetches >= F.maxTotalFetchesPerNav) return ""
-
   const p = (async () => {
     while (state.descActive >= F.maxConcurrent) {
       await new Promise<void>((r) => setTimeout(r, 35))
     }
     state.descActive++
-    state.descFetches++
     try {
       const raw = await fetchDescViaInnertube(vid)
       if (!raw) return ""

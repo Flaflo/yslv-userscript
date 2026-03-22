@@ -23,7 +23,6 @@ export type State = {
 
   descCache: Map<string, string>
   descInFlight: Map<string, Promise<string>>
-  descFetches: number
   descActive: number
 
   descQueue: string[]

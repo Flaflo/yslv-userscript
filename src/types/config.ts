@@ -55,7 +55,6 @@ export type Cfg = {
 
     descFetch: {
       enabled: boolean
-      maxTotalFetchesPerNav: number
       maxConcurrent: number
       sentenceCount: number
       maxChars: number

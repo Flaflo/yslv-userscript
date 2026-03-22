@@ -57,7 +57,6 @@ export const CFG: Cfg = {
 
     descFetch: {
       enabled: true,
-      maxTotalFetchesPerNav: 60,
       maxConcurrent: 3,
       sentenceCount: 2,
       maxChars: 260,

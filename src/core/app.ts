@@ -17,7 +17,6 @@ export function createApp(cfg: Cfg, state: State, cache: DescCache, onSettings?:
 
     state.descInFlight.clear()
     state.descCache.clear()
-    state.descFetches = 0
     state.descActive = 0
 
     state.descQueue.length = 0

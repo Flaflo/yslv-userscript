@@ -22,7 +22,6 @@ export function createState(): State {
 
     descCache: new Map(),
     descInFlight: new Map(),
-    descFetches: 0,
     descActive: 0,
 
     descQueue: [],
