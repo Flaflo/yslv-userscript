@@ -66,9 +66,13 @@ ytd-two-column-browse-results-renderer[page-subtype="subscriptions"]
   display: var(--yslv-hide-shorts) !important;
 }
 
-/* Patch: hide "Most Relevant" / algorithmic sections fix by https://github.com/xXMrJackXx */
+/* Patch: hide "Most Relevant" / algorithmic sections */
+ytd-browse[page-subtype="subscriptions"]
+  ytd-rich-section-renderer:has(ytd-rich-shelf-renderer:not([is-shorts])),
 ytd-browse[page-subtype="subscriptions"]
   ytd-rich-section-renderer:not(:has(ytd-shelf-renderer, ytd-rich-shelf-renderer)),
+ytd-two-column-browse-results-renderer[page-subtype="subscriptions"]
+  ytd-rich-section-renderer:has(ytd-rich-shelf-renderer:not([is-shorts])),
 ytd-two-column-browse-results-renderer[page-subtype="subscriptions"]
   ytd-rich-section-renderer:not(:has(ytd-shelf-renderer, ytd-rich-shelf-renderer)) {
   display: var(--yslv-hide-most-relevant) !important;
