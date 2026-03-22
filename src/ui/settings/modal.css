@@ -33,12 +33,9 @@
   flex-direction: column;
 }
 
-.yslv-m-dialog > :first-child {
-  margin-top: 0;
-}
-
-.yslv-m-dialog > :last-child {
-  margin-bottom: 0;
+.yslv-m-dialog > * {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
 }
 
 .yslv-m-header {
