@@ -120,4 +120,7 @@ commit_parsers = [
   { message = "^:passport_control:", bump = "patch" },
   { message = "^:speech_balloon:", bump = "patch" },
   { message = "^:fire:", bump = "patch" },
+
+  # Skip (no version impact)
+  { message = ".*", bump = false },
 ]
