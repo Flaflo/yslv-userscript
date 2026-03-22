@@ -67,8 +67,7 @@ ytd-two-column-browse-results-renderer[page-subtype="subscriptions"]
 }
 
 /* Patch: hide "Most Relevant" / algorithmic sections */
-ytd-browse[page-subtype="subscriptions"]
-  ytd-rich-section-renderer:has(ytd-rich-shelf-renderer:not([is-shorts])),
+ytd-browse[page-subtype="subscriptions"] ytd-rich-section-renderer:has(ytd-rich-shelf-renderer:not([is-shorts])),
 ytd-browse[page-subtype="subscriptions"]
   ytd-rich-section-renderer:not(:has(ytd-shelf-renderer, ytd-rich-shelf-renderer)),
 ytd-two-column-browse-results-renderer[page-subtype="subscriptions"]
