@@ -28,9 +28,3 @@ export async function initYSLV() {
   const app = createApp(CFG, state, cache, () => void openSettingsModal(onChanged))
   app.init()
 }
-
-;(() => {
-  "use strict"
-
-  void initYSLV()
-})()
