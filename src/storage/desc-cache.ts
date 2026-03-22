@@ -1,5 +1,7 @@
 import type { DescStoreObject } from "../types/storage"
 
+export const DESC_CACHE_KEY = "yslv_desc_cache_v1"
+
 export interface DescCache {
   get(videoId: string): string | null
   set(videoId: string, desc: string): void

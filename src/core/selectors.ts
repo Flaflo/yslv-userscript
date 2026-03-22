@@ -1,48 +1,47 @@
 export const TAG_RICH_ITEM = "YTD-RICH-ITEM-RENDERER"
 
-export const SEL_SUBS_BROWSE_PM = 'ytd-page-manager ytd-browse[page-subtype="subscriptions"]:not([hidden])'
-export const SEL_SUBS_BROWSE = 'ytd-browse[page-subtype="subscriptions"]:not([hidden])'
+/** YouTube page structure selectors */
+export const SEL_PAGE = {
+  subsBrowsePm: 'ytd-page-manager ytd-browse[page-subtype="subscriptions"]:not([hidden])',
+  subsBrowse: 'ytd-browse[page-subtype="subscriptions"]:not([hidden])',
+  richGridContents: "ytd-rich-grid-renderer #contents",
+  richGrid: "ytd-rich-grid-renderer",
+  pageManager: "ytd-page-manager",
+  richItem: "ytd-rich-item-renderer",
+} as const
 
-export const SEL_RICH_GRID_CONTENTS = "ytd-rich-grid-renderer #contents"
-export const SEL_RICH_GRID = "ytd-rich-grid-renderer"
+/** YouTube lockup element selectors */
+export const SEL_LOCKUP = {
+  root: "yt-lockup-view-model",
+  textContainer: ".yt-lockup-metadata-view-model__text-container",
+  textContainerFallback: "yt-lockup-metadata-view-model",
+  headingReset: ".yt-lockup-metadata-view-model__heading-reset",
+  avatar: ".yt-lockup-metadata-view-model__avatar",
+  metadataRow: "yt-content-metadata-view-model .yt-content-metadata-view-model__metadata-row",
+  shortsLockup: "ytm-shorts-lockup-view-model-v2, ytm-shorts-lockup-view-model",
+} as const
 
-export const SEL_PAGE_MANAGER = "ytd-page-manager"
+/** YouTube channel link selectors */
+export const SEL_CHANNEL = {
+  anchorMetaHandle: 'yt-content-metadata-view-model .yt-content-metadata-view-model__metadata-row a[href^="/@"]',
+  anchorMetaId: 'yt-content-metadata-view-model .yt-content-metadata-view-model__metadata-row a[href^="/channel/"]',
+  anchorHandle: 'a[href^="/@"]',
+  anchorId: 'a[href^="/channel/"]',
+  textSpan:
+    "yt-content-metadata-view-model .yt-content-metadata-view-model__metadata-row span.yt-content-metadata-view-model__metadata-text",
+} as const
 
-export const SEL_RICH_ITEM = "ytd-rich-item-renderer"
+/** YouTube badge / verification icon selectors */
+export const SEL_BADGE = {
+  candidates:
+    ".yt-core-attributed-string__image-element, .ytIconWrapperHost, .yt-core-attributed-string__image-element--image-alignment-vertical-center, yt-icon-shape, .yt-icon-shape",
+  rootImageEl: ".yt-core-attributed-string__image-element",
+  rootIconHost: ".ytIconWrapperHost",
+  rootVertical: ".yt-core-attributed-string__image-element--image-alignment-vertical-center",
+  iconShape: "yt-icon-shape, .yt-icon-shape",
+} as const
 
-export const SEL_SHORTS_LOCKUP = "ytm-shorts-lockup-view-model-v2, ytm-shorts-lockup-view-model"
-
-export const SEL_LOCKUP = "yt-lockup-view-model"
-
-export const SEL_TEXT_CONTAINER = ".yt-lockup-metadata-view-model__text-container"
-export const SEL_TEXT_CONTAINER_FALLBACK = "yt-lockup-metadata-view-model"
-
-export const SEL_HEADING_RESET = ".yt-lockup-metadata-view-model__heading-reset"
-
-export const SEL_AVATAR = ".yt-lockup-metadata-view-model__avatar"
-
-export const SEL_CH_ANCHOR_META_HANDLE =
-  'yt-content-metadata-view-model .yt-content-metadata-view-model__metadata-row a[href^="/@"]'
-export const SEL_CH_ANCHOR_META_ID =
-  'yt-content-metadata-view-model .yt-content-metadata-view-model__metadata-row a[href^="/channel/"]'
-
-export const SEL_CH_ANCHOR_HANDLE = 'a[href^="/@"]'
-export const SEL_CH_ANCHOR_ID = 'a[href^="/channel/"]'
-
-export const SEL_CH_TEXT_SPAN =
-  "yt-content-metadata-view-model .yt-content-metadata-view-model__metadata-row span.yt-content-metadata-view-model__metadata-text"
-
-export const SEL_METADATA_ROW = "yt-content-metadata-view-model .yt-content-metadata-view-model__metadata-row"
-
-export const SEL_ICON_SHAPE = "yt-icon-shape, .yt-icon-shape"
-
-export const SEL_BADGE_CANDIDATES =
-  ".yt-core-attributed-string__image-element, .ytIconWrapperHost, .yt-core-attributed-string__image-element--image-alignment-vertical-center, yt-icon-shape, .yt-icon-shape"
-
-export const SEL_BADGE_ROOT_IMAGE_EL = ".yt-core-attributed-string__image-element"
-export const SEL_BADGE_ROOT_ICON_HOST = ".ytIconWrapperHost"
-export const SEL_BADGE_ROOT_VERTICAL = ".yt-core-attributed-string__image-element--image-alignment-vertical-center"
-
+/** YouTube video thumbnail link selectors (ordered by specificity) */
 export const SEL_VIDEO_ANCHORS: readonly string[] = [
   'a.yt-lockup-view-model__content-image[href^="/watch"]',
   'a.yt-lockup-view-model__content-image[href^="/shorts/"]',
@@ -52,3 +51,16 @@ export const SEL_VIDEO_ANCHORS: readonly string[] = [
   'a[href^="/watch"]',
   'a[href^="/shorts/"]',
 ]
+
+/** Internal selectors for CSS classes injected by the userscript */
+export const SEL_YSLV = {
+  rowHead: "yslv-subs-rowhead",
+  rowHeadName: "yslv-subs-rowhead-name",
+  metaRow: "yslv-subs-mrow",
+  metaCh: "yslv-subs-mch",
+  metaRt: "yslv-subs-mrt",
+  desc: "yslv-subs-desc",
+  descSkel: "yslv-subs-desc-skel",
+  isShort: "yslv-is-short",
+  patched: "yslv-patched",
+} as const

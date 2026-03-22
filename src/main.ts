@@ -1,7 +1,7 @@
 import { CFG } from "./core/config"
 import { createApp } from "./core/app"
 import { createState } from "./core/state"
-import { createDescCache } from "./storage/desc-cache"
+import { createDescCache, DESC_CACHE_KEY } from "./storage/desc-cache"
 import { loadSettings, applySettingsToCfg } from "./storage/settings"
 import { openSettingsModal } from "./ui/settings/modal"
 import { rebuildStyle, invalidateSkNormCache } from "./ui/style"
@@ -12,7 +12,7 @@ export async function initYSLV() {
 
   const state = createState()
   const cache = createDescCache({
-    key: CFG.descStore.key,
+    key: DESC_CACHE_KEY,
     ttlMs: CFG.descStore.ttlMs,
     maxEntries: CFG.descStore.maxEntries,
     saveDebounceMs: CFG.descStore.saveDebounceMs,

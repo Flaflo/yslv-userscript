@@ -1,23 +1,17 @@
-import {
-  SEL_PAGE_MANAGER,
-  SEL_RICH_GRID,
-  SEL_RICH_GRID_CONTENTS,
-  SEL_SUBS_BROWSE,
-  SEL_SUBS_BROWSE_PM,
-} from "../../core/selectors"
+import { SEL_PAGE } from "../../core/selectors"
 
 export function isSubsPage(): boolean {
   return location.pathname === "/feed/subscriptions"
 }
 
 export function getActiveSubsBrowse(): Element | null {
-  return document.querySelector(SEL_SUBS_BROWSE_PM) || document.querySelector(SEL_SUBS_BROWSE) || null
+  return document.querySelector(SEL_PAGE.subsBrowsePm) || document.querySelector(SEL_PAGE.subsBrowse) || null
 }
 
 export function getActiveSubsRoot(): Element | null {
   const b = getActiveSubsBrowse()
   if (!b) return null
-  return b.querySelector(SEL_RICH_GRID_CONTENTS) || b.querySelector(SEL_RICH_GRID) || b
+  return b.querySelector(SEL_PAGE.richGridContents) || b.querySelector(SEL_PAGE.richGrid) || b
 }
 
 export function getActiveSubsDoc(): Document | Element {
@@ -25,5 +19,5 @@ export function getActiveSubsDoc(): Document | Element {
 }
 
 export function pageSig(): string {
-  return `${location.pathname}|${location.search}|${document.querySelector(SEL_PAGE_MANAGER) ? "pm" : "nopm"}`
+  return `${location.pathname}|${location.search}|${document.querySelector(SEL_PAGE.pageManager) ? "pm" : "nopm"}`
 }

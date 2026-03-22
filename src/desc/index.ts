@@ -1,15 +1,16 @@
 import type { Cfg } from "../types/config"
 import type { State } from "../types/state"
 import type { DescCache } from "../storage/desc-cache"
+import { SEL_YSLV } from "../core/selectors"
 import { clearChildren } from "../ui/dom/helpers"
 import { skNorm } from "./skeleton"
 import { extractVideoIdFromHref, pickPrimaryVideoAnchor } from "./video"
 
 export function ensureDesc(cfg: Cfg, state: State, cache: DescCache, textContainer: Element, lockup: Element): void {
-  let desc = textContainer.querySelector(`.${cfg.cls.desc}`) as HTMLElement | null
+  let desc = textContainer.querySelector(`.${SEL_YSLV.desc}`) as HTMLElement | null
   if (!desc) {
     desc = document.createElement("div")
-    desc.className = cfg.cls.desc
+    desc.className = SEL_YSLV.desc
     textContainer.appendChild(desc)
   }
 
@@ -20,7 +21,7 @@ export function ensureDesc(cfg: Cfg, state: State, cache: DescCache, textContain
   if (!vid) {
     desc.textContent = ""
     desc.style.display = "none"
-    desc.classList.remove(cfg.cls.descSkel)
+    desc.classList.remove(SEL_YSLV.descSkel)
     delete (desc.dataset as any).yslvVid
     return
   }
@@ -31,7 +32,7 @@ export function ensureDesc(cfg: Cfg, state: State, cache: DescCache, textContain
   if (mem != null) {
     desc.textContent = mem
     desc.style.display = mem ? "" : "none"
-    desc.classList.remove(cfg.cls.descSkel)
+    desc.classList.remove(SEL_YSLV.descSkel)
     return
   }
 
@@ -40,7 +41,7 @@ export function ensureDesc(cfg: Cfg, state: State, cache: DescCache, textContain
     state.descCache.set(vid, stored)
     desc.textContent = stored
     desc.style.display = stored ? "" : "none"
-    desc.classList.remove(cfg.cls.descSkel)
+    desc.classList.remove(SEL_YSLV.descSkel)
     return
   }
 
@@ -48,12 +49,12 @@ export function ensureDesc(cfg: Cfg, state: State, cache: DescCache, textContain
   if (!S.enabled) {
     desc.textContent = ""
     desc.style.display = "none"
-    desc.classList.remove(cfg.cls.descSkel)
+    desc.classList.remove(SEL_YSLV.descSkel)
     return
   }
 
   desc.style.display = ""
-  desc.classList.add(cfg.cls.descSkel)
+  desc.classList.add(SEL_YSLV.descSkel)
 
   const needs = desc.childElementCount !== S.lines || !desc.querySelector(":scope > span")
   if (needs) {
@@ -200,11 +201,11 @@ export async function fetchDescriptionForVideoId(
 }
 
 export function updateDescDomForVid(cfg: Cfg, vid: string, text: string): void {
-  const nodes = document.querySelectorAll(`.${cfg.cls.desc}[data-yslv-vid="${CSS.escape(vid)}"]`)
+  const nodes = document.querySelectorAll(`.${SEL_YSLV.desc}[data-yslv-vid="${CSS.escape(vid)}"]`)
   for (const n of Array.from(nodes)) {
     const el = n as HTMLElement
     if (!el.isConnected) continue
-    el.classList.remove(cfg.cls.descSkel)
+    el.classList.remove(SEL_YSLV.descSkel)
     clearChildren(el)
     el.textContent = text || ""
     el.style.display = text ? "" : "none"

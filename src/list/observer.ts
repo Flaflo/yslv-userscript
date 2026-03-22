@@ -4,7 +4,7 @@ import type { DescCache } from "../storage/desc-cache"
 import { getActiveSubsRoot } from "../ui/dom/page"
 import { patchItem } from "./patching"
 import { scheduleDescPump } from "../desc/queue"
-import { SEL_PAGE_MANAGER, SEL_RICH_ITEM, TAG_RICH_ITEM } from "../core/selectors"
+import { SEL_YSLV, SEL_PAGE, TAG_RICH_ITEM } from "../core/selectors"
 
 let patching = false
 
@@ -18,7 +18,7 @@ export function enqueue(cfg: Cfg, state: State, cache: DescCache, node: Element)
     return
   }
 
-  const found = node.querySelectorAll ? node.querySelectorAll(SEL_RICH_ITEM) : []
+  const found = node.querySelectorAll ? node.querySelectorAll(SEL_PAGE.richItem) : []
   for (const it of Array.from(found)) enqueue(cfg, state, cache, it as Element)
 }
 
@@ -68,7 +68,7 @@ export function enqueueAllOnce(cfg: Cfg, state: State, cache: DescCache): void {
   if (!state.active || state.view !== "list") return
   const root = getActiveSubsRoot()
   const scope = root && (root as any).querySelectorAll ? (root as ParentNode) : document
-  const items = (scope as ParentNode).querySelectorAll?.(SEL_RICH_ITEM) || []
+  const items = (scope as ParentNode).querySelectorAll?.(SEL_PAGE.richItem) || []
   for (const it of Array.from(items)) enqueue(cfg, state, cache, it as Element)
 }
 
@@ -92,8 +92,8 @@ export function attachObserver(cfg: Cfg, state: State, cache: DescCache): void {
       if (m.type === "childList" && m.removedNodes.length) {
         const mutTarget = m.target as Element
         if (!mutTarget?.closest) continue
-        const item = mutTarget.closest(SEL_RICH_ITEM) as Element | null
-        if (item && state.processedItems.has(item) && !item.querySelector(`.${cfg.cls.desc}`)) {
+        const item = mutTarget.closest(SEL_PAGE.richItem) as Element | null
+        if (item && state.processedItems.has(item) && !item.querySelector(`.${SEL_YSLV.desc}`)) {
           state.processedItems.delete(item)
           enqueue(cfg, state, cache, item)
         }
@@ -106,7 +106,7 @@ export function attachObserver(cfg: Cfg, state: State, cache: DescCache): void {
 
 export function attachPageManagerObserver(cfg: Cfg, state: State, cache: DescCache, onTick: () => void): void {
   if (state.pmMo) return
-  const pm = document.querySelector(SEL_PAGE_MANAGER)
+  const pm = document.querySelector(SEL_PAGE.pageManager)
   if (!pm) return
 
   let pmTimer: ReturnType<typeof setTimeout> | null = null

@@ -2,7 +2,6 @@ export type Cfg = {
   defaultView: "grid" | "list"
 
   descStore: {
-    key: string
     ttlMs: number
     maxEntries: number
     saveDebounceMs: number
@@ -65,17 +64,5 @@ export type Cfg = {
 
   perf: {
     maxItemsPerTick: number
-  }
-
-  cls: {
-    rowHead: string
-    rowHeadName: string
-    metaRow: string
-    metaCh: string
-    metaRt: string
-    desc: string
-    descSkel: string
-    isShort: string
-    patched: string
   }
 }

@@ -1,42 +1,26 @@
 import type { Cfg } from "../types/config"
 import type { State } from "../types/state"
 import { clearChildren, cloneInto, normalizeText, setTextOnly } from "../ui/dom/helpers"
-import {
-  SEL_AVATAR,
-  SEL_BADGE_CANDIDATES,
-  SEL_BADGE_ROOT_ICON_HOST,
-  SEL_BADGE_ROOT_IMAGE_EL,
-  SEL_BADGE_ROOT_VERTICAL,
-  SEL_CH_ANCHOR_HANDLE,
-  SEL_CH_ANCHOR_ID,
-  SEL_CH_ANCHOR_META_HANDLE,
-  SEL_CH_ANCHOR_META_ID,
-  SEL_CH_TEXT_SPAN,
-  SEL_HEADING_RESET,
-  SEL_ICON_SHAPE,
-  SEL_LOCKUP,
-  SEL_METADATA_ROW,
-  SEL_RICH_ITEM,
-} from "../core/selectors"
+import { SEL_YSLV, SEL_BADGE, SEL_CHANNEL, SEL_LOCKUP, SEL_PAGE } from "../core/selectors"
 
 function pickChannelDisplaySource(lockup: Element): Element | null {
   const a =
-    lockup.querySelector(SEL_CH_ANCHOR_META_HANDLE) ||
-    lockup.querySelector(SEL_CH_ANCHOR_META_ID) ||
-    lockup.querySelector(SEL_CH_ANCHOR_HANDLE) ||
-    lockup.querySelector(SEL_CH_ANCHOR_ID) ||
+    lockup.querySelector(SEL_CHANNEL.anchorMetaHandle) ||
+    lockup.querySelector(SEL_CHANNEL.anchorMetaId) ||
+    lockup.querySelector(SEL_CHANNEL.anchorHandle) ||
+    lockup.querySelector(SEL_CHANNEL.anchorId) ||
     null
 
   if (a) return a
 
-  return lockup.querySelector(SEL_CH_TEXT_SPAN) || null
+  return lockup.querySelector(SEL_CHANNEL.textSpan) || null
 }
 
 function pickChannelAnchor(lockup: Element): HTMLAnchorElement | null {
-  return (lockup.querySelector(SEL_CH_ANCHOR_META_HANDLE) ||
-    lockup.querySelector(SEL_CH_ANCHOR_META_ID) ||
-    lockup.querySelector(SEL_CH_ANCHOR_HANDLE) ||
-    lockup.querySelector(SEL_CH_ANCHOR_ID) ||
+  return (lockup.querySelector(SEL_CHANNEL.anchorMetaHandle) ||
+    lockup.querySelector(SEL_CHANNEL.anchorMetaId) ||
+    lockup.querySelector(SEL_CHANNEL.anchorHandle) ||
+    lockup.querySelector(SEL_CHANNEL.anchorId) ||
     null) as HTMLAnchorElement | null
 }
 
@@ -58,8 +42,8 @@ function getChannelName(lockup: Element): string {
 
 function isIconish(node: Element | null): boolean {
   if (!node) return false
-  if (node.matches(SEL_ICON_SHAPE)) return true
-  if (node.querySelector(SEL_ICON_SHAPE)) return true
+  if (node.matches(SEL_BADGE.iconShape)) return true
+  if (node.querySelector(SEL_BADGE.iconShape)) return true
   if (node.querySelector("svg, img")) return true
   if (node.getAttribute("role") === "img") return true
   if (node.querySelector('[role="img"]')) return true
@@ -70,15 +54,15 @@ function collectBadgeNodesFromAnchor(a: HTMLAnchorElement | null): Element[] {
   const out: Element[] = []
   if (!a) return out
 
-  const candidates = a.querySelectorAll(SEL_BADGE_CANDIDATES)
+  const candidates = a.querySelectorAll(SEL_BADGE.candidates)
 
   const seen = new Set<string>()
   for (const el of Array.from(candidates)) {
     const node = el as Element
     const root =
-      node.closest(SEL_BADGE_ROOT_IMAGE_EL) ||
-      node.closest(SEL_BADGE_ROOT_ICON_HOST) ||
-      node.closest(SEL_BADGE_ROOT_VERTICAL) ||
+      node.closest(SEL_BADGE.rootImageEl) ||
+      node.closest(SEL_BADGE.rootIconHost) ||
+      node.closest(SEL_BADGE.rootVertical) ||
       node
 
     if (!root || root === a) continue
@@ -145,7 +129,7 @@ function detachMetaAnchorOnce(state: State, lockup: Element): HTMLAnchorElement 
 
 export function restoreMovedMetaAnchors(state: State): void {
   const entries: Array<{ a: HTMLAnchorElement; parent: Node; nextSibling: ChildNode | null }> = []
-  document.querySelectorAll(SEL_LOCKUP).forEach((lockup) => {
+  document.querySelectorAll(SEL_LOCKUP.root).forEach((lockup) => {
     const info = state.movedMetaAnchors.get(lockup)
     if (!info) return
     entries.push(info)
@@ -176,7 +160,7 @@ function setHeaderNameTextOnly(destLink: HTMLAnchorElement | null, lockup: Eleme
 
 function getRightMetaRowsText(lockup: Element): string {
   const chName = getChannelName(lockup)
-  const rows = Array.from(lockup.querySelectorAll(SEL_METADATA_ROW))
+  const rows = Array.from(lockup.querySelectorAll(SEL_LOCKUP.metadataRow))
     .map((r) => normalizeText((r as Element).textContent || ""))
     .filter(Boolean)
     .filter((t) => (chName ? t !== chName : true))
@@ -202,22 +186,22 @@ function getRightMetaRowsText(lockup: Element): string {
 }
 
 export function ensureInlineMeta(cfg: Cfg, state: State, textContainer: Element, lockup: Element): Element {
-  let row = textContainer.querySelector(`.${cfg.cls.metaRow}`)
+  let row = textContainer.querySelector(`.${SEL_YSLV.metaRow}`)
   if (!row) {
     row = document.createElement("div")
-    row.className = cfg.cls.metaRow
+    row.className = SEL_YSLV.metaRow
 
-    const heading = textContainer.querySelector(SEL_HEADING_RESET) || textContainer.querySelector("h3")
+    const heading = textContainer.querySelector(SEL_LOCKUP.headingReset) || textContainer.querySelector("h3")
     if (heading && heading.parentNode) heading.parentNode.insertBefore(row, heading.nextSibling)
     else textContainer.appendChild(row)
   }
 
   ;(row as HTMLElement).style.display = "flex"
 
-  let left = row.querySelector(`:scope > .${cfg.cls.metaCh}`)
+  let left = row.querySelector(`:scope > .${SEL_YSLV.metaCh}`)
   if (!left) {
     left = document.createElement("div")
-    left.className = cfg.cls.metaCh
+    left.className = SEL_YSLV.metaCh
     row.appendChild(left)
   }
 
@@ -246,11 +230,11 @@ export function ensureInlineMeta(cfg: Cfg, state: State, textContainer: Element,
   }
 
   const right = getRightMetaRowsText(lockup)
-  let r = row.querySelector(`:scope > .${cfg.cls.metaRt}`)
+  let r = row.querySelector(`:scope > .${SEL_YSLV.metaRt}`)
   if (right) {
     if (!r) {
       r = document.createElement("div")
-      r.className = cfg.cls.metaRt
+      r.className = SEL_YSLV.metaRt
       row.appendChild(r)
     }
     r.textContent = right
@@ -266,26 +250,26 @@ export function ensureInlineMeta(cfg: Cfg, state: State, textContainer: Element,
 export function ensureRowHeader(cfg: Cfg, state: State, item: Element, lockup: Element): void {
   if (!cfg.list.rowHead.enabled) return
 
-  let head = item.querySelector(`:scope > .${cfg.cls.rowHead}`)
+  let head = item.querySelector(`:scope > .${SEL_YSLV.rowHead}`)
   if (!head) {
     head = document.createElement("div")
-    head.className = cfg.cls.rowHead
+    head.className = SEL_YSLV.rowHead
     item.prepend(head)
   }
 
   ;(head as HTMLElement).style.display = "flex"
 
-  let name = head.querySelector(`:scope > a.${cfg.cls.rowHeadName}`) as HTMLAnchorElement | null
+  let name = head.querySelector(`:scope > a.${SEL_YSLV.rowHeadName}`) as HTMLAnchorElement | null
   if (!name) {
     name = document.createElement("a")
-    name.className = cfg.cls.rowHeadName
+    name.className = SEL_YSLV.rowHeadName
     head.appendChild(name)
   }
 
   setHeaderNameTextOnly(name, lockup)
 
   if (state.movedAvatars.has(item)) return
-  const avatarEl = lockup.querySelector(SEL_AVATAR)
+  const avatarEl = lockup.querySelector(SEL_LOCKUP.avatar)
   if (!avatarEl || !avatarEl.parentNode) return
 
   const parent = avatarEl.parentNode
@@ -298,7 +282,7 @@ export function ensureRowHeader(cfg: Cfg, state: State, item: Element, lockup: E
 }
 
 export function restoreMovedAvatars(state: State): void {
-  document.querySelectorAll(SEL_RICH_ITEM).forEach((item) => {
+  document.querySelectorAll(SEL_PAGE.richItem).forEach((item) => {
     const info = state.movedAvatars.get(item)
     if (!info) return
     const { avatarEl, parent, nextSibling } = info

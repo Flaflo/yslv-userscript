@@ -4,7 +4,6 @@ export const CFG: Cfg = {
   defaultView: "grid", // or "list"
 
   descStore: {
-    key: "yslv_desc_cache_v1",
     ttlMs: 60 * 60 * 1000,
     maxEntries: 1200,
     saveDebounceMs: 250,
@@ -67,17 +66,5 @@ export const CFG: Cfg = {
 
   perf: {
     maxItemsPerTick: 60,
-  },
-
-  cls: {
-    rowHead: "yslv-subs-rowhead",
-    rowHeadName: "yslv-subs-rowhead-name",
-    metaRow: "yslv-subs-mrow",
-    metaCh: "yslv-subs-mch",
-    metaRt: "yslv-subs-mrt",
-    desc: "yslv-subs-desc",
-    descSkel: "yslv-subs-desc-skel",
-    isShort: "yslv-is-short",
-    patched: "yslv-patched",
   },
 }
