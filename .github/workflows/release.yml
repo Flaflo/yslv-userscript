@@ -3,20 +3,26 @@ name: Release
 on:
   workflow_dispatch:
     inputs:
-      publish_chrome:
+      github:
+        description: "Publish GitHub Release"
+        type: boolean
+        default: true
+      chrome:
         description: "Publish to Chrome Web Store"
         type: boolean
-        default: false
-      publish_firefox:
+        default: true
+      firefox:
         description: "Publish to Firefox AMO"
         type: boolean
-        default: false
+        default: true
 
 jobs:
   release:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+    outputs:
+      version: ${{ steps.version.outputs.value }}
     steps:
       - uses: actions/checkout@v6
         with:
@@ -26,25 +32,36 @@ jobs:
         with:
           node-version-file: .node-version
 
+      - name: Install git-cliff
+        uses: orhun/git-cliff-action@v4
+        with:
+          args: --version
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Install dependencies
         run: npm ci
 
-      - name: Read version from package.json
+      - name: Determine next version
         id: version
-        run: echo "value=$(grep -oP '\"version\":\s*\"\K[^\"]+' package.json)" >> "$GITHUB_OUTPUT"
+        run: |
+          CURRENT=$(git describe --tags --abbrev=0 2>/dev/null || echo "0.0.0")
+          NEXT=$(git-cliff --bumped-version --config cliff.toml)
+          if [ "$CURRENT" = "$NEXT" ]; then
+            echo "::error::No releasable changes since $CURRENT"
+            exit 1
+          fi
+          echo "value=$NEXT" >> "$GITHUB_OUTPUT"
+
+      - name: Bump package.json version
+        run: npm version ${{ steps.version.outputs.value }} --no-git-tag-version
 
       - name: Build all artifacts
         run: npm run build
 
-      - name: Create source archive for AMO review
-        run: |
-          git archive HEAD \
-            --prefix=yslv-source/ \
-            --output=dist-ext/yslv-source.zip
-
       - name: Generate changelog
-        uses: orhun/git-cliff-action@v4
         id: changelog
+        uses: orhun/git-cliff-action@v4
         with:
           config: cliff.toml
           args: --unreleased --strip header --tag ${{ steps.version.outputs.value }}
@@ -55,23 +72,28 @@ jobs:
 
       - name: Append compare link to changelog
         run: |
-          PREV=$(git describe --tags --abbrev=0 HEAD^ 2>/dev/null || echo "")
+          PREV=$(git describe --tags --abbrev=0 2>/dev/null || echo "")
           VER="${{ steps.version.outputs.value }}"
           if [ -n "$PREV" ]; then
             echo "" >> CHANGELOG.md
             echo "**Full Changelog**: https://github.com/${{ github.repository }}/compare/${PREV}...${VER}" >> CHANGELOG.md
           fi
 
-      - name: Create tag
+      - name: Commit version bump
         run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add package.json package-lock.json
+          git commit -m ":bookmark: Release ${{ steps.version.outputs.value }}"
           git tag "${{ steps.version.outputs.value }}"
-          git push origin "${{ steps.version.outputs.value }}"
+          git push origin main --follow-tags
 
-      - name: Create GitHub Release
+      - name: Create draft GitHub Release
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           gh release create "${{ steps.version.outputs.value }}" \
+            --draft \
             --title "${{ steps.version.outputs.value }}" \
             --notes-file CHANGELOG.md \
             dist/yslv.user.js \
@@ -80,25 +102,12 @@ jobs:
             README.md \
             PRIVACY.md
 
-      - name: Publish to Chrome Web Store
-        if: inputs.publish_chrome
-        uses: browser-actions/release-chrome-extension@latest
-        with:
-          extension-id: ${{ secrets.CHROME_EXTENSION_ID }}
-          extension-path: dist-ext/yslv-chromium.zip
-          oauth-client-id: ${{ secrets.CHROME_CLIENT_ID }}
-          oauth-client-secret: ${{ secrets.CHROME_CLIENT_SECRET }}
-          oauth-refresh-token: ${{ secrets.CHROME_REFRESH_TOKEN }}
-
-      - name: Publish to Firefox AMO
-        if: inputs.publish_firefox
-        uses: browser-actions/release-firefox-addon@latest
-        with:
-          addon-id: yslv@flaflo.xyz
-          addon-path: dist-ext/yslv-firefox.zip
-          source-path: dist-ext/yslv-source.zip
-          license: MIT
-          release-note: Release ${{ steps.version.outputs.value }}
-          approval-note: "Build: npm ci && npm run build:ext"
-          auth-api-issuer: ${{ secrets.AMO_ISSUER }}
-          auth-api-secret: ${{ secrets.AMO_SECRET }}
+  publish:
+    needs: release
+    uses: ./.github/workflows/publish.yml
+    with:
+      tag: ${{ needs.release.outputs.version }}
+      github: ${{ inputs.github }}
+      chrome: ${{ inputs.chrome }}
+      firefox: ${{ inputs.firefox }}
+    secrets: inherit

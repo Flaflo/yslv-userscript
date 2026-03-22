@@ -11,6 +11,7 @@ body = """
 {% endfor %}
 """
 trim = true
+render_always = true
 postprocessors = [
   { pattern = ":[a-z_]+: ", replace = "" },
   { pattern = "\\(#(\\d+)\\)", replace = "[#$1](https://github.com/Flaflo/yslv-userscript/issues/$1)" },
@@ -25,14 +26,98 @@ conventional_commits = false
 filter_unconventional = false
 tag_pattern = '[0-9]+\.[0-9]+\.[0-9]+'
 commit_parsers = [
+  # New Features
   { message = "^:sparkles:", group = "<!-- 0 -->New Features" },
+  { message = "^:tada:", group = "<!-- 0 -->New Features" },
+  { message = "^:globe_with_meridians:", group = "<!-- 0 -->New Features" },
+
+  # Bug Fixes
   { message = "^:bug:", group = "<!-- 1 -->Bug Fixes" },
-  { message = "^:recycle:", group = "<!-- 2 -->Refactoring" },
-  { message = "^:lipstick:", group = "<!-- 2 -->UI Changes" },
-  { message = "^:zap:", group = "<!-- 3 -->Performance" },
-  { message = "^:fire:", group = "<!-- 3 -->Removals" },
+  { message = "^:ambulance:", group = "<!-- 1 -->Bug Fixes" },
   { message = "^:adhesive_bandage:", group = "<!-- 1 -->Bug Fixes" },
-  { message = "^:wrench:", group = "<!-- 5 -->Configuration" },
+  { message = "^:pencil2:", group = "<!-- 1 -->Bug Fixes" },
+  { message = "^:goal_net:", group = "<!-- 1 -->Bug Fixes" },
+
+  # UI Changes
+  { message = "^:lipstick:", group = "<!-- 2 -->UI Changes" },
+  { message = "^:children_crossing:", group = "<!-- 2 -->UI Changes" },
+  { message = "^:iphone:", group = "<!-- 2 -->UI Changes" },
+  { message = "^:wheelchair:", group = "<!-- 2 -->UI Changes" },
+  { message = "^:dizzy:", group = "<!-- 2 -->UI Changes" },
+  { message = "^:speech_balloon:", group = "<!-- 2 -->UI Changes" },
+  { message = "^:bento:", group = "<!-- 2 -->UI Changes" },
+
+  # Performance
+  { message = "^:zap:", group = "<!-- 3 -->Performance" },
+
+  # Refactoring
+  { message = "^:recycle:", group = "<!-- 4 -->Refactoring" },
+  { message = "^:building_construction:", group = "<!-- 4 -->Refactoring" },
+  { message = "^:truck:", group = "<!-- 4 -->Refactoring" },
+  { message = "^:coffin:", group = "<!-- 4 -->Refactoring" },
+  { message = "^:wastebasket:", group = "<!-- 4 -->Refactoring" },
+  { message = "^:label:", group = "<!-- 4 -->Refactoring" },
+
+  # Security
+  { message = "^:lock:", group = "<!-- 5 -->Security" },
+  { message = "^:passport_control:", group = "<!-- 5 -->Security" },
+  { message = "^:safety_vest:", group = "<!-- 5 -->Security" },
+
+  # Dependencies
   { message = "^:arrow_up:", group = "<!-- 6 -->Dependencies" },
+  { message = "^:arrow_down:", group = "<!-- 6 -->Dependencies" },
+  { message = "^:pushpin:", group = "<!-- 6 -->Dependencies" },
+  { message = "^:heavy_plus_sign:", group = "<!-- 6 -->Dependencies" },
+  { message = "^:heavy_minus_sign:", group = "<!-- 6 -->Dependencies" },
+
+  # Removals
+  { message = "^:fire:", group = "<!-- 7 -->Removals" },
+
+  # Skip (not shown in changelog)
+  { message = "^:memo:", skip = true },
+  { message = "^:art:", skip = true },
+  { message = "^:bulb:", skip = true },
+  { message = "^:bookmark:", skip = true },
+  { message = "^:green_heart:", skip = true },
+  { message = "^:construction_worker:", skip = true },
+  { message = "^:white_check_mark:", skip = true },
+  { message = "^:rocket:", skip = true },
+  { message = "^:wrench:", skip = true },
+  { message = "^:hammer:", skip = true },
+  { message = "^:see_no_evil:", skip = true },
+  { message = "^:twisted_rightwards_arrows:", skip = true },
+  { message = "^Merge", skip = true },
 ]
 commit_preprocessors = []
+
+[bump]
+commit_parsers = [
+  # Major
+  { message = "^:boom:", bump = "major" },
+
+  # Minor
+  { message = "^:sparkles:", bump = "minor" },
+  { message = "^:recycle:", bump = "minor" },
+  { message = "^:building_construction:", bump = "minor" },
+  { message = "^:globe_with_meridians:", bump = "minor" },
+
+  # Patch
+  { message = "^:bug:", bump = "patch" },
+  { message = "^:ambulance:", bump = "patch" },
+  { message = "^:lipstick:", bump = "patch" },
+  { message = "^:zap:", bump = "patch" },
+  { message = "^:arrow_up:", bump = "patch" },
+  { message = "^:arrow_down:", bump = "patch" },
+  { message = "^:lock:", bump = "patch" },
+  { message = "^:adhesive_bandage:", bump = "patch" },
+  { message = "^:pencil2:", bump = "patch" },
+  { message = "^:alien:", bump = "patch" },
+  { message = "^:wheelchair:", bump = "patch" },
+  { message = "^:children_crossing:", bump = "patch" },
+  { message = "^:iphone:", bump = "patch" },
+  { message = "^:goal_net:", bump = "patch" },
+  { message = "^:safety_vest:", bump = "patch" },
+  { message = "^:passport_control:", bump = "patch" },
+  { message = "^:speech_balloon:", bump = "patch" },
+  { message = "^:fire:", bump = "patch" },
+]

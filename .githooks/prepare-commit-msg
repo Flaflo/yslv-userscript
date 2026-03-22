@@ -1,0 +1,7 @@
+#!/bin/sh
+if [ "$2" = "merge" ]; then
+  TMP=$(mktemp)
+  printf ':twisted_rightwards_arrows: ' > "$TMP"
+  cat "$1" >> "$TMP"
+  mv "$TMP" "$1"
+fi

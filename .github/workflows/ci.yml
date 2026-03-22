@@ -7,6 +7,84 @@ on:
     branches: [main]
 
 jobs:
+  validate-commits:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Validate commit messages
+        run: |
+          VALID_GITMOJIS=(
+            boom sparkles recycle building_construction globe_with_meridians
+            bug ambulance lipstick zap arrow_up arrow_down lock adhesive_bandage
+            pencil2 alien wheelchair children_crossing iphone goal_net safety_vest
+            passport_control speech_balloon fire tada dizzy bento truck coffin
+            wastebasket label pushpin heavy_plus_sign heavy_minus_sign
+            memo art bulb bookmark green_heart construction_worker
+            white_check_mark rocket wrench hammer see_no_evil
+            twisted_rightwards_arrows
+          )
+
+          PATTERN="^:($(IFS='|'; echo "${VALID_GITMOJIS[*]}"):)"
+
+          FAILED=0
+
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            COMMITS=$(git log --format="%H %s" ${{ github.event.pull_request.base.sha }}..${{ github.event.pull_request.head.sha }})
+          else
+            COMMITS=$(git log --format="%H %s" -1)
+          fi
+
+          while IFS= read -r line; do
+            [ -z "$line" ] && continue
+            HASH="${line%% *}"
+            MSG="${line#* }"
+
+            # Exempt merge commits
+            if echo "$MSG" | grep -qE "^Merge |^:twisted_rightwards_arrows:"; then
+              continue
+            fi
+
+            if ! echo "$MSG" | grep -qE "$PATTERN"; then
+              echo "::error::Invalid commit message: $MSG ($HASH)"
+              echo "  Must start with a valid gitmoji (e.g. :sparkles:, :bug:, :recycle:)"
+              FAILED=1
+            fi
+          done <<< "$COMMITS"
+
+          if [ "$FAILED" -eq 1 ]; then
+            echo ""
+            echo "Valid gitmojis: https://gitmoji.dev"
+            exit 1
+          fi
+
+      - name: Validate PR title
+        if: github.event_name == 'pull_request'
+        run: |
+          TITLE="${{ github.event.pull_request.title }}"
+
+          VALID_GITMOJIS=(
+            boom sparkles recycle building_construction globe_with_meridians
+            bug ambulance lipstick zap arrow_up arrow_down lock adhesive_bandage
+            pencil2 alien wheelchair children_crossing iphone goal_net safety_vest
+            passport_control speech_balloon fire tada dizzy bento truck coffin
+            wastebasket label pushpin heavy_plus_sign heavy_minus_sign
+            memo art bulb bookmark green_heart construction_worker
+            white_check_mark rocket wrench hammer see_no_evil
+            twisted_rightwards_arrows
+          )
+
+          PATTERN="^:($(IFS='|'; echo "${VALID_GITMOJIS[*]}"):)"
+
+          if ! echo "$TITLE" | grep -qE "$PATTERN"; then
+            echo "::error::PR title must start with a valid gitmoji: $TITLE"
+            echo "  Example: :sparkles: Add new feature"
+            echo "  Valid gitmojis: https://gitmoji.dev"
+            exit 1
+          fi
+
   check:
     runs-on: ubuntu-latest
     steps:

@@ -1,0 +1,61 @@
+name: Publish
+
+on:
+  workflow_call:
+    inputs:
+      tag:
+        description: "Version tag to publish"
+        type: string
+        required: true
+      github:
+        description: "Publish GitHub Release"
+        type: boolean
+        default: true
+      chrome:
+        description: "Publish to Chrome Web Store"
+        type: boolean
+        default: true
+      firefox:
+        description: "Publish to Firefox AMO"
+        type: boolean
+        default: true
+
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Version tag to publish"
+        type: string
+        required: true
+      github:
+        description: "Publish GitHub Release"
+        type: boolean
+        default: true
+      chrome:
+        description: "Publish to Chrome Web Store"
+        type: boolean
+        default: true
+      firefox:
+        description: "Publish to Firefox AMO"
+        type: boolean
+        default: true
+
+jobs:
+  github:
+    if: inputs.github
+    uses: ./.github/workflows/publish-github.yml
+    with:
+      tag: ${{ inputs.tag }}
+
+  chrome:
+    if: inputs.chrome
+    uses: ./.github/workflows/publish-chrome.yml
+    with:
+      tag: ${{ inputs.tag }}
+    secrets: inherit
+
+  firefox:
+    if: inputs.firefox
+    uses: ./.github/workflows/publish-firefox.yml
+    with:
+      tag: ${{ inputs.tag }}
+    secrets: inherit
