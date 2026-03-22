@@ -40,21 +40,11 @@ html[data-yslv-subs-view="list"] .yslv-subs-rowhead {
 }
 html[data-yslv-subs-view="list"] .yslv-subs-rowhead .yt-lockup-metadata-view-model__avatar {
   display: flex !important;
-  width: var(--yslv-head-av) !important;
-  height: var(--yslv-head-av) !important;
-  min-width: var(--yslv-head-av) !important;
+  align-items: center !important;
+  justify-content: center !important;
   margin: 0 !important;
-}
-html[data-yslv-subs-view="list"] .yslv-subs-rowhead yt-decorated-avatar-view-model yt-avatar-shape,
-html[data-yslv-subs-view="list"] .yslv-subs-rowhead yt-decorated-avatar-view-model .yt-spec-avatar-shape {
-  width: var(--yslv-head-av) !important;
-  height: var(--yslv-head-av) !important;
-}
-html[data-yslv-subs-view="list"] .yslv-subs-rowhead yt-decorated-avatar-view-model img {
-  width: var(--yslv-head-av) !important;
-  height: var(--yslv-head-av) !important;
-  border-radius: 50% !important;
-  object-fit: cover !important;
+  transform: scale(var(--yslv-head-av-scale, 1)) !important;
+  transform-origin: left center !important;
 }
 html[data-yslv-subs-view="list"] .yslv-subs-rowhead-name {
   color: var(--yt-spec-text-primary) !important;

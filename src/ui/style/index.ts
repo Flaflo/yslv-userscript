@@ -7,6 +7,8 @@ export { invalidateSkNormCache }
 
 const STYLE_ID = "yslv-subs-style"
 
+const YT_NATIVE_AVATAR_PX = 36
+
 function setCssVars(cfg: Cfg): void {
   const s = document.documentElement.style
   const L = cfg.list
@@ -20,7 +22,7 @@ function setCssVars(cfg: Cfg): void {
   s.setProperty("--yslv-desc-clamp", String(L.descClamp))
   s.setProperty("--yslv-head-gap", `${L.rowHead.gap}px`)
   s.setProperty("--yslv-head-mb", `${L.rowHead.marginBottom}px`)
-  s.setProperty("--yslv-head-av", `${L.rowHead.avatarSize}px`)
+  s.setProperty("--yslv-head-av-scale", String(L.rowHead.avatarSize / YT_NATIVE_AVATAR_PX))
   s.setProperty("--yslv-meta-gap", `${L.metaRow.gap}px`)
   s.setProperty("--yslv-short-w", `${L.shorts.cardW}px`)
   s.setProperty("--yslv-desc-mt", `${L.desc.marginTop}px`)

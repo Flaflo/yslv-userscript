@@ -34,7 +34,7 @@ export const CFG: Cfg = {
       enabled: true,
       gap: 12,
       marginBottom: 20,
-      avatarSize: 32,
+      avatarSize: 36,
     },
 
     metaRow: {
