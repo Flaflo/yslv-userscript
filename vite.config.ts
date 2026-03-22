@@ -38,7 +38,7 @@ export default defineConfig({
     sourcemap: false,
     minify: false,
     lib: {
-      entry: resolve(__dirname, "src/main.ts"),
+      entry: resolve(__dirname, "src/bootstrap/userscript.ts"),
       name: "yslv",
       formats: ["iife"],
       fileName: () => "yslv.user.js",

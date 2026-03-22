@@ -9,7 +9,7 @@ export default defineConfig({
     sourcemap: false,
     minify: true,
     lib: {
-      entry: "src/extension/injected.ts",
+      entry: "src/bootstrap/extension.ts",
       formats: ["iife"],
       name: "yslv",
       fileName: () => "injected.js"
