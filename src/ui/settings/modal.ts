@@ -23,6 +23,7 @@ type Refs = {
   descClamp: HTMLSelectElement
   hideMostRelevant: Toggle
   hideShorts: Toggle
+  hideMiniGuide: Toggle
   fetchDesc: Toggle
   sentenceCount: HTMLSelectElement
   maxDescChars: HTMLInputElement
@@ -74,11 +75,13 @@ function buildModal(refs: Refs) {
   refs.descClamp = selectEl("ym-descClamp", numOpts(1, 4))
   refs.hideMostRelevant = createToggle()
   refs.hideShorts = createToggle()
+  refs.hideMiniGuide = createToggle()
 
   scroll.appendChild(h("div", { class: "yslv-m-section" }, "Content"))
   scroll.appendChild(menuItem("Title lines", refs.titleClamp, "Maximum lines for video titles"))
   scroll.appendChild(menuItem('Hide "Most Relevant"', refs.hideMostRelevant.el, "Remove the Most Relevant section"))
   scroll.appendChild(menuItem("Hide Shorts", refs.hideShorts.el, "Hide the Shorts shelf and all Shorts items"))
+  scroll.appendChild(menuItem("Hide mini guide", refs.hideMiniGuide.el, "Hide the sidebar icon bar in list view"))
 
   scroll.appendChild(h("div", { class: "yslv-m-divider" }))
 
@@ -120,6 +123,7 @@ function populateForm(refs: Refs, s: UserSettings): void {
   refs.descClamp.value = String(s.descClamp)
   refs.hideMostRelevant.checked = s.hideMostRelevant
   refs.hideShorts.checked = s.hideShorts
+  refs.hideMiniGuide.checked = s.hideMiniGuide
   refs.fetchDesc.checked = s.fetchDesc
   refs.sentenceCount.value = String(s.sentenceCount)
   refs.maxDescChars.value = String(s.maxDescChars)
@@ -137,6 +141,7 @@ function readForm(refs: Refs): UserSettings {
     descClamp: Number(refs.descClamp.value) || 2,
     hideMostRelevant: refs.hideMostRelevant.checked,
     hideShorts: refs.hideShorts.checked,
+    hideMiniGuide: refs.hideMiniGuide.checked,
     fetchDesc: refs.fetchDesc.checked,
     sentenceCount: Number(refs.sentenceCount.value) || 2,
     maxDescChars: Number(refs.maxDescChars.value) || 260,

@@ -26,6 +26,8 @@ function setCssVars(cfg: Cfg): void {
   s.setProperty("--yslv-desc-mt", `${L.desc.marginTop}px`)
   s.setProperty("--yslv-hide-most-relevant", L.hideMostRelevant ? "none" : "block")
   s.setProperty("--yslv-hide-shorts", L.hideShorts ? "none" : "")
+  s.setProperty("--yslv-hide-mini-guide", L.hideMiniGuide ? "none" : "")
+  s.setProperty("--yslv-mini-guide-margin", L.hideMiniGuide ? "0" : "")
 
   const sk = skNorm(cfg)
   s.setProperty("--yslv-skl-enabled", sk.enabled ? "block" : "none")

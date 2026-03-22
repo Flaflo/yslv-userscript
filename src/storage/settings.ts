@@ -18,6 +18,7 @@ export function defaultSettings(): UserSettings {
     descClamp: 2,
     hideMostRelevant: true,
     hideShorts: false,
+    hideMiniGuide: false,
     fetchDesc: true,
     sentenceCount: 2,
     maxDescChars: 260,
@@ -44,6 +45,7 @@ export async function loadSettings(): Promise<UserSettings> {
   if (typeof raw.descClamp === "number") s.descClamp = raw.descClamp
   if (typeof raw.hideMostRelevant === "boolean") s.hideMostRelevant = raw.hideMostRelevant
   if (typeof raw.hideShorts === "boolean") s.hideShorts = raw.hideShorts
+  if (typeof raw.hideMiniGuide === "boolean") s.hideMiniGuide = raw.hideMiniGuide
   if (typeof raw.fetchDesc === "boolean") s.fetchDesc = raw.fetchDesc
   if (typeof raw.sentenceCount === "number") s.sentenceCount = raw.sentenceCount
   if (typeof raw.maxDescChars === "number") s.maxDescChars = raw.maxDescChars
@@ -65,6 +67,7 @@ export function applySettingsToCfg(cfg: Cfg, s: UserSettings): void {
   cfg.list.descClamp = s.descClamp
   cfg.list.hideMostRelevant = s.hideMostRelevant
   cfg.list.hideShorts = s.hideShorts
+  cfg.list.hideMiniGuide = s.hideMiniGuide
   cfg.list.descFetch.enabled = s.fetchDesc
   cfg.list.descFetch.sentenceCount = s.sentenceCount
   cfg.list.descFetch.maxChars = s.maxDescChars

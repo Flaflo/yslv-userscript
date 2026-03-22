@@ -9,6 +9,7 @@ export type UserSettings = {
   descClamp: number
   hideMostRelevant: boolean
   hideShorts: boolean
+  hideMiniGuide: boolean
   fetchDesc: boolean
   sentenceCount: number
   maxDescChars: number
