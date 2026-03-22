@@ -29,8 +29,8 @@ function setCssVars(cfg: Cfg): void {
   s.setProperty("--yslv-hide-most-relevant", L.hideMostRelevant ? "none" : "block")
   s.setProperty("--yslv-hide-shorts", L.hideShorts ? "none" : "")
   s.setProperty("--yslv-hide-mini-guide", L.hideMiniGuide ? "none" : "")
+  s.setProperty("--yslv-hide-mini-guide-margin", L.hideMiniGuide ? "0px" : "var(--ytd-mini-guide-width)")
   s.setProperty("--yslv-hide-live-streams", L.hideLiveStreams ? "none" : "")
-  s.setProperty("--yslv-mini-guide-margin", L.hideMiniGuide ? "0" : "")
 
   const sk = skNorm(cfg)
   s.setProperty("--yslv-skl-enabled", sk.enabled ? "block" : "none")

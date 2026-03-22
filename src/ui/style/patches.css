@@ -48,12 +48,12 @@ html[data-yslv-subs-view="list"]
   margin-bottom: 1rem !important;
 }
 
-/* Patch: if mini guide visible then hide sidebar and remove margin */
-html[data-yslv-subs-view="list"] ytd-app[mini-guide-visible] ytd-page-manager.ytd-app {
-  margin-left: 0 !important;
-}
+/* Patch: hide mini guide and reclaim its margin */
 ytd-app[mini-guide-visible] ytd-mini-guide-renderer.ytd-app {
   display: var(--yslv-hide-mini-guide) !important;
+}
+ytd-app[mini-guide-visible] ytd-page-manager.ytd-app {
+  margin-left: var(--yslv-hide-mini-guide-margin, var(--ytd-mini-guide-width)) !important;
 }
 
 /* Patch: hide Shorts shelf and individual Shorts items */
