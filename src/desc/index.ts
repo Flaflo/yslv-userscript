@@ -60,6 +60,8 @@ export function ensureDesc(cfg: Cfg, state: State, cache: DescCache, textContain
     clearChildren(desc)
     for (let i = 0; i < S.lines; i++) desc.appendChild(document.createElement("span"))
   }
+
+  state.descIo?.observe(desc)
 }
 
 export function summarizeDesc(raw: string, sentenceCount: number, maxChars: number): string {
@@ -209,35 +211,3 @@ export function updateDescDomForVid(cfg: Cfg, vid: string, text: string): void {
   }
 }
 
-export function buildDescQueueFromDom(cfg: Cfg, state: State, cache: DescCache): void {
-  if (!state.active || state.view !== "list") return
-  const descs = document.querySelectorAll(`.${cfg.cls.desc}[data-yslv-vid]`)
-  if (!descs.length) return
-
-  let sig = ""
-  for (const d of Array.from(descs)) {
-    const vid = (d as HTMLElement).dataset.yslvVid || ""
-    if (!vid) continue
-    sig += `${vid}|`
-  }
-  if (sig === state.lastQueueSig) return
-  state.lastQueueSig = sig
-
-  for (const d of Array.from(descs)) {
-    const vid = (d as HTMLElement).dataset.yslvVid || ""
-    if (!vid) continue
-
-    const stored = cache.get(vid)
-    if (stored != null) {
-      state.descCache.set(vid, stored)
-      updateDescDomForVid(cfg, vid, stored)
-      continue
-    }
-
-    if (state.descCache.has(vid)) continue
-    if (state.descInFlight.has(vid)) continue
-    if (state.descQueued.has(vid)) continue
-    state.descQueued.add(vid)
-    state.descQueue.push(vid)
-  }
-}

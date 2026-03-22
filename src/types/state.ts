@@ -30,7 +30,7 @@ export type State = {
   descQueued: Set<string>
   descTimer: number
   descPumpRunning: boolean
-  lastQueueSig: string
+  descIo: IntersectionObserver | null
 
   lastPageSig: string
 }

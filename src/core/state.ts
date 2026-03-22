@@ -29,7 +29,7 @@ export function createState(): State {
     descQueued: new Set(),
     descTimer: 0,
     descPumpRunning: false,
-    lastQueueSig: "",
+    descIo: null,
 
     lastPageSig: "",
   }

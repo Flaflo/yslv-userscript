@@ -7,7 +7,7 @@ import { ensureStyle } from "../ui/style"
 import { ensureToggleBar, paintToggleBar, removeToggleBar, TOGGLE_ID } from "../ui/toggle-bar"
 import { attachObserver, attachPageManagerObserver, enqueueAllOnce } from "../list/observer"
 import { cleanupListArtifacts } from "../list/patching"
-import { cancelDescPump, scheduleDescPump } from "../desc/queue"
+import { cancelDescPump, destroyDescIo, ensureDescIo, scheduleDescPump } from "../desc/queue"
 
 export function createApp(cfg: Cfg, state: State, cache: DescCache, onSettings?: () => void) {
   function resetNavState(): void {
@@ -23,7 +23,6 @@ export function createApp(cfg: Cfg, state: State, cache: DescCache, onSettings?:
     state.descQueue.length = 0
     state.descQueued.clear()
     state.descPumpRunning = false
-    state.lastQueueSig = ""
 
     state.observedTarget = null
   }
@@ -38,6 +37,7 @@ export function createApp(cfg: Cfg, state: State, cache: DescCache, onSettings?:
     state.observedTarget = null
 
     cancelDescPump(state)
+    destroyDescIo(state)
 
     resetNavState()
     removeToggleBar()
@@ -82,6 +82,7 @@ export function createApp(cfg: Cfg, state: State, cache: DescCache, onSettings?:
     cache.prune()
 
     ensureStyle(cfg, state)
+    ensureDescIo(cfg, state, cache)
     ensureToggleMountLoop()
 
     attachObserver(cfg, state, cache)

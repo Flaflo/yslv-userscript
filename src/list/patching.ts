@@ -50,5 +50,4 @@ export function cleanupListArtifacts(cfg: Cfg, state: State): void {
 
   state.descQueue.length = 0
   state.descQueued.clear()
-  state.lastQueueSig = ""
 }
