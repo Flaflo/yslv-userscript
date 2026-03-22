@@ -210,4 +210,3 @@ export function updateDescDomForVid(cfg: Cfg, vid: string, text: string): void {
     el.style.display = text ? "" : "none"
   }
 }
-
