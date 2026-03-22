@@ -28,6 +28,7 @@ type Refs = {
   sentenceCount: HTMLSelectElement
   maxDescChars: HTMLInputElement
   showSkeleton: Toggle
+  avatarSize: HTMLInputElement
 }
 
 function buildModal(refs: Refs) {
@@ -60,12 +61,15 @@ function buildModal(refs: Refs) {
   const tr = numberItem("Border radius", "ym-thumbRadius", 0, 20, 1, "Roundness of thumbnail corners (px)")
   refs.thumbRadius = tr.input
   refs.separator = createToggle()
+  const av = numberItem("Avatar size", "ym-avatarSize", 20, 48, 2, "Channel avatar size in pixels")
+  refs.avatarSize = av.input
 
   scroll.appendChild(h("div", { class: "yslv-m-section" }, "Layout"))
   scroll.appendChild(menuItem("Default view", refs.defaultView, "View mode when page loads"))
   scroll.appendChild(menuItem("Max list width", refs.maxWidth, "Maximum width of the list in pixels"))
   scroll.appendChild(tw.item)
   scroll.appendChild(tr.item)
+  scroll.appendChild(av.item)
   scroll.appendChild(menuItem("Row separator", refs.separator.el, "Show divider line between rows"))
 
   scroll.appendChild(h("div", { class: "yslv-m-divider" }))
@@ -128,6 +132,7 @@ function populateForm(refs: Refs, s: UserSettings): void {
   refs.sentenceCount.value = String(s.sentenceCount)
   refs.maxDescChars.value = String(s.maxDescChars)
   refs.showSkeleton.checked = s.showSkeleton
+  refs.avatarSize.value = String(s.avatarSize)
 }
 
 function readForm(refs: Refs): UserSettings {
@@ -146,6 +151,7 @@ function readForm(refs: Refs): UserSettings {
     sentenceCount: Number(refs.sentenceCount.value) || 2,
     maxDescChars: Number(refs.maxDescChars.value) || 260,
     showSkeleton: refs.showSkeleton.checked,
+    avatarSize: Number(refs.avatarSize.value) || 36,
   }
 }
 

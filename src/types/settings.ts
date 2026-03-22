@@ -15,4 +15,5 @@ export type UserSettings = {
   maxDescChars: number
   showSkeleton: boolean
   separator: boolean
+  avatarSize: number
 }
