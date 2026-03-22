@@ -1,5 +1,6 @@
 html[data-yslv-subs-view="list"] #content.ytd-rich-section-renderer {
-  margin: 0 !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
 }
 
 ytd-masthead {
@@ -46,6 +47,15 @@ html[data-yslv-subs-view="list"]
   #content.ytd-rich-section-renderer
   > ytd-inline-survey-renderer.ytd-rich-section-renderer[is-dismissed] {
   margin-bottom: 1rem !important;
+}
+
+/* Patch: Fix "Latest" header shelf to match grid view height */
+html[data-yslv-subs-view="list"] ytd-rich-section-renderer:first-child > #content.ytd-rich-section-renderer > ytd-shelf-renderer.ytd-rich-section-renderer {
+  margin-bottom: 0 !important;
+}
+
+html[data-yslv-subs-view="list"] ytd-rich-section-renderer:first-child > #content.ytd-rich-section-renderer > ytd-shelf-renderer > #dismissible {
+  display: flow-root !important;
 }
 
 /* Patch: hide mini guide and reclaim its margin */

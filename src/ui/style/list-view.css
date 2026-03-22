@@ -5,14 +5,16 @@ html[data-yslv-subs-view="list"] ytd-rich-grid-renderer #contents {
   display: block !important;
   max-width: var(--yslv-max-w) !important;
   margin: 0 auto !important;
+  padding: 24px 16px 0 !important;
   width: 100% !important;
+  box-sizing: border-box !important;
 }
 
 html[data-yslv-subs-view="list"] ytd-rich-item-renderer {
   display: block !important;
   width: 100% !important;
   padding: var(--yslv-row-pad-y) 0 !important;
-  margin: 0 !important;
+  margin: 0 8px !important;
   border-bottom: calc(var(--yslv-separator) * 1px) solid var(--yt-spec-outline, var(--yslv-sep)) !important;
 }
 
