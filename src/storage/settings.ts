@@ -16,7 +16,7 @@ export function defaultSettings(): UserSettings {
     descClamp: 2,
     hideMostRelevant: true,
     hideShorts: false,
-    hideMiniGuide: false,
+    hideMiniGuide: true,
     fetchDesc: true,
     sentenceCount: 2,
     maxDescChars: 260,
