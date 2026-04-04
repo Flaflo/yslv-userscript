@@ -10,6 +10,10 @@ export const SEL_PAGE = {
   richItem: "ytd-rich-item-renderer",
 } as const
 
+/** Metadata row selector matching both BEM and camelCase class names */
+const META_ROW =
+  "yt-content-metadata-view-model :is(.yt-content-metadata-view-model__metadata-row, .ytContentMetadataViewModelMetadataRow)"
+
 /** YouTube lockup element selectors */
 export const SEL_LOCKUP = {
   root: "yt-lockup-view-model",
@@ -17,18 +21,17 @@ export const SEL_LOCKUP = {
   textContainerFallback: "yt-lockup-metadata-view-model",
   headingReset: ".yt-lockup-metadata-view-model__heading-reset",
   avatar: ".yt-lockup-metadata-view-model__avatar",
-  metadataRow: "yt-content-metadata-view-model .yt-content-metadata-view-model__metadata-row",
+  metadataRow: META_ROW,
   shortsLockup: "ytm-shorts-lockup-view-model-v2, ytm-shorts-lockup-view-model",
 } as const
 
 /** YouTube channel link selectors */
 export const SEL_CHANNEL = {
-  anchorMetaHandle: 'yt-content-metadata-view-model .yt-content-metadata-view-model__metadata-row a[href^="/@"]',
-  anchorMetaId: 'yt-content-metadata-view-model .yt-content-metadata-view-model__metadata-row a[href^="/channel/"]',
+  anchorMetaHandle: `${META_ROW} a[href^="/@"]`,
+  anchorMetaId: `${META_ROW} a[href^="/channel/"]`,
   anchorHandle: 'a[href^="/@"]',
   anchorId: 'a[href^="/channel/"]',
-  textSpan:
-    "yt-content-metadata-view-model .yt-content-metadata-view-model__metadata-row span.yt-content-metadata-view-model__metadata-text",
+  textSpan: `${META_ROW} :is(span.yt-content-metadata-view-model__metadata-text, span.ytContentMetadataViewModelMetadataText)`,
 } as const
 
 /** YouTube badge / verification icon selectors */
