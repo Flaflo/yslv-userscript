@@ -159,6 +159,9 @@ html[data-yslv-subs-view="list"] .yslv-subs-mch a > span {
 html[data-yslv-subs-view="list"] .yslv-subs-mch .yt-icon-shape.ytSpecIconShapeHost {
   margin-right: 2px !important;
 }
+html[data-yslv-subs-view="list"] .yslv-subs-mch .yt-core-attributed-string__image-element--image-alignment-vertical-center {
+  height: 16.2px !important;
+}
 
 html[data-yslv-subs-view="list"] .yslv-subs-mrt {
   color: var(--yt-spec-text-secondary) !important;
