@@ -44,7 +44,9 @@ html[data-yslv-subs-view="list"] .yslv-subs-rowhead {
   gap: var(--yslv-head-gap) !important;
   margin: 0 0 var(--yslv-head-mb) 0 !important;
 }
-html[data-yslv-subs-view="list"] .yslv-subs-rowhead .yt-lockup-metadata-view-model__avatar {
+html[data-yslv-subs-view="list"]
+  .yslv-subs-rowhead
+  :is(.yt-lockup-metadata-view-model__avatar, .ytLockupMetadataViewModelAvatar) {
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
@@ -62,7 +64,7 @@ html[data-yslv-subs-view="list"] .yslv-subs-rowhead-name {
   align-items: center !important;
 }
 
-html[data-yslv-subs-view="list"] .yt-lockup-view-model.yt-lockup-view-model--vertical {
+html[data-yslv-subs-view="list"] :is(.yt-lockup-view-model.yt-lockup-view-model--vertical, .ytLockupViewModelVertical) {
   display: grid !important;
   grid-template-columns: var(--yslv-thumb-w) minmax(0, 1fr) auto !important;
   grid-template-rows: auto auto !important;
@@ -70,7 +72,7 @@ html[data-yslv-subs-view="list"] .yt-lockup-view-model.yt-lockup-view-model--ver
   row-gap: 10px !important;
   align-items: start !important;
 }
-html[data-yslv-subs-view="list"] .yt-lockup-view-model__content-image {
+html[data-yslv-subs-view="list"] :is(.yt-lockup-view-model__content-image, .ytLockupViewModelContentImage) {
   grid-column: 1 !important;
   grid-row: 1 / span 2 !important;
   width: var(--yslv-thumb-w) !important;
@@ -80,27 +82,28 @@ html[data-yslv-subs-view="list"] .yt-lockup-view-model__content-image {
   overflow: hidden !important;
   border-radius: var(--yslv-thumb-r) !important;
 }
-html[data-yslv-subs-view="list"] .yt-lockup-view-model__content-image img,
-html[data-yslv-subs-view="list"] .yt-lockup-view-model__content-image canvas {
+html[data-yslv-subs-view="list"] :is(.yt-lockup-view-model__content-image, .ytLockupViewModelContentImage) img,
+html[data-yslv-subs-view="list"] :is(.yt-lockup-view-model__content-image, .ytLockupViewModelContentImage) canvas {
   width: 100% !important;
   height: 100% !important;
   border-radius: var(--yslv-thumb-r) !important;
   object-fit: cover !important;
   display: block !important;
 }
-html[data-yslv-subs-view="list"] .yt-lockup-view-model__metadata {
+html[data-yslv-subs-view="list"] :is(.yt-lockup-view-model__metadata, .ytLockupViewModelMetadata) {
   grid-column: 2 !important;
   grid-row: 1 / span 2 !important;
   min-width: 0 !important;
 }
-html[data-yslv-subs-view="list"] .yt-lockup-metadata-view-model__menu-button {
+html[data-yslv-subs-view="list"]
+  :is(.yt-lockup-metadata-view-model__menu-button, .ytLockupMetadataViewModelMenuButton) {
   grid-column: 3 !important;
   grid-row: 1 !important;
   justify-self: end !important;
   align-self: start !important;
 }
 
-html[data-yslv-subs-view="list"] .yt-lockup-metadata-view-model__title {
+html[data-yslv-subs-view="list"] :is(.yt-lockup-metadata-view-model__title, .ytLockupMetadataViewModelTitle) {
   display: -webkit-box !important;
   -webkit-box-orient: vertical !important;
   -webkit-line-clamp: var(--yslv-title-clamp) !important;
@@ -110,11 +113,17 @@ html[data-yslv-subs-view="list"] .yt-lockup-metadata-view-model__title {
   font-weight: 600 !important;
 }
 
-html[data-yslv-subs-view="list"] .yslv-patched .yt-lockup-view-model__metadata .yt-lockup-metadata-view-model__avatar {
+html[data-yslv-subs-view="list"]
+  .yslv-patched
+  :is(.yt-lockup-view-model__metadata, .ytLockupViewModelMetadata)
+  :is(.yt-lockup-metadata-view-model__avatar, .ytLockupMetadataViewModelAvatar) {
   display: none !important;
 }
 
-html[data-yslv-subs-view="list"] .yslv-patched .yt-lockup-metadata-view-model__metadata yt-content-metadata-view-model {
+html[data-yslv-subs-view="list"]
+  .yslv-patched
+  :is(.yt-lockup-metadata-view-model__metadata, .ytLockupMetadataViewModelMetadata)
+  yt-content-metadata-view-model {
   display: block !important;
   position: absolute !important;
   left: -99999px !important;
@@ -161,7 +170,10 @@ html[data-yslv-subs-view="list"] .yslv-subs-mch .yt-icon-shape.ytSpecIconShapeHo
 }
 html[data-yslv-subs-view="list"]
   .yslv-subs-mch
-  .yt-core-attributed-string__image-element--image-alignment-vertical-center {
+  :is(
+    .yt-core-attributed-string__image-element--image-alignment-vertical-center,
+    .ytCoreAttributedStringImageElementImageAlignmentVerticalCenter
+  ) {
   height: 16.2px !important;
 }
 
