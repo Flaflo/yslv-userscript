@@ -17,10 +17,10 @@ const META_ROW =
 /** YouTube lockup element selectors */
 export const SEL_LOCKUP = {
   root: "yt-lockup-view-model",
-  textContainer: ".yt-lockup-metadata-view-model__text-container",
+  textContainer: ":is(.yt-lockup-metadata-view-model__text-container, .ytLockupMetadataViewModelTextContainer)",
   textContainerFallback: "yt-lockup-metadata-view-model",
-  headingReset: ".yt-lockup-metadata-view-model__heading-reset",
-  avatar: ".yt-lockup-metadata-view-model__avatar",
+  headingReset: ":is(.yt-lockup-metadata-view-model__heading-reset, .ytLockupMetadataViewModelHeadingReset)",
+  avatar: ":is(.yt-lockup-metadata-view-model__avatar, .ytLockupMetadataViewModelAvatar)",
   metadataRow: META_ROW,
   shortsLockup: "ytm-shorts-lockup-view-model-v2, ytm-shorts-lockup-view-model",
 } as const
@@ -37,8 +37,8 @@ export const SEL_CHANNEL = {
 /** YouTube badge / verification icon selectors */
 /** YouTube video thumbnail link selectors (ordered by specificity) */
 export const SEL_VIDEO_ANCHORS: readonly string[] = [
-  'a.yt-lockup-view-model__content-image[href^="/watch"]',
-  'a.yt-lockup-view-model__content-image[href^="/shorts/"]',
+  ':is(a.yt-lockup-view-model__content-image, a.ytLockupViewModelContentImage)[href^="/watch"]',
+  ':is(a.yt-lockup-view-model__content-image, a.ytLockupViewModelContentImage)[href^="/shorts/"]',
   'a[href^="/watch"][id="thumbnail"]',
   'a[href^="/shorts/"][id="thumbnail"]',
   'a[href^="/shorts/"].reel-item-endpoint',
