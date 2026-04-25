@@ -19,8 +19,8 @@
 
 .yslv-m-dialog {
   position: relative;
-  background: var(--paper-dialog-background-color, var(--yt-spec-raised-background, #212121));
-  color: var(--yt-spec-text-primary, #f1f1f1);
+  background: var(--yslv-yt-base-bg, #212121);
+  color: var(--yslv-yt-text-primary, #f1f1f1);
   border-radius: 12px;
   width: 420px;
   max-height: 82vh;
@@ -45,7 +45,7 @@
   padding: 12px 12px 12px 24px;
   min-height: 56px;
   flex-shrink: 0;
-  border-bottom: 1px solid var(--yt-spec-outline, rgba(255, 255, 255, 0.1));
+  border-bottom: 1px solid color-mix(in srgb, var(--yslv-yt-text-primary, #fff) 12%, transparent);
 }
 
 .yslv-m-header-title {
@@ -53,9 +53,10 @@
   font-weight: 400;
   line-height: 22px;
   margin: 0;
+  color: var(--yslv-yt-text-primary, #f1f1f1);
 }
 
-.yslv-m-header > .yt-spec-button-shape-next--icon-button {
+.yslv-m-header > :is(.yt-spec-button-shape-next--icon-button, .ytSpecButtonShapeNextIconButton) {
   flex-shrink: 0;
 }
 
@@ -70,7 +71,7 @@
   font-size: 11px;
   font-weight: 500;
   line-height: 18px;
-  color: var(--yt-spec-text-secondary, #aaa);
+  color: color-mix(in srgb, var(--yslv-yt-text-primary, #fff) 65%, transparent);
   text-transform: uppercase;
   letter-spacing: 0.5px;
   margin: 0;
@@ -83,7 +84,7 @@
 .yslv-m-divider {
   height: 1px;
   margin: 8px 0;
-  background: var(--yt-spec-outline, rgba(255, 255, 255, 0.1));
+  background: color-mix(in srgb, var(--yslv-yt-text-primary, #fff) 12%, transparent);
 }
 
 .yslv-m-footer {
@@ -91,28 +92,28 @@
   justify-content: flex-end;
   padding: 12px 12px 12px;
   gap: 8px;
-  border-top: 1px solid var(--yt-spec-outline, rgba(255, 255, 255, 0.1));
+  border-top: 1px solid color-mix(in srgb, var(--yslv-yt-text-primary, #fff) 12%, transparent);
   flex-shrink: 0;
 }
 
-.yslv-m-footer > .yt-spec-button-shape-next {
+.yslv-m-footer > :is(.yt-spec-button-shape-next, .ytSpecButtonShapeNextHost) {
   flex: 1;
 }
 
-#yslv-settings-modal .yt-spec-button-shape-next {
+#yslv-settings-modal :is(.yt-spec-button-shape-next, .ytSpecButtonShapeNextHost) {
   position: relative;
   overflow: hidden;
 }
 
-#yslv-settings-modal .yt-spec-touch-feedback-shape {
+#yslv-settings-modal :is(.yt-spec-touch-feedback-shape, .ytSpecTouchFeedbackShapeHost) {
   position: absolute;
   inset: 0;
   border-radius: inherit;
   pointer-events: none;
 }
 
-#yslv-settings-modal .yt-spec-touch-feedback-shape__stroke,
-#yslv-settings-modal .yt-spec-touch-feedback-shape__fill {
+#yslv-settings-modal :is(.yt-spec-touch-feedback-shape__stroke, .ytSpecTouchFeedbackShapeStroke),
+#yslv-settings-modal :is(.yt-spec-touch-feedback-shape__fill, .ytSpecTouchFeedbackShapeFill) {
   position: absolute;
   inset: 0;
   border-radius: inherit;
@@ -120,19 +121,23 @@
   transition: opacity 0.15s ease-out;
 }
 
-#yslv-settings-modal .yt-spec-touch-feedback-shape__stroke {
-  background: var(--yt-spec-text-primary, #fff);
+#yslv-settings-modal :is(.yt-spec-touch-feedback-shape__stroke, .ytSpecTouchFeedbackShapeStroke) {
+  background: var(--yslv-yt-text-primary, #fff);
 }
 
-#yslv-settings-modal .yt-spec-touch-feedback-shape__fill {
-  background: var(--yt-spec-text-primary, #fff);
+#yslv-settings-modal :is(.yt-spec-touch-feedback-shape__fill, .ytSpecTouchFeedbackShapeFill) {
+  background: var(--yslv-yt-text-primary, #fff);
 }
 
-#yslv-settings-modal .yt-spec-button-shape-next:hover .yt-spec-touch-feedback-shape__stroke {
+#yslv-settings-modal
+  :is(.yt-spec-button-shape-next, .ytSpecButtonShapeNextHost):hover
+  :is(.yt-spec-touch-feedback-shape__stroke, .ytSpecTouchFeedbackShapeStroke) {
   opacity: 0.08;
 }
 
-#yslv-settings-modal .yt-spec-button-shape-next:active .yt-spec-touch-feedback-shape__fill {
+#yslv-settings-modal
+  :is(.yt-spec-button-shape-next, .ytSpecButtonShapeNextHost):active
+  :is(.yt-spec-touch-feedback-shape__fill, .ytSpecTouchFeedbackShapeFill) {
   opacity: 0.12;
   transition-duration: 0s;
 }

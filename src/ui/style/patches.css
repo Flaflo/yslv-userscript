@@ -91,10 +91,10 @@ html[data-yslv-hide-shorts]
 /* Patch: hide active live streams */
 html[data-yslv-hide-live]
   ytd-browse[page-subtype="subscriptions"]
-  ytd-rich-item-renderer:has(.yt-spec-avatar-shape__live-badge),
+  ytd-rich-item-renderer:has(.yt-spec-avatar-shape__live-badge, .ytSpecAvatarShapeLiveBadge),
 html[data-yslv-hide-live]
   ytd-two-column-browse-results-renderer[page-subtype="subscriptions"]
-  ytd-rich-item-renderer:has(.yt-spec-avatar-shape__live-badge) {
+  ytd-rich-item-renderer:has(.yt-spec-avatar-shape__live-badge, .ytSpecAvatarShapeLiveBadge) {
   display: none !important;
 }
 

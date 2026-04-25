@@ -6,20 +6,20 @@
   position: relative;
 }
 
-#yslv-subs-toggle .yt-spec-button-shape-next {
+#yslv-subs-toggle :is(.yt-spec-button-shape-next, .ytSpecButtonShapeNextHost) {
   position: relative;
   overflow: hidden;
 }
 
-#yslv-subs-toggle .yt-spec-touch-feedback-shape {
+#yslv-subs-toggle :is(.yt-spec-touch-feedback-shape, .ytSpecTouchFeedbackShapeHost) {
   position: absolute;
   inset: 0;
   border-radius: inherit;
   pointer-events: none;
 }
 
-#yslv-subs-toggle .yt-spec-touch-feedback-shape__stroke,
-#yslv-subs-toggle .yt-spec-touch-feedback-shape__fill {
+#yslv-subs-toggle :is(.yt-spec-touch-feedback-shape__stroke, .ytSpecTouchFeedbackShapeStroke),
+#yslv-subs-toggle :is(.yt-spec-touch-feedback-shape__fill, .ytSpecTouchFeedbackShapeFill) {
   position: absolute;
   inset: 0;
   border-radius: inherit;
@@ -27,19 +27,23 @@
   transition: opacity 0.15s ease-out;
 }
 
-#yslv-subs-toggle .yt-spec-touch-feedback-shape__stroke {
-  background: var(--yt-spec-text-primary, #fff);
+#yslv-subs-toggle :is(.yt-spec-touch-feedback-shape__stroke, .ytSpecTouchFeedbackShapeStroke) {
+  background: var(--yslv-yt-text-primary, #fff);
 }
 
-#yslv-subs-toggle .yt-spec-touch-feedback-shape__fill {
-  background: var(--yt-spec-text-primary, #fff);
+#yslv-subs-toggle :is(.yt-spec-touch-feedback-shape__fill, .ytSpecTouchFeedbackShapeFill) {
+  background: var(--yslv-yt-text-primary, #fff);
 }
 
-#yslv-subs-toggle .yt-spec-button-shape-next:hover .yt-spec-touch-feedback-shape__stroke {
+#yslv-subs-toggle
+  :is(.yt-spec-button-shape-next, .ytSpecButtonShapeNextHost):hover
+  :is(.yt-spec-touch-feedback-shape__stroke, .ytSpecTouchFeedbackShapeStroke) {
   opacity: 0.08;
 }
 
-#yslv-subs-toggle .yt-spec-button-shape-next:active .yt-spec-touch-feedback-shape__fill {
+#yslv-subs-toggle
+  :is(.yt-spec-button-shape-next, .ytSpecButtonShapeNextHost):active
+  :is(.yt-spec-touch-feedback-shape__fill, .ytSpecTouchFeedbackShapeFill) {
   opacity: 0.12;
   transition-duration: 0s;
 }

@@ -5,8 +5,11 @@ import { createDescCache, DESC_CACHE_KEY } from "./storage/desc-cache"
 import { loadSettings, applySettingsToCfg } from "./storage/settings"
 import { openSettingsModal } from "./ui/settings/modal"
 import { rebuildStyle, invalidateSkNormCache } from "./ui/style"
+import { initYouTubeColors } from "./ui/style/yt-colors"
 
 export async function initYSLV() {
+  initYouTubeColors()
+
   const settings = await loadSettings()
   applySettingsToCfg(CFG, settings)
 

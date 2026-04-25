@@ -15,7 +15,8 @@ html[data-yslv-subs-view="list"] ytd-rich-item-renderer:not(.yslv-is-short) {
   width: 100% !important;
   padding: var(--yslv-row-pad-y) 0 !important;
   margin: 0 !important;
-  border-bottom: calc(var(--yslv-separator) * 1px) solid var(--yt-spec-outline, var(--yslv-sep)) !important;
+  border-bottom: calc(var(--yslv-separator) * 1px) solid
+    color-mix(in srgb, var(--yslv-yt-text-primary, #fff) 12%, transparent) !important;
 }
 
 html[data-yslv-subs-view="list"] ytd-rich-shelf-renderer[is-shorts] #contents {
@@ -55,7 +56,7 @@ html[data-yslv-subs-view="list"]
   transform-origin: left center !important;
 }
 html[data-yslv-subs-view="list"] .yslv-subs-rowhead-name {
-  color: var(--yt-spec-text-primary) !important;
+  color: var(--yslv-yt-text-primary, #f1f1f1) !important;
   text-decoration: none !important;
   font-weight: 700 !important;
   font-size: 18px !important;
@@ -144,7 +145,7 @@ html[data-yslv-subs-view="list"] .yslv-subs-mrow {
 }
 html[data-yslv-subs-view="list"] .yslv-subs-mch {
   min-width: 0 !important;
-  color: var(--yt-spec-text-secondary) !important;
+  color: color-mix(in srgb, var(--yslv-yt-text-primary, #f1f1f1) 65%, transparent) !important;
   font-size: 12px !important;
   line-height: 1.35 !important;
   white-space: nowrap !important;
@@ -172,13 +173,15 @@ html[data-yslv-subs-view="list"]
   .yslv-subs-mch
   :is(
     .yt-core-attributed-string__image-element--image-alignment-vertical-center,
-    .ytCoreAttributedStringImageElementImageAlignmentVerticalCenter
+    .ytCoreAttributedStringImageElementImageAlignmentVerticalCenter,
+    .yt-attributed-string__image-element--image-alignment-vertical-center,
+    .ytAttributedStringImageAlignmentVerticalCenter
   ) {
-  height: 16.2px !important;
+  height: 24px !important;
 }
 
 html[data-yslv-subs-view="list"] .yslv-subs-mrt {
-  color: var(--yt-spec-text-secondary) !important;
+  color: color-mix(in srgb, var(--yslv-yt-text-primary, #f1f1f1) 65%, transparent) !important;
   font-size: 12px !important;
   line-height: 1.35 !important;
   white-space: nowrap !important;
@@ -190,7 +193,7 @@ html[data-yslv-subs-view="list"] .yslv-subs-desc {
   margin-top: var(--yslv-desc-mt) !important;
   font-size: 12px !important;
   line-height: 1.45 !important;
-  color: var(--yt-spec-text-secondary) !important;
+  color: color-mix(in srgb, var(--yslv-yt-text-primary, #f1f1f1) 65%, transparent) !important;
   display: -webkit-box !important;
   -webkit-box-orient: vertical !important;
   -webkit-line-clamp: var(--yslv-desc-clamp) !important;
@@ -235,10 +238,8 @@ html[data-yslv-subs-view="list"] ytd-rich-item-renderer.yslv-is-short > #content
 }
 
 html[dark][data-yslv-subs-view="list"] {
-  --yslv-sep: rgba(255, 255, 255, 0.18);
   --yslv-skel-base: rgba(255, 255, 255, 0.1);
 }
 html:not([dark])[data-yslv-subs-view="list"] {
-  --yslv-sep: rgba(0, 0, 0, 0.1);
   --yslv-skel-base: rgba(0, 0, 0, 0.1);
 }
